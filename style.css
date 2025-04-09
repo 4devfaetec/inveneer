@@ -20,11 +20,11 @@ aside {
   padding: 5% 0;
 }
 
-/* aside ul {
+aside ul {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 15vw;
 }
 
 aside ul li {
@@ -37,11 +37,11 @@ aside ul li {
 
 aside ul li:hover,
 aside ul li.hovered {
-  background-color: #fcfaf7;
+  background-color: #ececec;
 }
 
 aside ul li:nth-child(1) {
-  margin-bottom: 40px;
+  margin-top: 7vh;
   pointer-events: none;
 }
 
@@ -56,38 +56,33 @@ aside ul li a {
 
 aside ul li:hover a,
 aside ul li.hovered a {
-    color: blue;
+  color: blue;
 }
 
-aside ul li a .session-icon{
-    position: relative;
-    display: block;
-    min-width: 60px;
-    height: 60px;
-    line-height: 75px;
-    text-align: center;  
+aside ul li a .session-icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
 }
 
-aside ul li a .session-icon i{
-    font-size: 1.75rem;
+aside ul li a .session-icon i {
+  font-size: 1.75rem;
 }
 
-aside ul li a .session-title{
-    position: relative;
-    display: block;
-    padding: 0 10px;
-    height: 60px;
-    line-height: 60px;
-    text-align: start;
-    white-space: nowrap;  
-} */
+aside ul li a .session-title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+}
 
-
-
-
-
-
-aside .sessions{
+/* aside .sessions{
     display: flex;
     color: #fcfaf7;
     gap: 10px;
@@ -101,7 +96,7 @@ aside .sessions{
 aside .sessions:hover {
     background-color: #3f6c9c;
 }
-
+ */
 aside #select {
   background-color: #3f6c9c;
 }
