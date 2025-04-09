@@ -9,16 +9,83 @@
   font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
-    display: flex;
+body {
+  display: flex;
 }
 aside {
   width: 15vw;
   height: 100vh;
   background-color: #2b5b8d;
   align-items: center;
-  padding: 5% 0;  
+  padding: 5% 0;
 }
+
+/* aside ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+aside ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+aside ul li:hover,
+aside ul li.hovered {
+  background-color: #fcfaf7;
+}
+
+aside ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+aside ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #fcfaf7;
+}
+
+aside ul li:hover a,
+aside ul li.hovered a {
+    color: blue;
+}
+
+aside ul li a .session-icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;  
+}
+
+aside ul li a .session-icon i{
+    font-size: 1.75rem;
+}
+
+aside ul li a .session-title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;  
+} */
+
+
+
+
+
 
 aside .sessions{
     display: flex;
@@ -31,8 +98,12 @@ aside .sessions{
     padding: 5px 5%;
 }
 
-aside #select{
+aside .sessions:hover {
     background-color: #3f6c9c;
+}
+
+aside #select {
+  background-color: #3f6c9c;
 }
 main {
   width: 85vw;
@@ -42,20 +113,20 @@ main {
 }
 
 main #container {
-    width: 90%;
-    height: 90%;
-    background-color: #fcfaf7;
-    margin: auto;
-    border-radius: 15px;
-    padding: 15px;
+  width: 90%;
+  height: 90%;
+  background-color: #fcfaf7;
+  margin: auto;
+  border-radius: 15px;
+  padding: 15px;
 }
 
-main #top-box{
-    width: 100%;
-    height: auto;
+main #top-box {
+  width: 100%;
+  height: auto;
 }
 
 main.top-infos {
-    padding: 3%;
-    background-color: aliceblue;
+  padding: 3%;
+  background-color: aliceblue;
 }
