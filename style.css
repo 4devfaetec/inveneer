@@ -9,13 +9,17 @@
   font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+:root{
+  --blue: #2b5b8d;
+}
+
 body {
   display: flex;
 }
 aside {
   width: 15vw;
   height: 100vh;
-  background-color: #2b5b8d;
+  background-color: var(--blue);
   align-items: center;
   padding: 5% 0;
 }
@@ -33,6 +37,7 @@ aside ul li {
   list-style: none;
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
+  margin-bottom: 3px;
 }
 
 aside ul li:hover,
@@ -41,10 +46,15 @@ aside ul li.hovered {
 }
 
 aside ul li:nth-child(1) {
-  margin-top: 7vh;
+  margin-top: 15vh;
   pointer-events: none;
 }
 
+aside ul li:last-child{
+  display: block;
+  margin-bottom: 20px;
+  margin-top: unset;
+}
 aside ul li a {
   position: relative;
   display: block;
@@ -54,6 +64,7 @@ aside ul li a {
   color: #fcfaf7;
 }
 
+
 aside ul li:hover a,
 aside ul li.hovered a {
   color: blue;
@@ -61,15 +72,17 @@ aside ul li.hovered a {
 
 aside ul li a .session-icon {
   position: relative;
-  display: block;
-  min-width: 60px;
-  height: 60px;
+  display: flex;
+  min-width: 65px;
+  height: 65px;
   line-height: 75px;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 aside ul li a .session-icon i {
   font-size: 1.75rem;
+  
 }
 
 aside ul li a .session-title {
@@ -80,6 +93,7 @@ aside ul li a .session-title {
   line-height: 60px;
   text-align: start;
   white-space: nowrap;
+  transform: translateY(3px);
 }
 
 /* aside .sessions{
