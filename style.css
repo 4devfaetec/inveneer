@@ -10,7 +10,9 @@
 }
 
 :root{
-  --blue: #2b5b8d;
+  --clrPrimary: #2b5b8d;
+  --backgroundClr: #ececec;
+  --clrContainer: #fcfaf7;
 }
 
 body {
@@ -19,7 +21,7 @@ body {
 aside {
   width: 15vw;
   height: 100vh;
-  background-color: var(--blue);
+  background-color: var(--clrPrimary);
   align-items: center;
   padding: 5% 0;
 }
@@ -42,7 +44,7 @@ aside ul li {
 
 aside ul li:hover,
 aside ul li.hovered {
-  background-color: #ececec;
+  background-color: var(--backgroundClr);
 }
 
 aside ul li:nth-child(1) {
@@ -61,13 +63,13 @@ aside ul li a {
   width: 100%;
   display: flex;
   text-decoration: none;
-  color: #fcfaf7;
+  color: var(--backgroundClr);
 }
 
 
 aside ul li:hover a,
 aside ul li.hovered a {
-  color: blue;
+  color: var(--clrPrimary);
 }
 
 aside ul li a .session-icon {
@@ -96,35 +98,17 @@ aside ul li a .session-title {
   transform: translateY(3px);
 }
 
-/* aside .sessions{
-    display: flex;
-    color: #fcfaf7;
-    gap: 10px;
-    background-color: #2b5b8d;
-    height: 8%;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 5px 5%;
-}
-
-aside .sessions:hover {
-    background-color: #3f6c9c;
-}
- */
-aside #select {
-  background-color: #3f6c9c;
-}
 main {
   width: 85vw;
   height: 100vh;
-  background-color: #ececec;
+  background-color: var(--backgroundClr);
   padding-top: 7vh;
 }
 
 main #container {
   width: 90%;
   height: 90%;
-  background-color: #fcfaf7;
+  background-color: var(--clrContainer);
   margin: auto;
   border-radius: 15px;
   padding: 15px;
