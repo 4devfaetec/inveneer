@@ -148,3 +148,10 @@ main .top-infos .info-number {
   font-weight: 900;
   font-size: 3rem;
 }
+
+main #sell-graphics{
+  width: 50%;
+  height: 40%;
+  background-color: #2b5b8d;
+  border-radius: 20px;
+}
