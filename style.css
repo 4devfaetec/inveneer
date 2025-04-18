@@ -32,7 +32,7 @@
   --white: #000;
   --black: #fff;
   --night: #dddddd;
-  --background: #313131;
+  --background: #202528;
   --primary-clr: #021b33;
   --secondary-clr: #4f45b8;
 }
@@ -52,7 +52,7 @@ header {
     align-items: center;
 
     & #logo {
-      color: var(--white);
+      color: var(--always-white);
       cursor: pointer;
 
       & span {
@@ -68,7 +68,7 @@ header {
     align-items: center;
 
     & a {
-      color: var(--white);
+      color: var(--always-white);
       font-size: 1.05vw;
     }
   }
@@ -87,7 +87,7 @@ header {
       box-sizing: border-box;
       border: 0;
       border-radius: 20px;
-      color: var(--background);
+      color: var(--always-white);
       padding: 1em 1.8em;
       background: var(--secondary-clr);
       display: flex;
@@ -137,6 +137,7 @@ header {
 
       &:hover .arrow:before {
         right: 0;
+        color: var(--always-black);
       }
     }
 
@@ -238,7 +239,7 @@ header {
       font-weight: 800;
       font-size: 2rem;
       margin-bottom: 5%;
-      color: black;
+      color: var(--black);
     }
 
     & .input-group {
@@ -300,7 +301,7 @@ header {
       background-color: inherit;
       border-radius: 100px;
       font-weight: 600;
-      color: var(--always-black);
+      color: var(--black);
       box-shadow: 0 0 0 2px var(--details);
       cursor: pointer;
       overflow: hidden;
@@ -310,7 +311,7 @@ header {
       & svg {
         position: absolute;
         width: 24px;
-        fill: var(--always-black);
+        fill: var(--black);
         z-index: 9;
         transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
       }
@@ -527,11 +528,13 @@ main {
     & h3 {
       font-weight: 900;
       font-size: 4rem;
+      color: var(--black);
     }
 
     & p {
       font-size: 1.1rem;
       font-weight: 300;
+      color: var(--black);
     }
   }
 
