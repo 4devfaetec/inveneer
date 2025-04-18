@@ -21,7 +21,7 @@
       </div>
 
       <div id="header-right">
-        <button id="login-btn">
+        <button id="login-btn" onclick="showForm()">
           Entrar
           <div class="arrow-wrapper">
             <div class="arrow"></div>
@@ -33,12 +33,87 @@
         </button>
       </div>
     </header>
+    <div id="form-blur" onclick="hideForm()"></div>
+    <form action="#" method="post" id="login-form">
+      <div id="left-box-form">
+        <span id="login-title">Acesse sua conta</span>
+        <div class="input-group">
+          <input
+            required=""
+            type="email"
+            name="email"
+            autocomplete="off"
+            class="input"
+            placeholder="Email"
+          />
+          <label class="user-label">Email</label>
+        </div>
+        <div class="input-group">
+          <input
+            required=""
+            type="password"
+            name="password"
+            autocomplete="off"
+            class="input"
+            placeholder="Senha"
+          />
+          <label class="user-label">Senha</label>
+        </div>
+        <div id="remember-checkbox">
+          <input type="checkbox" id="cbx-46" class="inp-cbx" />
+          <label for="cbx-46" class="cbx"
+            ><span>
+              <svg viewBox="0 0 12 10" height="10px" width="12px">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+            ><span>Lembrar desse dispositivo</span>
+          </label>
+        </div>
+
+        <button
+          id="login-button"
+          type="submit"
+          onclick="window.location.href='user/main.html'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="arr-2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
+          </svg>
+          <span class="text">Entrar</span>
+          <span class="circle"></span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="arr-1"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div id="right-box-form">
+        <div id="close-btn-box">
+          <i class="bi bi-x-lg" onclick="hideForm()"></i>
+        </div>
+        <span>Bem-Vindo de Volta!</span>
+      </div>
+    </form>
     <main>
       <div id="left-box">
         <h3>Controle total do seu estoque</h3>
-        <p>Gerencie seu estoque com rapidez, praticidade e segurança. Economize tempo e evite erros com uma plataforma feita para facilitar sua rotina.</p>
+        <p>
+          Gerencie seu estoque com rapidez, praticidade e segurança. Economize
+          tempo e evite erros com uma plataforma feita para facilitar sua
+          rotina.
+        </p>
         <button id="discover">Conheça o sistema</button>
       </div>
     </main>
   </body>
+  <script src="./scripts/transitions.js"></script>
 </html>
