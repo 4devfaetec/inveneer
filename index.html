@@ -21,22 +21,33 @@
       </div>
 
       <div id="header-right">
-        <label class="switch" >
-          <span class="sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="#ffd43b"><circle r="5" cy="12" cx="12"></circle><path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path></g></svg></span>
-          <span class="moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path></svg></span>   
-          <input type="checkbox" class="input" onclick="themeToggle()">
-          <span class="slider"></span>
-        </label>
+        <div class="btn-container">
+          <label class="switch btn-color-mode-switch">
+            <input
+              value="1"
+              id="color_mode"
+              name="color_mode"
+              type="checkbox"
+              onclick="themeToggle()"
+            />
+            <label
+              class="btn-color-mode-switch-inner"
+              data-off="Light"
+              data-on="Dark"
+              for="color_mode"
+            ></label>
+          </label>
+        </div>
         <button id="login-btn" onclick="showForm()">
           Entrar
           <div class="arrow-wrapper">
             <div class="arrow"></div>
           </div>
         </button>
-        <button id="download-btn">
+        <!-- <button id="download-btn">
           <span>Instalar app</span>
           <span></span>
-        </button>
+        </button> -->
       </div>
     </header>
     <div id="form-blur" onclick="hideForm()"></div>
@@ -110,16 +121,287 @@
       </div>
     </form>
     <main>
-      <div id="left-box">
-        <h3>Controle total do seu estoque</h3>
-        <p>
-          Gerencie seu estoque com rapidez, praticidade e segurança. Economize
-          tempo e evite erros com uma plataforma feita para facilitar sua
-          rotina.
-        </p>
-        <button id="discover">Conheça o sistema</button>
-      </div>
+      <section id="sec1">
+        <div id="left-box">
+          <h3>Transforme a gestão do seu estoque</h3>
+          <p>
+            A plataforma ideal para empresas que buscam controle, praticidade e
+            eficiência. Gerencie seu estoque com rapidez, praticidade e
+            segurança. Economize tempo e evite erros com uma plataforma feita
+            para facilitar sua rotina.
+          </p>
+          <div class="buttons">
+            <button id="demo-btn">Solicitar demonstração</button>
+
+            <button class="learn-more">
+              <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+              </span>
+              <span class="button-text">Saiba Mais</span>
+            </button>
+          </div>
+        </div>
+        <div id="right-box">
+          <img
+            src="img/9f7f8bb160bf351468801c630b4f3d93.png"
+            alt=" Stock Woman"
+          />
+        </div>
+      </section>
+      <section id="sec2">
+        <div class="top-box">
+          <p class="sec-name">Funcionalidades</p>
+          <span class="title"
+            >Tudo o que você precisa para gerenciar seu estoque</span
+          >
+          <p>
+            Conheça as principais funcionalidades que tornam Inve<span
+              >neer</span
+            >
+            a escolha ideal para empresas de todos os portes.
+          </p>
+        </div>
+        <div class="cards-box">
+          <div class="box">
+            <i class="bi bi-clock-history"></i>
+            <span>Controle em tempo real</span>
+            <p>
+              Monitore seu estoque com atualizações instantâneas e relatórios
+              precisos.
+            </p>
+          </div>
+          <div class="box">
+            <i class="bi bi-bar-chart-line"></i>
+            <span>Painel intuitivo</span>
+            <p>
+              Interface amigável com dashboards personalizáveis para
+              administradores.
+            </p>
+          </div>
+          <div class="box">
+            <i class="bi bi-search"></i>
+            <span>Busca rápida</span>
+            <p>
+              Localize produtos instantaneamente com nosso sistema de busca
+              avançado.
+            </p>
+          </div>
+          <div class="box">
+            <i class="bi bi-phone"></i>
+            <span>Design responsivo</span>
+            <p>Acesse de qualquer dispositivo com uma experiência otimizada.</p>
+          </div>
+          <div class="box">
+            <i class="bi bi-graph-up-arrow"></i>
+            <span>Análise avançada</span>
+            <p>
+              Gráficos e relatórios detalhados para tomada de decisões
+              estratégicas.
+            </p>
+          </div>
+          <div class="box">
+            <i class="bi bi-shield-shaded"></i>
+            <span>Segurança de dados</span>
+            <p>Proteção avançada para todas as informações do seu negócio.</p>
+          </div>
+          <div class="box">
+            <i class="bi bi-lock"></i>
+            <span>Controle de acesso</span>
+            <p>Defina permissões específicas para cada membro da sua equipe.</p>
+          </div>
+          <div class="box">
+            <i class="bi bi-cloud-download"></i>
+            <span>Backup automático</span>
+            <p>Seus dados sempre seguros com backups automáticos na nuvem.</p>
+          </div>
+        </div>
+      </section>
+      <section id="sec3">
+        <div class="top-box">
+          <p class="sec-name">Planos</p>
+          <span class="title">Escolha o plano ideal para o seu negócio</span>
+          <p>
+            Oferecemos opções flexíveis que se adaptam ao tamanho e às
+            necessidades da sua empresa.
+          </p>
+        </div>
+        <div class="cards-box">
+          <div class="box">
+            <span class="title">Starter</span>
+            <span class="subtitle">Para pequenos negócios</span>
+            <span class="price">R$99<span>/mês</span></span>
+            <div class="benefits">
+              <span><i class="bi bi-check-lg"></i> Até 500 produtos</span>
+              <span><i class="bi bi-check-lg"></i> 5 usuários</span>
+              <span><i class="bi bi-check-lg"></i> Relatórios básicos</span>
+              <span><i class="bi bi-check-lg"></i> Suporte por email</span>
+            </div>
+            <button>Ver oferta</button>
+          </div>
+          <div class="box popular">
+            <span class="popular-span">Popular</span>
+            <span class="title">Professional</span>
+            <span class="subtitle">Para empresas em crescimento</span>
+            <span class="price">R$299<span>/mês</span></span>
+            <div class="benefits">
+              <span><i class="bi bi-check-lg"></i> Até 5.000 produtos</span>
+              <span><i class="bi bi-check-lg"></i> 20 usuários</span>
+              <span><i class="bi bi-check-lg"></i> Relatórios avançados</span>
+              <span><i class="bi bi-check-lg"></i> Suporte prioritário</span>
+              <span><i class="bi bi-check-lg"></i> API de integração</span>
+            </div>
+            <button>Ver oferta</button>
+          </div>
+          <div class="box">
+            <span class="title">Enterprise</span>
+            <span class="subtitle">Para grandes operações</span>
+            <span class="price">R$599<span>/mês</span></span>
+            <div class="benefits">
+              <span><i class="bi bi-check-lg"></i> Produtos ilimitados</span>
+              <span><i class="bi bi-check-lg"></i> Usuários ilimitados</span>
+              <span><i class="bi bi-check-lg"></i> Business Intelligence</span>
+              <span><i class="bi bi-check-lg"></i> Suporte 24h</span>
+              <span
+                ><i class="bi bi-check-lg"></i> Personalização completa</span
+              >
+            </div>
+            <button>Ver oferta</button>
+          </div>
+        </div>
+      </section>
+      <section id="sec4">
+        <div class="top-box">
+          <span class="sec-name">Contato</span>
+          <span class="title">Pronto para transformar seu negócio?</span>
+          <p class="subtitle">
+            Entre em contato conosco e descubra como o Inveneer pode ajudar
+            sua empresa.
+          </p>
+        </div>
+        <div class="left-box">
+          <span class="title">Informações de Contato</span>
+          <p>
+            Estamos disponíveis para ajudar você a encontrar a melhor solução
+            para o seu negócio.
+          </p>
+          <span class="contact">
+            <div class="icon">
+              <i class="bi bi-telephone"></i>
+            </div>
+            <div class="info">
+              <span>Telefone</span>
+              <p>(21) 00000-0000</p>
+            </div>
+          </span>
+          <span class="contact">
+            <div class="icon">
+              <i class="bi bi-envelope"></i>
+            </div>
+            <div class="info">
+              <span>Email</span>
+              <p>4dev.faetec@gmail.com</p>
+            </div>
+          </span>
+          <span class="contact">
+            <div class="icon">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div class="info">
+              <span>Endereço</span>
+              <p>Faetec ETE Nilópolis - Nilópolis, RJ</p>
+            </div>
+          </span>
+        </div>
+        <div class="right-box">
+          <span class="title">Envie uma mensagem</span>
+          <p>
+            Tem alguma dúvida ou sugestão? Fale com a gente!
+          </p>
+          <div class="card">
+            <form class="form">
+              <div class="group">
+                <input placeholder="‎" type="text" required="" />
+                <label for="name">Name</label>
+              </div>
+              <div class="group">
+                <input
+                  placeholder="‎"
+                  type="email"
+                  id="email"
+                  name="email"
+                  required=""
+                />
+                <label for="email">Email</label>
+              </div>
+              <div class="group">
+                <textarea
+                  placeholder="‎"
+                  id="comment"
+                  name="comment"
+                  rows="5"
+                  required=""
+                ></textarea>
+                <label for="comment">Comment</label>
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
+    <footer>
+      <div class="ft-box">
+        <h1>Inve<span>neer</span></h1>
+        <p>Seu estoque em ordem, seu negócio no controle.</p>
+        <div class="socials">
+          <i class="bi bi-facebook"></i>
+          <i class="bi bi-instagram"></i>
+          <i class="bi bi-twitter-x"></i>
+          <i class="bi bi-github"></i>
+          <i class="bi bi-discord"></i>
+          <i class="bi bi-youtube"></i>
+        </div>
+        <span id="copyright">
+          © 2025. Inveneer. All rights direct reserved.
+        </span>
+      </div>
+      <nav>
+        <ul>
+          <h3>Informações</h3>
+          <li><a href="#">Sobre o sistema</a></li>
+          <li><a href="#">Sobre nós</a></li>
+          <li><a href="#">Licença</a></li>
+          <li><a href="#">Estatísticas de uso</a></li>
+          
+        </ul>
+        <ul>
+          <h3>Links</h3>
+          <li>
+            <a href="#">Relatórios</a>
+          </li>
+          <li><a href="#">Painel do Adiministrador</a></li>
+          <li><a href="#">Consulta de produtos</a></li>
+          <li><a href="#">Histórico de Movimentações</a></li>
+          <li><a href="#">Sua equipe</a></li>
+          <li><a href="#">Agenda</a></li>
+        </ul>
+        <ul>
+          <h3>Suporte</h3>
+          <li><a href="#">Resolução de problemas</a></li>
+          <li><a href="#">Central de ajuda</a></li>
+          <li><a href="#">Contato com o suporte</a></li>
+          <li><a href="">Dúvidas ou sugestôes</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+        <ul>
+          <h3>Termos e políticas</h3>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Política de Backup</a></li>
+          <li><a href="#">Política de Acessibilidade</a></li>
+        </ul>
+      </nav>
+    </footer>
   </body>
   <script src="./scripts/transitions.js"></script>
   <script src="./scripts/darkmode.js"></script>
