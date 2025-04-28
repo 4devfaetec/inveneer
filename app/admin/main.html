@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin dashboard</title>
   </head>
   <body>
@@ -12,7 +13,9 @@
         <p>Inve<span>neer</span></p>
       </div>
       <ul>
-        <li class="active"><i class="bi bi-grid"></i> <span>Dashboard</span></li>
+        <li class="active">
+          <i class="bi bi-grid"></i> <span>Dashboard</span>
+        </li>
         <li><i class="bi bi-box-seam"></i> <span>Estoque</span></li>
         <li><i class="bi bi-boxes"></i> <span>Categorias</span></li>
         <li><i class="bi bi-clipboard-data"></i> <span>Relatórios</span></li>
@@ -20,15 +23,54 @@
         <li><i class="bi bi-people"></i> <span>Usuários</span></li>
         <li><i class="bi bi-gear"></i> <span>Configurações</span></li>
         <li>
-            <div class="img-user"></div>
-            <span class="user-infos">
-                <span class="name">Elon Musk</span>
-                <span class="privilege">Administrador</span>
-            </span>
+          <div class="img-user"></div>
+          <span class="user-infos">
+            <span class="name">Name</span>
+            <span class="privilege">Administrador</span>
+          </span>
         </li>
       </ul>
     </aside>
-    <main></main>
+    <main>
+      <div class="top-box">
+        <div class="top-infos">
+          <i class="bi bi-archive"></i>
+          <span class="info-title">Itens em Estoque</span>
+          <span class="info-number">128</span>
+        </div>
+        <div class="top-infos">
+          <i class="bi bi-truck"></i>
+          <span class="info-title">Entradas Recentes</span>
+          <span class="info-number">17</span>
+        </div>
+        <div class="top-infos">
+          <i class="bi bi-exclamation-triangle"></i>
+          <span class="info-title">Produtos com Baixo Estoque</span>
+          <span class="info-number">12</span>
+        </div>
+        <div class="top-infos">
+          <i class="bi bi-cash-coin"></i>
+          <span class="info-title">Vendas do dia</span>
+          <span class="info-number">1600</span>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <div class="chart-box">
+          <h2>Gráfico de Linha Dinâmico</h2>
+          <canvas id="lineChart"></canvas>
+
+          <button onclick="atualizarDadosLine()">Atualizar Dados</button>
+        </div>
+
+        <div class="chart-box">
+          <h2>Gráfico de Barras Dinâmico</h2>
+          <canvas id="myChart"></canvas>
+
+          <button onclick="atualizarDados()">Atualizar Dados</button>
+        </div>
+      </div>
+    </main>
   </body>
   <script src="script.js"></script>
 </html>
