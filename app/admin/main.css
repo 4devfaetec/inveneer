@@ -152,7 +152,7 @@ main {
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    padding: 2.5rem 10rem;
+    padding: 2.5rem 5%;
 
     & .top-infos {
       background-color: var(--card-clr);
@@ -161,22 +161,22 @@ main {
       flex-direction: column;
       align-items: center;
       width: 20%;
-      max-height: 20vh;
       border-radius: 10px;
 
       & i {
         color: var(--black);
-        font-size: 1.5rem;
+        font-size: 1vw;
       }
 
       & .info-title {
         color: var(--black);
         text-align: center;
+        font-size: 0.8vw;
       }
 
       & .info-number {
         color: var(--black);
-        font-size: 3rem;
+        font-size: 3vw;
         font-weight: 800;
         margin-top: auto;
       }
@@ -186,7 +186,8 @@ main {
   & .chart-section {
     display: flex;
     justify-content: space-evenly;
-    padding: 1rem 10rem;
+    padding: 1rem 7vw;
+    flex-wrap: wrap;
 
     & .chart-box {
       display: flex;
@@ -195,7 +196,7 @@ main {
       gap: 2rem;
       border: 1px solid var(--borders);
       border-radius: 10px;
-      padding: 1rem 8rem;
+      padding: 1rem 5vw;
     }
 
     & #myChart {
@@ -210,6 +211,7 @@ main {
 
     & h2 {
       color: var(--black);
+      font-size: 1.5vw;
     }
 
     & button {
@@ -217,7 +219,16 @@ main {
       background-color: var(--night);
       border-radius: 5px;
       color: var(--white);
-      width: 40%;
+      width: 10vw;
+      font-size: 0.7vw;
+    }
+  }
+
+  & .table-box {
+    padding: 0 10rem;
+
+    & table {
+      border-radius: 10px;
     }
   }
 }
