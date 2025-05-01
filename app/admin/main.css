@@ -162,7 +162,9 @@ main {
       align-items: center;
       width: 20%;
       max-height: 20vh;
-      border-radius: 10px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px var(--background2);
+      cursor: default;
 
       & i {
         color: var(--black);
@@ -217,7 +219,7 @@ main {
       background-color: var(--night);
       border-radius: 5px;
       color: var(--white);
-      width: 40%;
+      width: 50%;
     }
   }
 }

@@ -809,7 +809,6 @@ main #sec2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 50px;
 
     & .box {
       width: 250px;
@@ -826,6 +825,7 @@ main #sec2 {
       gap: 5px;
       cursor: default;
       box-shadow: 0 0 15px var(--unselected);
+      margin-bottom: 5%;
 
       &:hover {
         box-shadow: 0 0 0;
