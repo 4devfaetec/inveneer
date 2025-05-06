@@ -51,28 +51,29 @@
       </div>
     </header>
     <div id="form-blur" onclick="hideForm()"></div>
-    <form action="#" method="post" id="login-form">
+    <form action="PHP/login.php" method="post" id="login-form">
       <div id="left-box-form">
         <span id="login-title">Acesse sua conta</span>
         <div class="input-group">
           <input
-            required=""
+            
             type="email"
             name="email"
             autocomplete="off"
             class="input"
             placeholder="Email"
+            required
           />
           <label class="user-label">Email</label>
         </div>
         <div class="input-group">
           <input
-            required=""
             type="password"
-            name="password"
+            name="senha"
             autocomplete="off"
             class="input"
             placeholder="Senha"
+            required
           />
           <label class="user-label">Senha</label>
         </div>
