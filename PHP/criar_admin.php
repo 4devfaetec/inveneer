@@ -1,18 +1,24 @@
 <?php
 include "conexao.php";
 
-$nome = "admin";
-$email = "admin@empresa.com";
-$senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); 
-$tipo = $_POST['tipo']; 
+// Verifica se os dados foram enviados via POST
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nome  = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $tipo  = $_POST['tipo'];
 
-$sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', 'admin')";
+    $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo) 
+            VALUES ('$nome', '$email', '$senha', '$tipo')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Administrador criado com sucesso!";
+    if ($conn->query($sql) === TRUE) {
+        echo "Usuário cadastrado com sucesso!";
+    } else {
+        echo "Erro ao cadastrar usuário: " . $conn->error;
+    }
+
+    $conn->close();
 } else {
-    echo "Erro ao criar admin: " . $conn->error;
+    echo "Acesso inválido.";
 }
-
-$conn->close();
 ?>

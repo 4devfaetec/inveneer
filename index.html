@@ -52,7 +52,7 @@
       </div>
     </header>
     <div id="form-blur" onclick="hideForm()"></div>
-    <form action="PHP/login.php" method="post" id="login-form">
+    <form action="PHP/login.php" method="POST" id="login-form">
       <div id="left-box-form">
         <span id="login-title">Acesse sua conta</span>
         <div class="input-group">
@@ -92,9 +92,8 @@
 
         <button
           id="login-button"
-          type="button"
-          onclick="showTypeText()"
-        >
+          type="submit"
+          >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="arr-2"

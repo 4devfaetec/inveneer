@@ -19,18 +19,24 @@ if ($result->num_rows > 0) {
         $_SESSION['nome'] = $usuario['nome'];
         $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
 
+        // Verificar se o tipo de usuário é válido
+        if (!in_array($_SESSION['tipo'], ['ADMIN', 'FUNCIONARIO'])) {
+            echo "Tipo de usuário inválido.";
+            exit;
+        }
+
+        // Redirecionamento conforme o tipo de usuário
         if ($_SESSION['tipo'] === 'ADMIN') {
-            header("Location: painel_admin.php");
+            header("Location: ../app/admin/main.html");
         } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
             header("Location: painel_funcionario.php");
-        } else {
-            echo "Tipo de usuário inválido.";
         }
         exit;
     } else {
-        echo "Senha incorreta.";
+        echo "Login inválido."; // Mensagem genérica
     }
 } else {
-    echo "Usuário não encontrado.";
+    echo "Login inválido."; // Mensagem genérica
 }
 ?>
+
