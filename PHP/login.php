@@ -5,8 +5,11 @@ session_start();
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 
-$sql = "SELECT * FROM usuarios WHERE email = '$email'";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM cadastro_usuario WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     $usuario = $result->fetch_assoc();
@@ -14,12 +17,14 @@ if ($result->num_rows > 0) {
     if (password_verify($senha, $usuario['senha'])) {
         $_SESSION['id'] = $usuario['id'];
         $_SESSION['nome'] = $usuario['nome'];
-        $_SESSION['tipo'] = $usuario['tipo'];
+        $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
 
-        if ($usuario['tipo'] === 'admin') {
+        if ($_SESSION['tipo'] === 'ADMIN') {
             header("Location: painel_admin.php");
-        } else {
+        } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
             header("Location: painel_funcionario.php");
+        } else {
+            echo "Tipo de usuário inválido.";
         }
         exit;
     } else {
