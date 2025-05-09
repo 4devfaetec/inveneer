@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    
+
     <title>Document</title>
   </head>
   <body>
@@ -52,33 +52,22 @@
       </div>
     </header>
     <div id="form-blur" onclick="hideForm()"></div>
-    <form action="PHP/login.php" method="post" id="login-form">
+    <form action="PHP/login.php" method="post" id="login-form" class="form">
       <div id="left-box-form">
         <span id="login-title">Acesse sua conta</span>
-        <div class="input-group">
+        <div class="group">
           <input
-            
+            placeholder="‎"
             type="email"
+            id="email"
             name="email"
-            autocomplete="off"
-            class="input"
-            id="email-input"
-            placeholder="Email"
-            required
+            required=""
           />
-          <label class="user-label">Email</label>
+          <label for="email">Email</label>
         </div>
-        <div class="input-group">
-          <input
-            type="password"
-            name="senha"
-            autocomplete="off"
-            class="input"
-            id="password-input"
-            placeholder="Senha"
-            required
-          />
-          <label class="user-label">Senha</label>
+        <div class="group">
+          <input placeholder="‎" type="password" required="" />
+          <label for="name">Senha</label>
         </div>
         <div id="remember-checkbox">
           <input type="checkbox" id="cbx-46" class="inp-cbx" />
@@ -90,11 +79,7 @@
           </label>
         </div>
 
-        <button
-          id="login-button"
-          type="button"
-          onclick="showTypeText()"
-        >
+        <button id="login-button" type="button" onclick="showTypeText()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="arr-2"
@@ -278,8 +263,8 @@
           <span class="sec-name">Contato</span>
           <span class="title">Pronto para transformar seu negócio?</span>
           <p class="subtitle">
-            Entre em contato conosco e descubra como o Inveneer pode ajudar
-            sua empresa.
+            Entre em contato conosco e descubra como o Inveneer pode ajudar sua
+            empresa.
           </p>
         </div>
         <div class="left-box">
@@ -318,9 +303,7 @@
         </div>
         <div class="right-box">
           <span class="title">Envie uma mensagem</span>
-          <p>
-            Tem alguma dúvida ou sugestão? Fale com a gente!
-          </p>
+          <p>Tem alguma dúvida ou sugestão? Fale com a gente!</p>
           <div class="card">
             <form class="form">
               <div class="group">
@@ -376,7 +359,6 @@
           <li><a href="#">Sobre nós</a></li>
           <li><a href="#">Licença</a></li>
           <li><a href="#">Estatísticas de uso</a></li>
-          
         </ul>
         <ul>
           <h3>Links</h3>
