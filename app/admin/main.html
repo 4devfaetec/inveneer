@@ -28,9 +28,6 @@
         <li data-section="stock">
           <i class="bi bi-box-seam"></i> <span>Estoque</span>
         </li>
-        <li data-section="categorias">
-          <i class="bi bi-boxes"></i> <span>Categorias</span>
-        </li>
         <li data-section="relatorios">
           <i class="bi bi-clipboard-data"></i> <span>Relatórios</span>
         </li>
@@ -563,6 +560,61 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+      <div id="config" class="section">
+        <h3>Configurações</h3>
+        <p>Gerencie suas preferências e configurações do sistema.</p>
+        <h5>- Perfil</h5>
+        <p>Gerencie suas informações pessoais e preferências de conta.</p>
+        <div class="profile-input">
+          <label for="name">Nome</label>
+          <div class="box">
+            <input type="text" name="name" placeholder="Mark" />
+            <button>
+              <span>Editar</span><i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="profile-input">
+          <label for="email">Email</label>
+          <div class="box">
+            <input type="email" name="email" placeholder="mark@inveneer.com" />
+            <button>
+              <span>Editar</span><i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="profile-input">
+          <label for="lang">Idioma</label>
+          <div class="box">
+            <input type="text" name="lang" placeholder="Português (Brasil)">
+            <button><span>Editar</span><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+        <h5>- Notificações</h5>
+        <p>Configure como você deseja receber notificações do sistema.</p>
+        <div class="checkbox">
+          <div class="text-box">
+            <h6>Notificações por email</h6>
+            <p>Receba atualizações importantes por email.</p>
+          </div>
+          <input type="checkbox">
+        </div>
+        <div class="checkbox">
+          <div class="text-box">
+            <h6>Alertas de estoque baixo</h6>
+            <p>
+              Seja notificado quando produtos estiverem com estoque baixo.</p>
+          </div>
+          <input type="checkbox">
+        </div>
+        <div class="checkbox">
+          <div class="text-box">
+            <h6>Notificações de pedidos</h6>
+            <p>Receba notificações sobre novos pedidos e atualizações.</p>
+          </div>
+          <input type="checkbox">
         </div>
       </div>
     </main>
