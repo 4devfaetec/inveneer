@@ -140,3 +140,20 @@ function hideForm() {
   formShadow.style.visibility = "hidden";
   document.body.style.overflow = '';
 }
+
+const stockAdd = document.querySelector(".ad-prod");
+
+function showStockForm() {
+  stockAdd.style.top = "30%";
+  stockAdd.style.visibility = "visible";
+  formShadow.style.visibility = "visible";
+  document.body.style.overflow = 'hidden';
+  document.aside.style.visibility = "hidden";
+}
+
+function hideStockForm() {
+  stockAdd.style.top = "-1000px";
+  stockAdd.style.visibility = "hidden";
+  formShadow.style.visibility = "hidden";
+  document.body.style.overflow = '';
+}
