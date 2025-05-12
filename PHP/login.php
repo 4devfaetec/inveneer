@@ -2,41 +2,42 @@
 include "conexao.php";
 session_start();
 
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-$sql = "SELECT * FROM cadastro_usuario WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+    $sql = "SELECT * FROM cadastro_usuario WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $usuario = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
 
-    if (password_verify($senha, $usuario['senha'])) {
-        $_SESSION['id'] = $usuario['id'];
-        $_SESSION['nome'] = $usuario['nome'];
-        $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
+        if (password_verify($senha, $usuario['senha'])) {
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
 
-        // Verificar se o tipo de usuário é válido
-        if (!in_array($_SESSION['tipo'], ['ADMIN', 'FUNCIONARIO'])) {
-            echo "Tipo de usuário inválido.";
+            if (!in_array($_SESSION['tipo'], ['ADMIN', 'FUNCIONARIO'])) {
+                echo "<script>alert('Tipo de usuário inválido.'); window.history.back();</script>";
+                exit;
+            }
+
+            if ($_SESSION['tipo'] === 'ADMIN') {
+                header("Location: ../app/admin/main.html");
+            } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
+                header("Location: ../app/user/main.html");
+            }
             exit;
+        } else {
+            echo "<script>alert('Login ou senha inválidos.'); window.history.back();</script>";
         }
-
-        // Redirecionamento conforme o tipo de usuário
-        if ($_SESSION['tipo'] === 'ADMIN') {
-            header("Location: ../app/admin/main.html");
-        } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
-            header("Location: painel_funcionario.php");
-        }
-        exit;
     } else {
-        echo "Login inválido."; // Mensagem genérica
+        echo "<script>alert('Login ou senha inválidos.'); window.history.back();</script>";
     }
 } else {
-    echo "Login inválido."; // Mensagem genérica
+    echo "<script>alert('Acesso inválido.'); window.history.back();</script>";
 }
 ?>
-
