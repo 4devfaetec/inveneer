@@ -19,31 +19,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
-            $_SESSION['cargo'] = strtoupper($usuario['cargo']); // Diferencia Supervisor e Vendedor
 
-            if ($_SESSION['tipo'] === 'ADMIN') {
-                // Redireciona para a área de admin (gerente)
-                header("Location: ../app/admin/main.html");
-            } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
-                // Se for FUNCIONARIO, verifica o cargo (Supervisor ou Vendedor)
-                if ($_SESSION['cargo'] === 'SUPERVISOR') {
-                    // Supervisor vai para a área de Supervisor
-                    header("Location: ../app/supervisor/main.html");
-                } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
-                    // Vendedor vai para a área de Vendedor
-                    header("Location: ../app/vendedor/main.html");
-                } else {
-                    echo "<script>alert('Cargo não identificado.'); window.history.back();</script>";
-                }
+            if (!in_array($_SESSION['tipo'], ['ADMIN', 'FUNCIONARIO'])) {
+                echo "<script>alert('Tipo de usuário inválido.'); window.history.back();</script>";
+                exit;
             }
-            exit;
+
+        if ($_SESSION['tipo'] === 'ADMIN') {
+            header("Location: .php");
+        } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
+            header("Location: painel_funcionario.php");
         } else {
-            echo "<script>alert('Login inválido.'); window.history.back();</script>";
+            echo "Tipo de usuário inválido.";
         }
     } else {
-        echo "<script>alert('Login inválido.'); window.history.back();</script>";
+        echo "Senha incorreta.";
     }
 } else {
     echo "<script>alert('Acesso inválido.'); window.history.back();</script>";
+}
 }
 ?>

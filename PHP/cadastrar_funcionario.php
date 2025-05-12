@@ -2,32 +2,22 @@
 include "conexao.php";
 session_start();
 
+// Verifica se o usuário está logado e se é admin
 if (!isset($_SESSION['id']) || $_SESSION['tipo'] !== 'admin') {
     header("Location: login_form.html");
     exit;
 }
 
-// Verificando se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtendo os dados do formulário
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-    $cargo = strtoupper($_POST['cargo']); // Convertendo o cargo para maiúsculas
-    $tipo = 'FUNCIONARIO'; // Tipo será sempre 'FUNCIONARIO' em maiúsculas
+// Simulação – depois você troca por $_POST
+$nome = "Carlos Silva";
+$email = "carlos@empresa.com";
+$senha = password_hash("carlos123", PASSWORD_DEFAULT);
 
-    // Verificando se o cargo é válido
-    if ($cargo === 'SUPERVISOR' || $cargo === 'VENDEDOR') {
-        // Inserção no banco de dados
-        $sql = "INSERT INTO usuarios (nome, email, senha, tipo, cargo) VALUES ('$nome', '$email', '$senha', '$tipo', '$cargo')";
+$sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', 'funcionario')";
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Funcionário cadastrado com sucesso!";
-        } else {
-            echo "Erro ao cadastrar funcionário: " . $conn->error;
-        }
-    } else {
-        echo "Cargo inválido. Escolha entre 'SUPERVISOR' ou 'VENDEDOR'.";
-    }
+if ($conn->query($sql) === TRUE) {
+    echo "Funcionário cadastrado com sucesso!";
+} else {
+    echo "Erro ao cadastrar funcionário: " . $conn->error;
 }
 ?>
