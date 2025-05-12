@@ -122,3 +122,21 @@ function gerarNumerosAleatorios(qtd, min, max) {
   }
   return valores;
 }
+
+const formAdd = document.querySelector("#ad-func");
+const formShadow = document.querySelector(".form-shadow");
+
+function showForm() {
+  formAdd.style.top = "30%";
+  formAdd.style.visibility = "visible";
+  formShadow.style.visibility = "visible";
+  document.body.style.overflow = 'hidden';
+  document.lastModified.style.visibility = "hidden";
+}
+
+function hideForm() {
+  formAdd.style.top = "-1000px";
+  formAdd.style.visibility = "hidden";
+  formShadow.style.visibility = "hidden";
+  document.body.style.overflow = '';
+}
