@@ -25,7 +25,7 @@
         <li data-section="dashboard" class="active">
           <i class="bi bi-grid"></i> <span>Dashboard</span>
         </li>
-        <li data-section="estoque">
+        <li data-section="stock">
           <i class="bi bi-box-seam"></i> <span>Estoque</span>
         </li>
         <li data-section="categorias">
@@ -53,7 +53,7 @@
       </ul>
     </aside>
     <main>
-      <div id="dashboard" class="section">
+      <div id="dashboard" class="section active-section">
         <div class="top-box">
           <div class="top-infos">
             <i class="bi bi-archive"></i>
@@ -125,7 +125,239 @@
           </table>
         </div>
       </div>
-      <div id="users" class="section active-section">
+      <div id="stock" class="section">
+        <div class="form-shadow"></div>
+        <form class="ad-prod">
+          <div class="top-box">
+            <span class="title">Adicionar novo produto</span>
+            <i class="bi bi-x-lg" onclick="hideStockForm()"></i>
+          </div>
+          <div class="input-box">
+            <label for="name">Nome do produto</label>
+            <input type="text" name="name" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="cat">Categoria</label>
+            <select name="cat" id="cat">
+              <option value="#" disabled selected>
+                Selecione uma categoria
+              </option>
+              <option value="informatica">Informática</option>
+              <option value="eletronicos">Eletrônicos</option>
+              <option value="eletrodomesticos">Eletrodomésticos</option>
+              <option value="cozinha">Cozinha</option>
+              <option value="casa">Casa</option>
+              <option value="escritorio">Escritório</option>
+              <option value="acessorios">Acessórios</option>
+            </select>
+          </div>
+          <div class="input-box price-box">
+            <label for="price">Preço</label>
+            <div class="box">
+              <p>R$</p>
+              <input type="number" name="price" class="input" />
+            </div>
+          </div>
+          <div class="input-box">
+            <label for="qtd">Quantidade em estoque</label>
+            <input type="number" name="qtd" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="date">Data de cadastro</label>
+            <input type="datetime-local" name="date" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="forn">Fornecedor</label>
+            <input type="text" name="forn" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="desc">Descrição</label>
+            <input type="text" name="desc" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="val">Validade</label>
+            <input type="date" name="val" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="img">Imagem do produto</label>
+            <input type="file" name="img" class="input" />
+          </div>
+          <button type="submit" class="add">Adicionar</button>
+        </form>
+        <div class="top-box">
+          <h2>Gerenciamento de produtos</h2>
+          <button onclick="showStockForm()">
+            <i class="bi bi-plus-circle"></i>Novo produto
+          </button>
+        </div>
+        <div class="content">
+          <span class="search-user">
+            <i class="bi bi-search"></i>
+            <input type="search" />
+          </span>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome do Produto</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Estoque</th>
+                <th scope="col">Última Atualização</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">ELE4932</th>
+                <td>Smartphone X12</td>
+                <td>Eletrônicos</td>
+                <td>R$ 3.499,00</td>
+                <td>27 unid.</td>
+                <td>Há 15 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">INF7284</th>
+                <td>Notebook Ultra 7</td>
+                <td>Informática</td>
+                <td>R$ 5.299,90</td>
+                <td>12 unid.</td>
+                <td>Há 1 hora</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ELE3921</th>
+                <td>Geladeira Frost 500L</td>
+                <td>Eletrodomésticos</td>
+                <td>R$ 2.799,00</td>
+                <td>8 unid.</td>
+                <td>Há 3 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ELE8407</th>
+                <td>Smart TV 55” 4K</td>
+                <td>Eletrônicos</td>
+                <td>R$ 2.499,00</td>
+                <td>15 unid.</td>
+                <td>Há 15 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">CAS1178</th>
+                <td>Aspirador TurboMax</td>
+                <td>Casa</td>
+                <td>R$ 499,90</td>
+                <td>32 unid.</td>
+                <td>Há 7 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">COZ3651</th>
+                <td>Liquidificador ProMix</td>
+                <td>Cozinha</td>
+                <td>R$ 179,00</td>
+                <td>45 unid.</td>
+                <td>Há 2 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">INF2069</th>
+                <td>Monitor LED 27”</td>
+                <td>Informática</td>
+                <td>R$ 1.199,90</td>
+                <td>18 unid.</td>
+                <td>Há 30 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ESC4820</th>
+                <td>Cadeira Gamer Blaze</td>
+                <td>Escritório</td>
+                <td>R$ 899,00</td>
+                <td>10 unid.</td>
+                <td>Há 40 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ACE7592</th>
+                <td>Mouse Wireless MX</td>
+                <td>Acessórios</td>
+                <td>R$ 149,90</td>
+                <td>75 unid.</td>
+                <td>Há 12 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">INF3285</th>
+                <td>Impressora LaserJet</td>
+                <td>Informática</td>
+                <td>R$ 1.499,00</td>
+                <td>6 unid.</td>
+                <td>Há 1 hora</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">COZ6893</th>
+                <td>Fogão 5 Bocas Inox</td>
+                <td>Cozinha</td>
+                <td>R$ 1.299,90</td>
+                <td>9 unid.</td>
+                <td>Há 6 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">COZ1740</th>
+                <td>Micro-ondas 32L</td>
+                <td>Cozinha</td>
+                <td>R$ 649,00</td>
+                <td>21 unid.</td>
+                <td>Há 50 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ELE0237</th>
+                <td>Caixa de Som Bluetooth</td>
+                <td>Eletrônicos</td>
+                <td>R$ 239,00</td>
+                <td>53 unid.</td>
+                <td>Há 9 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">CAS4890</th>
+                <td>Ventilador Turbo 40cm</td>
+                <td>Casa</td>
+                <td>R$ 169,90</td>
+                <td>40 unid.</td>
+                <td>Há 4 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ACE3481</th>
+                <td>Teclado Mecânico RGB</td>
+                <td>Acessórios</td>
+                <td>R$ 299,90</td>
+                <td>29 unid.</td>
+                <td>Há 1 hora</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">ELE5742</th>
+                <td>Tablet VisionPad 10”</td>
+                <td>Eletrônicos</td>
+                <td>R$ 1.299,00</td>
+                <td>17 unid.</td>
+                <td>Há 35 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="users" class="section">
         <div class="form-shadow"></div>
         <form id="ad-func">
           <div class="top-box">
@@ -327,15 +559,6 @@
                 <td>Gerente</td>
                 <td>Ativo</td>
                 <td>Há 35 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">218374</th>
-                <td>Rodrigo Oliveira</td>
-                <td>rodrigo@inveneer.com</td>
-                <td>Vendedor</td>
-                <td>Inativo</td>
-                <td>Há 7 dias</td>
                 <td><i class="bi bi-pencil-square"></i></td>
               </tr>
             </tbody>

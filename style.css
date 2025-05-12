@@ -830,12 +830,12 @@ main #sec2 {
   & .cards-box {
     margin-top: 5%;
     width: 100%;
-    padding: 0 20%;
+    padding: 0 15vw;
     height: 50vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 50px;
+    gap: 30px;
 
     & .box {
       width: 250px;
