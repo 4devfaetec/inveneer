@@ -2,35 +2,43 @@
 include "conexao.php";
 session_start();
 
-$email = $_POST['email'];
-$senha = $_POST['senha'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-$sql = "SELECT * FROM cadastro_usuario WHERE email = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $email);
-$stmt->execute();
-$result = $stmt->get_result();
+    $sql = "SELECT * FROM cadastro_usuario WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $usuario = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+        $usuario = $result->fetch_assoc();
 
-    if (password_verify($senha, $usuario['senha'])) {
-        $_SESSION['id'] = $usuario['id'];
-        $_SESSION['nome'] = $usuario['nome'];
-        $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
+        if (password_verify($senha, $usuario['senha'])) {
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
 
-        if ($_SESSION['tipo'] === 'ADMIN') {
-            header("Location: painel_admin.php");
-        } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
-            header("Location: painel_funcionario.php");
+            if (!in_array($_SESSION['tipo'], ['ADMIN', 'FUNCIONARIO'])) {
+                echo "<script>alert('Tipo de usuário inválido.'); window.history.back();</script>";
+                exit;
+            }
+
+            if ($_SESSION['tipo'] === 'ADMIN') {
+                header("Location: ../app/admin/main.html");
+            } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
+                header("Location: ../app/user/main.html");
+            }
+            exit;
         } else {
-            echo "Tipo de usuário inválido.";
+            echo "<script>alert('Login inválido.'); window.history.back();</script>";
         }
-        exit;
     } else {
-        echo "Senha incorreta.";
+        echo "<script>alert('Login inválido.'); window.history.back();</script>";
     }
 } else {
-    echo "Usuário não encontrado.";
+    echo "<script>alert('Acesso inválido.'); window.history.back();</script>";
 }
 ?>
+
