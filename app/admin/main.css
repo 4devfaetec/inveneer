@@ -44,9 +44,9 @@
   --night: #dddddd;
   --subtitles: #94a3b4;
   --selected: #0f172a;
-  --background: #202528;
+  --background: #1a1a24;
   --background2: #181a1e;
-  --card-clr: #363949;
+  --card-clr: #232333;
   --primary-clr: #021b33;
   --secondary-clr: #4f45b8;
   --borders: rgba(255, 255, 255, 0.1);
@@ -293,7 +293,7 @@ main {
 
       &:hover {
         background-color: var(--card-clr);
-        transition: all .5s ease-in-out;
+        transition: all 0.5s ease-in-out;
       }
 
       &:active {
@@ -306,14 +306,16 @@ main {
 
   & .content {
     margin-top: 2rem;
-      padding: 1rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     & .search-user {
       border: 1px solid var(--borders);
       border-radius: 10rem;
       padding: 1rem;
-
-      
+      width: 20%;
 
       & i {
         color: var(--black);
@@ -323,6 +325,114 @@ main {
         background: transparent;
         outline: none;
         color: var(--black);
+        width: 92%;
+      }
+    }
+  }
+
+  & .form-shadow {
+    width: 100%;
+    height: 100%;
+    background-color: var(--always-black);
+    position: fixed;
+    opacity: 80%;
+    z-index: 10;
+    visibility: hidden;
+  }
+
+  & #ad-func {
+    padding: 1.2rem;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 15;
+    background-color: var(--background);
+    color: white;
+    width: 20%;
+    border-radius: 10px;
+    border: 1px solid var(--borders);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    visibility: hidden;
+    
+
+    & .top-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0;
+
+      & .title {
+        color: var(--black);
+        font-size: 1vw;
+        font-weight: 500;
+      }
+
+      & i {
+        cursor: pointer;
+        color: var(--unselected);
+        transition: .2s ease-in-out;
+
+        &:hover {
+          color: var(--black);
+        }
+      }
+    }
+
+    & p {
+      color: var(--subtitles);
+      font-size: 0.7vw;
+      width: 80%;
+    }
+
+    & .input-box {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & .input,
+      & select {
+        width: 80%;
+        height: 2.5rem;
+        background-color: var(--card-clr);
+        border: 1px solid var(--borders);
+        border-radius: 5px;
+        padding: 5px;
+        color: var(--black);
+      }
+
+      & select {
+        width: 80%;
+        background-color: var(--card-clr);
+        color: var(--black);
+        cursor: pointer;
+
+        & option {
+          color: var(--black);
+          cursor: pointer;
+        }
+      }
+    }
+
+    & .add {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid var(--secondary-clr);
+      background-color: transparent;
+      margin-top: 1rem;
+      
+      
+      color: var(--always-white);
+      font-size: 0.8vw;
+      border-radius: 6px;
+      transition: .4s ease-in-out;
+
+      &:hover {
+        background-color: var(--secondary-clr);
+        
       }
     }
   }

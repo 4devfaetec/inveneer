@@ -126,15 +126,220 @@
         </div>
       </div>
       <div id="users" class="section active-section">
+        <div class="form-shadow"></div>
+        <form id="ad-func">
+          <div class="top-box">
+            <span class="title">Adicionar novo usuário</span>
+            <i class="bi bi-x-lg" onclick="hideForm()"></i>
+          </div>
+          <p>
+            Preencha os detalhes do funcionário para adicioná-lo ao sistema.
+          </p>
+          <div class="input-box">
+            <label for="name">Nome</label>
+            <input type="text" name="name" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="func">Função</label>
+            <select name="func" id="func">
+              <option value="#" disabled selected>Selecione uma função</option>
+              <option value="gerente">Gerente</option>
+              <option value="supervisor">Supervisor</option>
+              <option value="vendedor">Vendedor</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <label for="password">Senha</label>
+            <input type="password" name="password" class="input" />
+          </div>
+          <button type="submit" class="add">Adicionar</button>
+        </form>
         <div class="top-box">
           <h2>Gerenciamento de usuários</h2>
-          <button><i class="bi bi-plus-circle"></i>Novo funcionário</button>
+          <button onclick="showForm()">
+            <i class="bi bi-plus-circle"></i>Novo funcionário
+          </button>
         </div>
         <div class="content">
           <span class="search-user">
             <i class="bi bi-search"></i>
             <input type="search" />
           </span>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Função</th>
+                <th scope="col">Status</th>
+                <th scope="col">Último acesso</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">267946</th>
+                <td>Mark</td>
+                <td>mark@inveneer.com</td>
+                <td>Gerente</td>
+                <td>Ativo</td>
+                <td>Há 15 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">468213</th>
+                <td>Jacob</td>
+                <td>jacob@gmail.com</td>
+                <td>Vendedor</td>
+                <td>Ativo</td>
+                <td>Há 1 hora</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">827463</th>
+                <td>Beatriz Almeida</td>
+                <td>beatriz@inveneer.com</td>
+                <td>Supervisora</td>
+                <td>Ativo</td>
+                <td>Há 3 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">349281</th>
+                <td>Rafael Martins</td>
+                <td>rafael@inveneer.com</td>
+                <td>Gerente</td>
+                <td>Ativo</td>
+                <td>Há 15 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">625819</th>
+                <td>Camila Ribeiro</td>
+                <td>camila@inveneer.com</td>
+                <td>Vendedora</td>
+                <td>Ativo</td>
+                <td>Há 7 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">998432</th>
+                <td>Ana Ribeiro</td>
+                <td>ana@inveneer.com</td>
+                <td>Supervisora</td>
+                <td>Ativo</td>
+                <td>Há 2 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+
+              <tr>
+                <th scope="row">115942</th>
+                <td>Tiago Monteiro</td>
+                <td>tiago@inveneer.com</td>
+                <td>Supervisor</td>
+                <td>Ativo</td>
+                <td>Há 30 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">206984</th>
+                <td>Vanessa Lima</td>
+                <td>vanessa@inveneer.com</td>
+                <td>Vendedora</td>
+                <td>Ativo</td>
+                <td>Há 40 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">911384</th>
+                <td>Marcos Silva</td>
+                <td>marcos@inveneer.com</td>
+                <td>Vendedor</td>
+                <td>Ativo</td>
+                <td>Há 12 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">718394</th>
+                <td>Renata Carvalho</td>
+                <td>renata@inveneer.com</td>
+                <td>Gerente</td>
+                <td>Ativo</td>
+                <td>Há 1 hora</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+
+              <tr>
+                <th scope="row">836291</th>
+                <td>Letícia Nogueira</td>
+                <td>leticia@inveneer.com</td>
+                <td>Supervisora</td>
+                <td>Ativo</td>
+                <td>Há 6 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+
+              <tr>
+                <th scope="row">123679</th>
+                <td>Sabrina Teixeira</td>
+                <td>sabrina@inveneer.com</td>
+                <td>Supervisora</td>
+                <td>Ativo</td>
+                <td>Há 50 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">803295</th>
+                <td>Gustavo Barros</td>
+                <td>gustavo@inveneer.com</td>
+                <td>Vendedor</td>
+                <td>Ativo</td>
+                <td>Há 9 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">950381</th>
+                <td>Jessica Duarte</td>
+                <td>mariana@inveneer.com</td>
+                <td>Vendedora</td>
+                <td>Ativo</td>
+                <td>Há 4 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">641902</th>
+                <td>André Souza</td>
+                <td>andre@inveneer.com</td>
+                <td>Supervisor</td>
+                <td>Ativo</td>
+                <td>Há 1 hora</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">370491</th>
+                <td>Clara Mendes</td>
+                <td>clara@inveneer.com</td>
+                <td>Gerente</td>
+                <td>Ativo</td>
+                <td>Há 35 minutos</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">218374</th>
+                <td>Rodrigo Oliveira</td>
+                <td>rodrigo@inveneer.com</td>
+                <td>Vendedor</td>
+                <td>Inativo</td>
+                <td>Há 7 dias</td>
+                <td><i class="bi bi-pencil-square"></i></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
