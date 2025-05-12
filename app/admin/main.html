@@ -132,14 +132,13 @@
             <span class="title">Adicionar novo produto</span>
             <i class="bi bi-x-lg" onclick="hideStockForm()"></i>
           </div>
-          <p>Preencha os detalhes do produto para adicioná-lo ao sistema.</p>
           <div class="input-box">
-            <label for="name">Nome</label>
+            <label for="name">Nome do produto</label>
             <input type="text" name="name" class="input" />
           </div>
           <div class="input-box">
-            <label for="func">Catego...</label>
-            <select name="func" id="func">
+            <label for="cat">Categoria</label>
+            <select name="cat" id="cat">
               <option value="#" disabled selected>
                 Selecione uma categoria
               </option>
@@ -152,13 +151,36 @@
               <option value="acessorios">Acessórios</option>
             </select>
           </div>
-          <div class="input-box">
-            <label for="email">Preço</label>
-            <input type="email" name="email" class="input" />
+          <div class="input-box price-box">
+            <label for="price">Preço</label>
+            <div class="box">
+              <p>R$</p>
+              <input type="number" name="price" class="input" />
+            </div>
           </div>
           <div class="input-box">
-            <label for="password">Senha</label>
-            <input type="password" name="password" class="input" />
+            <label for="qtd">Quantidade em estoque</label>
+            <input type="number" name="qtd" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="date">Data de cadastro</label>
+            <input type="datetime-local" name="date" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="forn">Fornecedor</label>
+            <input type="text" name="forn" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="desc">Descrição</label>
+            <input type="text" name="desc" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="val">Validade</label>
+            <input type="date" name="val" class="input" />
+          </div>
+          <div class="input-box">
+            <label for="img">Imagem do produto</label>
+            <input type="file" name="img" class="input" />
           </div>
           <button type="submit" class="add">Adicionar</button>
         </form>
