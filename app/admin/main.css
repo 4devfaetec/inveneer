@@ -130,6 +130,11 @@ aside {
           height: 2.5rem;
           background-color: var(--atencion);
           border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--always-white);
+          font-weight: 600;
         }
 
         & .user-infos {
@@ -708,7 +713,7 @@ main {
     }
 
     & input {
-
+      color: var(--black);
     }
   }
 
