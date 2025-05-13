@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); 
     $tipo  = $_POST['tipo']; // Deve ser 'admin'
 
-    $sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $nome, $email, $senha, $tipo);
 

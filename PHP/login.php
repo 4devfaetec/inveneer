@@ -18,22 +18,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($senha, $usuario['senha'])) {
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['nome'] = $usuario['nome'];
-            $_SESSION['tipo'] = strtoupper($usuario['tipo']); // CAPS LOCK
-            $_SESSION['cargo'] = strtoupper($usuario['cargo']); // Diferencia Supervisor e Vendedor
+            $_SESSION['tipo'] = $usuario['tipo'];  // ADMIN ou FUNCIONARIO
+            $_SESSION['cargo'] = $usuario['cargo'];  // GERENTE, SUPERVISOR ou VENDEDOR
 
             if ($_SESSION['tipo'] === 'ADMIN') {
-                // Redireciona para a área de admin (gerente)
+                // Se for ADMIN (gerente), vai para a área de admin
                 header("Location: ../app/admin/main.html");
             } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
-                // Se for FUNCIONARIO, verifica o cargo (Supervisor ou Vendedor)
+                // Se for FUNCIONARIO, verifica o cargo
                 if ($_SESSION['cargo'] === 'SUPERVISOR') {
                     // Supervisor vai para a área de Supervisor
                     header("Location: ../app/supervisor/main.html");
                 } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
                     // Vendedor vai para a área de Vendedor
                     header("Location: ../app/vendedor/main.html");
-                } else {
-                    echo "<script>alert('Cargo não identificado.'); window.history.back();</script>";
                 }
             }
             exit;

@@ -1,0 +1,15 @@
+<form method="POST" action="criar_admin.php">
+    <input type="text" name="nome" placeholder="Nome" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+    <select name="tipo" required>
+        <option value="ADMIN">Administrador</option>
+        <option value="FUNCIONARIO">Funcionário</option>
+    </select>
+    <select name="cargo" required>
+        <option value="GERENTE">Gerente</option>
+        <option value="SUPERVISOR">Supervisor</option>
+        <option value="VENDEDOR">Vendedor</option>
+    </select>
+    <button type="submit">Cadastrar</button>
+</form>

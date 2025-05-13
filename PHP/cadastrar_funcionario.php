@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verificando se o cargo é válido
     if ($cargo === 'SUPERVISOR' || $cargo === 'VENDEDOR') {
         // Inserção no banco de dados
-        $sql = "INSERT INTO usuarios (nome, email, senha, tipo, cargo) VALUES ('$nome', '$email', '$senha', '$tipo', '$cargo')";
+        $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo, cargo) VALUES ('$nome', '$email', '$senha', '$tipo', '$cargo')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Funcionário cadastrado com sucesso!";
