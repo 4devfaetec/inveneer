@@ -2,32 +2,48 @@
 include "conexao.php";
 session_start();
 
-if (!isset($_SESSION['id']) || $_SESSION['tipo'] !== 'admin') {
+// Verifica se o usuário está logado e se é ADMIN
+if (!isset($_SESSION['id']) || strtoupper($_SESSION['tipo']) !== 'ADMIN') {
     header("Location: login_form.html");
     exit;
 }
 
-// Verificando se o formulário foi enviado
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtendo os dados do formulário
-    $nome = $_POST['nome'];
+// Função para definir o tipo com base no cargo
+function definirTipoUsuario($cargo) {
+    $cargo = strtoupper($cargo);
+    if ($cargo === 'GERENTE') {
+        return 'ADMIN';
+    } elseif (in_array($cargo, ['SUPERVISOR', 'SUPERVISORA', 'VENDEDOR', 'VENDEDORA'])) {
+        return 'FUNCIONARIO';
+    } else {
+        return false; // Cargo inválido
+    }
+}
+
+// Verifica se o formulário foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome  = $_POST['nome'];
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-    $cargo = strtoupper($_POST['cargo']); // Convertendo o cargo para maiúsculas
-    $tipo = 'FUNCIONARIO'; // Tipo será sempre 'FUNCIONARIO' em maiúsculas
+    $cargo = strtoupper($_POST['cargo']);
+    $tipo  = definirTipoUsuario($cargo);
 
-    // Verificando se o cargo é válido
-    if ($cargo === 'SUPERVISOR' || $cargo === 'VENDEDOR') {
-        // Inserção no banco de dados
-        $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo, cargo) VALUES ('$nome', '$email', '$senha', '$tipo', '$cargo')";
+    if ($tipo) {
+        $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo, cargo) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sssss", $nome, $email, $senha, $tipo, $cargo);
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Funcionário cadastrado com sucesso!";
+        if ($stmt->execute()) {
+            echo "<script>alert('Funcionário cadastrado com sucesso!'); window.location.href = 'painel_admin.html';</script>";
         } else {
-            echo "Erro ao cadastrar funcionário: " . $conn->error;
+            echo "Erro ao cadastrar funcionário: " . $stmt->error;
         }
+
+        $stmt->close();
     } else {
-        echo "Cargo inválido. Escolha entre 'SUPERVISOR' ou 'VENDEDOR'.";
+        echo "<script>alert('Cargo inválido. Use: GERENTE, SUPERVISOR(A) ou VENDEDOR(A).'); window.history.back();</script>";
     }
+
+    $conn->close();
 }
 ?>
