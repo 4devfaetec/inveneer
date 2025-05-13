@@ -5,11 +5,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nome  = $_POST['nome'];
     $email = $_POST['email'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT); 
-    $tipo  = $_POST['tipo']; // Deve ser 'admin'
+    $tipo  = strtoupper($_POST['tipo']); // ADMIN
+    $cargo = 'GERENTE'; // Cargo fixo
 
-    $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO cadastro_usuario (nome, email, senha, tipo, cargo) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $nome, $email, $senha, $tipo);
+    $stmt->bind_param("sssss", $nome, $email, $senha, $tipo, $cargo);
 
     if ($stmt->execute()) {
         echo "<script>alert('Administrador cadastrado com sucesso!'); window.location.href = 'login_form.html';</script>";
