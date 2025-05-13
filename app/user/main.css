@@ -262,6 +262,8 @@ main {
         flex-direction: column;
         padding: 0.5rem;
 
+        
+
         & .info-title {
           color: var(--subtitles);
           font-size: 0.8vw;
@@ -269,7 +271,7 @@ main {
 
         & .info-number {
           color: var(--black);
-          font-size: 1.8vw;
+          font-size: 1.5vw;
           font-weight: 800;
           margin-top: auto;
         }
@@ -284,6 +286,13 @@ main {
           }
         }
       }
+
+      &:last-child {
+          & .info-number {
+            font-size: 1vw;
+            font-weight: 700;
+          }
+        }
     }
   }
 
@@ -320,13 +329,37 @@ main {
       border: 1px solid var(--borders);
       display: flex;
       align-items: center;
-      gap: .2rem;
+      gap: 0.2rem;
+      cursor: pointer;
+
+      &:hover {
+        transition: 0.5s ease-in-out;
+        border: 1px solid var(--night);
+        background-color: transparent;
+        color: var(--black);
+      }
+
+      &:active {
+        background-color: var(--night);
+        color: white;
+        border: 1px solid var(--borders);
+      }
 
       &:last-child {
         background-color: var(--white);
         color: var(--black);
-        border-radius: 5px;
-        padding: 0 1rem;
+
+        &:hover {
+          transition: 0.5s ease-in-out;
+          border: 1px solid var(--night);
+          background-color: var(--night);
+          color: var(--white);
+        }
+
+        &:active {
+          background-color: var(--white);
+          color: var(--black);
+        }
       }
     }
   }
@@ -336,30 +369,34 @@ main {
     height: 100%;
     display: flex;
     justify-content: space-evenly;
-    padding: 5vh 5%;
+    padding: 2vh 6%;
+    flex-wrap: wrap;
+    gap: 1rem;
 
     & .card {
       display: flex;
       background-color: var(--white);
-      width: 25%;
-      padding: 1rem .5rem;
+      width: 27.5%;
+      padding: 1rem 0.5rem;
       display: flex;
+      border: 1px solid var(--borders);
+      border-radius: 5px;
 
       & .prod-img {
         width: 5vw;
         height: 5vw;
-        padding: .5rem;
+        padding: 0.5rem;
 
         & .img {
           width: 100%;
           height: 100%;
-          background-color: var(--subtitles);
+          display: flex;
+          align-items: center;
 
           & img {
             width: 100%;
-            height: 100%;
+            height: auto;
           }
-
         }
       }
 
@@ -368,10 +405,9 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        
 
         & .name {
-            font-weight: 500;
+          font-weight: 500;
         }
 
         & .prod-id {
@@ -399,7 +435,7 @@ main {
 
         & .status {
           background-color: rgb(134, 185, 57);
-          padding: .3rem;
+          padding: 0.3rem;
           display: flex;
           justify-content: center;
           border-radius: 15px;
@@ -408,25 +444,21 @@ main {
         }
 
         & button {
-
           background-color: transparent;
           border: 1px solid var(--borders);
           width: 100%;
           display: flex;
           justify-content: space-around;
           border-radius: 5px;
-          padding: .2rem .3rem;
+          padding: 0.2rem 0.3rem;
           align-items: center;
 
           & i {
-
           }
 
           & span {
-
           }
         }
-
       }
     }
   }
