@@ -4,7 +4,7 @@ session_start();
 
 // Verifica se o usuário está logado e se é ADMIN
 if (!isset($_SESSION['id']) || strtoupper($_SESSION['tipo']) !== 'ADMIN') {
-    header("Location: login_form.html");
+    header("Location: ../index.html");
     exit;
 }
 
@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("sssss", $nome, $email, $senha, $tipo, $cargo);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Funcionário cadastrado com sucesso!'); window.location.href = 'painel_admin.html';</script>";
+            echo "<script>alert('Funcionário cadastrado com sucesso!'); window.history.back();</script>";
         } else {
-            echo "Erro ao cadastrar funcionário: " . $stmt->error;
+            echo "<script>alert('Erro ao criar um funcionário'); window.history.back();</script> " . $stmt->error;
         }
 
         $stmt->close();

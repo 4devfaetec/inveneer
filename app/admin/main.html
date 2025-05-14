@@ -356,7 +356,7 @@
 
       <div id="users" class="section">
         <div class="form-shadow"></div>
-        <form action="/PHP/cadastrar_funcionario.php" method="post" id="ad-func">
+        <form action="../../PHP/cadastrar_funcionario.php" method="post" id="ad-func">
           <div class="top-box">
             <span class="title">Adicionar novo usuário</span>
             <i class="bi bi-x-lg" onclick="hideForm()"></i>
@@ -366,7 +366,7 @@
           </p>
           <div class="input-box">
             <label for="name">Nome</label>
-            <input type="text" name="name" class="input" />
+            <input type="text" name="nome" class="input" />
           </div>
           <div class="input-box">
             <label for="email">Email</label>
@@ -374,16 +374,16 @@
           </div>
           <div class="input-box">
             <label for="func">Função</label>
-            <select name="func" id="func">
+            <select name="cargo" id="func">
               <option value="#" disabled selected>Selecione uma função</option>
-              <option value="gerente">Gerente</option>
-              <option value="supervisor">Supervisor</option>
-              <option value="vendedor">Vendedor</option>
+              <option value="GERENTE">Gerente</option>
+              <option value="SUPERVISOR">Supervisor</option>
+              <option value="VENDEDOR">Vendedor</option>
             </select>
           </div>
           <div class="input-box">
             <label for="password">Senha</label>
-            <input type="password" name="password" class="input" />
+            <input type="password" name="senha" class="input" />
           </div>
           <button type="submit" class="add">Adicionar</button>
         </form>
