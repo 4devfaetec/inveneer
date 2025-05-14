@@ -377,6 +377,7 @@ main {
       display: flex;
       background-color: var(--white);
       width: 27.5%;
+      min-width: 300px;
       padding: 1rem 0.5rem;
       display: flex;
       border: 1px solid var(--borders);
@@ -440,7 +441,7 @@ main {
           justify-content: center;
           border-radius: 15px;
           color: var(--black);
-          font-size: 13px;
+          font-size: .7vw;
         }
 
         & button {
@@ -454,9 +455,11 @@ main {
           align-items: center;
 
           & i {
+            font-size: .8vw;
           }
 
           & span {
+            font-size: .6vw;
           }
         }
       }
