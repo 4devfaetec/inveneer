@@ -28,7 +28,7 @@
         <li data-section="stock">
           <i class="bi bi-box-seam"></i> <span>Estoque</span>
         </li>
-        <li data-section="relatorios">
+        <li data-section="reports">
           <i class="bi bi-clipboard-data"></i> <span>Relatórios</span>
         </li>
         <li data-section="analises">
@@ -354,7 +354,108 @@
         </div>
       </div>
       <div id="reports" class="section">
-        
+        <div class="top-box">
+          <h2>Relatórios</h2>
+          <div class="buttons">
+            <button><i class="bi bi-printer"></i><span>Imprimir</span></button>
+            <button><i class="bi bi-download"></i><span>Exportar</span></button>
+          </div>
+        </div>
+        <div class="filters">
+          <h4>Filtros do relatório</h4>
+          <div class="filtr">
+            <span class="filter-inputs">
+              <label for="relType">Tipos de relatório</label>
+              <select name="relType" id="relType" class="select">
+                <option value="mov">Movimentação de estoque</option>
+                <option value="sell">Vendas</option>
+                <option value="buy">Compras</option>
+                <option value="prod">Produtos</option>
+              </select>
+            </span>
+            <div class="filter-inputs">
+              <label for="relType">Data inicial</label>
+              <input type="date" class="input" />
+            </div>
+            <span class="filter-inputs">
+              <label for="relType">Data final</label>
+              <input type="date" class="input" />
+            </span>
+            <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
+          </div>
+        </div>
+        <div class="func-reports-box">
+          <h5>Relatórios recentes</h5>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Nome do relatório</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Gerado por</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              <tr>
+                <th scope="row">30/04/2025 14:30</th>
+                <td>Movimentação de Estoque - Abril</td>
+                <td>Estoque</td>
+                <td>Vanessa Lima</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">28/04/2025 09:15</th>
+                <td>Relatório de Vendas - Semanal</td>
+                <td>Vendas</td>
+                <td>Jacob</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">29/04/2025 08:45</th>
+                <td>Resumo de Vendas - Abril</td>
+                <td>Vendas</td>
+                <td>Jacob</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">28/04/2025 11:20</th>
+                <td>Vendas Individuais - Semana 4</td>
+                <td>Vendas</td>
+                <td>Camila Ribeiro</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">27/04/2025 16:05</th>
+                <td>Desempenho de Vendas - Abril</td>
+                <td>Vendas</td>
+                <td>Vanessa Lima</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">26/04/2025 10:40</th>
+                <td>Vendas Diárias - 26/04</td>
+                <td>Vendas</td>
+                <td>Marcos Silva</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">25/04/2025 09:00</th>
+                <td>Relatório de Vendas - Abril</td>
+                <td>Vendas</td>
+                <td>Gustavo Barros</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+              <tr>
+                <th scope="row">24/04/2025 13:50</th>
+                <td>Vendas Semanais - Fim de Mês</td>
+                <td>Vendas</td>
+                <td>Jessica Duarte</td>
+                <td><i class="bi bi-download"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div id="users" class="section">
         <div class="form-shadow"></div>
