@@ -592,8 +592,9 @@ main {
       flex-direction: row;
       gap: 0.6rem;
 
-      & input, & button {
-         background-color: transparent;
+      & input,
+      & button {
+        background-color: transparent;
         border: 1px solid var(--borders);
         border-radius: 5px;
         padding: 0.3rem 0.8rem;
@@ -601,7 +602,6 @@ main {
         display: flex;
         gap: 0.7rem;
         align-items: center;
-        
       }
     }
   }
@@ -616,21 +616,80 @@ main {
       flex-direction: column;
       width: 23%;
       padding: 1rem;
+      gap: 0.2rem;
+      border: 5px solid var(--borders);
+      border-radius: 8px;
       background-color: var(--card-clr);
       color: var(--black);
-
     }
 
     & .title {
-      
+      color: var(--subtitles);
+      font-size: 0.9rem;
     }
 
     & .value {
-
+      color: var(--black);
+      font-size: 1.6rem;
+      font-weight: 700;
     }
 
     & .mov {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #22cc3f;
+    }
 
+    & .negative {
+      color: var(--atencion);
+    }
+  }
+
+  & .radio-inputs {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    border-radius: 4px;
+    background-color: var(--card-clr);
+    box-sizing: border-box;
+    padding: 0.25rem;
+    width: 100%;
+    font-size: 14px;
+    height: 46px;
+    transition: clip-path 0.3s ease;
+
+    & .radio {
+      flex: 1 1 auto;
+      text-align: center;
+    }
+
+    & .radio input {
+      display: none;
+    }
+
+    & .radio .radio-item {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      border: none;
+      padding: 0.5rem 0;
+      color: var(--unselected);
+      transition: background-color 0.5s ease, font-weight 0.5s ease;
+    }
+
+    & input:checked ~ .radio-item {
+      background-color: var(--background2);
+      border: 1px solid var(--borders);
+      font-weight: 600;
+      color: var(--black);
+    }
+
+    & input:checked ~ .radio {
+      clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
     }
   }
 }
