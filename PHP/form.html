@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <h2>Cadastrar Novo Usuário</h2>
+    <form action="teste_id.php" method="POST">
+        <label>Nome:</label><br>
+        <input type="text" name="nome" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Senha:</label><br>
+        <input type="password" name="senha" required><br><br>
+
+        <label>Tipo:</label><br>
+        <select name="tipo" required>
+            <option value="ADMIN">ADMIN</option>
+            <option value="FUNCIONARIO">FUNCIONARIO</option>
+        </select><br><br>
+
+        <label>Cargo:</label><br>
+        <select name="cargo" required>
+            <option value="GERENTE">GERENTE</option>
+            <option value="SUPERVISOR">SUPERVISOR</option>
+            <option value="VENDEDOR">VENDEDOR</option>
+        </select><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+</html>
