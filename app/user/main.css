@@ -54,7 +54,6 @@
 
 body {
   display: flex;
-  overflow: hidden;
   background-color: var(--card-clr);
 }
 
