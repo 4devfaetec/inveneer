@@ -4,6 +4,34 @@ document.body.classList.toggle("dark-mode");
 const menuItems = document.querySelectorAll("#menu li");
 const sections = document.querySelectorAll(".section");
 
+const form = document.getElementById('ad-func');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); // para não recarregar a página
+
+  const formData = new FormData(form);
+
+  fetch('../../PHP/teste_id.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert(data.message);
+    if (data.success) {
+      carregarUsuarios();  // atualiza a tabela
+      form.reset();        // limpa formulário
+      hideForm();          // esconde o form (se tiver essa função)
+    }
+  })
+  .catch(error => {
+    console.error('Erro na requisição:', error);
+    alert('Erro ao enviar dados. Tente novamente.');
+  });
+});
+
+
+
 function carregarUsuarios() {
   fetch('../../PHP/listar_usuarios.php')
     .then(response => response.json())
