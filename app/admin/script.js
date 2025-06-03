@@ -157,3 +157,115 @@ function hideStockForm() {
   formShadow.style.visibility = "hidden";
   document.body.style.overflow = '';
 }
+
+const dadosLinhaVendas = {
+  labels: ["Dez", "Jan", "Fev", "Mar", "Abr", "Mai"],
+  datasets: [
+    {
+      label: "Tendência de Vendas",
+      data: [8000, 12000, 18000, 24000, 30000, 36000],
+      borderColor: "#3e95cd",
+      backgroundColor: "rgba(62, 149, 205, 0.2)",
+      fill: true,
+      tension: 0.4,
+      pointBackgroundColor: "#2e7cc7",
+      pointRadius: 4,
+    },
+  ],
+};
+
+const configLinhaVendas = {
+  type: "line",
+  data: dadosLinhaVendas,
+  options: {
+    responsive: true,
+    plugins: {
+      title: {
+        display: true,
+        text: "Tendência de Vendas - Últimos 6 Meses",
+        font: {
+          size: 18,
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 40000,
+        ticks: {
+          callback: function (value) {
+            return value / 1000 + "k";
+          },
+        },
+      },
+    },
+  },
+};
+
+// Inicialize o novo gráfico
+const ctxLinhaVendas = document
+  .getElementById("linhaVendasChart")
+  .getContext("2d");
+const linhaVendasChart = new Chart(ctxLinhaVendas, configLinhaVendas);
+
+const dadosTopProdutos = {
+  labels: [
+    "Smartphone XYZ",
+    "Notebook Ultra",
+    'Monitor 24"',
+    "Teclado Mecânico",
+    "Mouse Gamer",
+  ],
+  datasets: [
+    {
+      label: "Quantidade Vendida",
+      data: [95, 85, 60, 40, 35],
+      backgroundColor: [
+        "#3b82f6",
+        "#10b981",
+        "#f59e0b",
+        "#8b5cf6",
+        "#ef4444",
+      ],
+      borderColor: "#000",
+      borderWidth: 1.5,
+    },
+  ],
+};
+
+const configTopProdutos = {
+  type: "bar",
+  data: dadosTopProdutos,
+  options: {
+    responsive: true,
+    indexAxis: "x", // barras verticais
+    plugins: {
+      title: {
+        display: true,
+        text: "Produtos Mais Vendidos - Top 5 por Quantidade",
+        font: {
+          size: 18,
+        },
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        max: 100,
+        ticks: {
+          stepSize: 25,
+        },
+        title: {
+          display: true,
+          text: "Quantidade",
+        },
+      },
+    },
+  },
+};
+
+// Inicialização do gráfico
+const ctxTopProdutos = document
+  .getElementById("topProdutosChart")
+  .getContext("2d");
+const topProdutosChart = new Chart(ctxTopProdutos, configTopProdutos);
