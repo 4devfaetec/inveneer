@@ -33,6 +33,7 @@ form.addEventListener('submit', function(event) {
 
 
 function carregarUsuarios() {
+  console.log('Atualizando usuários...');
   fetch('../../PHP/listar_usuarios.php')
     .then(response => response.json())
     .then(data => {
@@ -54,6 +55,13 @@ function carregarUsuarios() {
     })
     .catch(error => console.error('Erro ao carregar usuários:', error));
 }
+
+// Chama uma vez ao carregar a página
+carregarUsuarios();
+
+// Atualiza a tabela a cada 5 segundos (5000 milissegundos)
+setInterval(carregarUsuarios, 5000);
+
 
 
 menuItems.forEach((item) => {
