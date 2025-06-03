@@ -32,13 +32,19 @@ form.addEventListener('submit', function(event) {
 
 
 
+function atualizarUltimoAcesso() {
+  fetch('../../PHP/ultimo_acesso.php')
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(err => console.error('Erro ao atualizar último acesso:', err));
+}
+
 function carregarUsuarios() {
-  console.log('Atualizando usuários...');
   fetch('../../PHP/listar_usuarios.php')
     .then(response => response.json())
     .then(data => {
       const tbody = document.querySelector('#usuarios-table-body');
-      tbody.innerHTML = ''; // limpa as linhas antigas
+      tbody.innerHTML = '';
       data.forEach(usuario => {
         tbody.innerHTML += `
           <tr>
@@ -56,11 +62,15 @@ function carregarUsuarios() {
     .catch(error => console.error('Erro ao carregar usuários:', error));
 }
 
-// Chama uma vez ao carregar a página
-carregarUsuarios();
+// Função que roda a cada 5 segundos
+setInterval(() => {
+  carregarUsuarios();
+  atualizarUltimoAcesso();
+}, 5000);
 
-// Atualiza a tabela a cada 5 segundos (5000 milissegundos)
-setInterval(carregarUsuarios, 5000);
+// Também pode chamar logo na página carregar tudo na primeira vez
+carregarUsuarios();
+atualizarUltimoAcesso();
 
 
 

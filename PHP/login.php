@@ -16,21 +16,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $result->fetch_assoc();
 
         if (password_verify($senha, $usuario['senha'])) {
+            // Atualiza o último acesso
+            $updateSql = "UPDATE cadastro_usuario SET ultimo_acesso = NOW() WHERE id = ?";
+            $updateStmt = $conn->prepare($updateSql);
+            $updateStmt->bind_param("i", $usuario['id']);
+            $updateStmt->execute();
+            $updateStmt->close();
+
             $_SESSION['id'] = $usuario['id'];
             $_SESSION['nome'] = $usuario['nome'];
             $_SESSION['tipo'] = $usuario['tipo'];  // ADMIN ou FUNCIONARIO
             $_SESSION['cargo'] = $usuario['cargo'];  // GERENTE, SUPERVISOR ou VENDEDOR
 
             if ($_SESSION['tipo'] === 'ADMIN') {
-                // Se for ADMIN (gerente), vai para a área de admin
                 header("Location: ../app/admin/main.html");
             } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
-                // Se for FUNCIONARIO, verifica o cargo
                 if ($_SESSION['cargo'] === 'SUPERVISOR') {
-                    // Supervisor vai para a área de Supervisor
                     header("Location: ../app/supervisor/main.html");
                 } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
-                    // Vendedor vai para a área de Vendedor
                     header("Location: ../app/vendedor/main.html");
                 }
             }
