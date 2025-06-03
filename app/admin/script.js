@@ -4,6 +4,30 @@ document.body.classList.toggle("dark-mode");
 const menuItems = document.querySelectorAll("#menu li");
 const sections = document.querySelectorAll(".section");
 
+function carregarUsuarios() {
+  fetch('../../PHP/listar_usuarios.php')
+    .then(response => response.json())
+    .then(data => {
+      const tbody = document.querySelector('#usuarios-table-body');
+      tbody.innerHTML = ''; // limpa as linhas antigas
+      data.forEach(usuario => {
+        tbody.innerHTML += `
+          <tr>
+            <th scope="row">${usuario.id}</th>
+            <td>${usuario.nome}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.cargo}</td>
+            <td>${usuario.status}</td>
+            <td>${usuario.ultimo_acesso}</td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        `;
+      });
+    })
+    .catch(error => console.error('Erro ao carregar usuários:', error));
+}
+
+
 menuItems.forEach((item) => {
   item.addEventListener("click", () => {
     // Remover classe 'active' do menu

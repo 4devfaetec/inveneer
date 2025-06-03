@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teste de Tabela com Fetch</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+
+  <table border="1" width="100%" style="border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Cargo</th>
+        <th>Status</th>
+        <th>Último Acesso</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <!-- Linhas serão inseridas aqui pelo JS -->
+    </tbody>
+  </table>
+
+  <script>
+    // Função que simula o fetch retornando o JSON que você mostrou
+    function carregarUsuarios() {
+      // Simulando um fetch com Promise que retorna seu JSON
+      const data = [
+        {"id":"1099829","nome":"Juan Felipe","email":"juan@gmail.com","cargo":"GERENTE","status":"Inativo","ultimo_acesso":"2025-06-02 18:03:59"},
+        {"id":"2010047","nome":"Joao","email":"joao@gmail.com","cargo":"SUPERVISOR","status":"Inativo","ultimo_acesso":"2025-06-02 18:06:19"},
+        {"id":"3048544","nome":"Joao","email":"joaof@gmail.com","cargo":"VENDEDOR","status":"Inativo","ultimo_acesso":"2025-06-02 18:06:37"}
+      ];
+      
+      const tbody = document.querySelector('tbody.table-group-divider');
+      tbody.innerHTML = ''; // limpa as linhas antigas
+
+      data.forEach(usuario => {
+        tbody.innerHTML += `
+          <tr>
+            <th scope="row">${usuario.id}</th>
+            <td>${usuario.nome}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.cargo}</td>
+            <td>${usuario.status}</td>
+            <td>${usuario.ultimo_acesso}</td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        `;
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", carregarUsuarios);
+  </script>
+
+</body>
+</html>
