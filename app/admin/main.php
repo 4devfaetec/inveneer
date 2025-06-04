@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Verifica se o usuário está logado e se é gerente
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['cargo'] !== 'GERENTE') {
+    // Redireciona para a página de login
+    header("Location: ../../login.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
