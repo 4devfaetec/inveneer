@@ -532,11 +532,20 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['cargo'] !== 'GERENTE')
               <h3>Tendência de Vendas</h3>
               <p>Últimos 6 meses</p>
             </div>
-            <div class="infos"></div>
+            <div class="infos">
+              <div style="width: 600px; margin: 40px auto">
+                <canvas id="linhaVendasChart"></canvas>
+              </div>
+            </div>
           </div>
           <div class="right-box">
-            <div class="title"></div>
-            <div class="infos"></div>
+            <div class="title">
+              <h3>Produtos Mais Vendidos</h3>
+              <p>Top 5 produtos por quantidade</p>
+            </div>
+            <div class="infos">
+              <canvas id="topProdutosChart"></canvas>
+            </div>
           </div>
         </div>
       </section>

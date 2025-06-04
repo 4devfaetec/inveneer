@@ -54,7 +54,6 @@
 
 body {
   display: flex;
-  overflow: hidden;
   background-color: var(--card-clr);
 }
 
@@ -169,19 +168,6 @@ main {
   width: 85vw;
   display: flex;
   flex-direction: column;
-}
-
-.active-section {
-  visibility: visible;
-}
-
-#dashboard {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 85vw;
-  display: flex;
-  flex-direction: column;
 
   & header {
     display: flex;
@@ -219,7 +205,28 @@ main {
   }
 
   & .top-box {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+  }
+}
+
+.active-section {
+  visibility: visible;
+}
+
+#dashboard {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
+
+  & .top-box {
     width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-evenly;
     padding: 3rem 5%;
