@@ -29,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['cargo'] = $usuario['cargo'];  // GERENTE, SUPERVISOR ou VENDEDOR
 
             if ($_SESSION['tipo'] === 'ADMIN') {
-                header("Location: ../app/admin/main.html");
+                header("Location: ../app/admin/main.php");
             } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
                 if ($_SESSION['cargo'] === 'SUPERVISOR') {
-                    header("Location: ../app/supervisor/main.html");
+                    header("Location: ../app/admin/main.php");
                 } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
-                    header("Location: ../app/vendedor/main.html");
+                    header("Location: ../app/user/main.html");
                 }
             }
             exit;
