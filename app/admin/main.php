@@ -1,13 +1,13 @@
 <?php
 session_start();
 
-// Verifica se o usuário está logado e se é gerente
-if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['cargo'] !== 'GERENTE') {
-    // Redireciona para a página de login
+// Verifica se o usuário está logado e se o cargo é GERENTE
+if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
     header("Location: ../../login.php");
     exit();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
