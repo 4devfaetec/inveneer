@@ -212,6 +212,7 @@ main {
     padding: 1rem 2rem;
     width: 100%;
     border-bottom: 1px solid var(--borders);
+    margin-bottom: 2rem;
     gap: 2rem;
 
     & .top-infos {
