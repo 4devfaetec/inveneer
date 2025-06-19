@@ -224,15 +224,15 @@ main {
       border-radius: 10px;
 
       &:nth-child(1) {
-        background: linear-gradient(to right, #3275f1, #1f4c99);
+        background: linear-gradient(to right, #3275f1, #2754a1);
       }
 
       &:nth-child(2) {
-        background: linear-gradient(to right, #f78710, #a55300);
+        background: linear-gradient(to right, #f78710, #a55c14);
       }
 
       &:nth-child(3) {
-        background: linear-gradient(to right, #0ba976, #066348);
+        background: linear-gradient(to right, #0ba976, #167c5f);
       }
 
       &:nth-child(4) {
@@ -285,83 +285,6 @@ main {
   width: 85vw;
   display: flex;
   flex-direction: column;
-
-  /* & .top-box {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 3rem 5%;
-
-    & .top-infos {
-      background-color: var(--white);
-      border: 1px solid var(--borders);
-      padding: 1.2rem;
-      display: flex;
-      align-items: center;
-      width: 19%;
-      min-width: 200px;
-      height: 5vw;
-      border-radius: 10px;
-
-      & .icon {
-        width: 30%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        & .icon-background {
-          background-color: #398ddb88;
-          height: 3rem;
-          width: 3rem;
-          border-radius: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          & i {
-            color: var(--black);
-            font-size: 1vw;
-          }
-        }
-      }
-      .infos {
-        width: 70%;
-        display: flex;
-        flex-direction: column;
-        padding: 0.5rem;
-
-        & .info-title {
-          color: var(--subtitles);
-          font-size: 0.8vw;
-        }
-
-        & .info-number {
-          color: var(--black);
-          font-size: 1.5vw;
-          font-weight: 800;
-          margin-top: auto;
-        }
-      }
-
-      &:last-child {
-        & .icon {
-          & .icon-background {
-            & i {
-              transform: translateY(15%);
-            }
-          }
-        }
-      }
-
-      &:last-child {
-        & .info-number {
-          font-size: 1vw;
-          font-weight: 700;
-        }
-      }
-    }
-  } */
 
   & .search-box {
     width: 100%;
