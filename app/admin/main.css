@@ -587,7 +587,7 @@ main {
     & h2 {
       color: var(--black);
     }
-
+    
     & .filter {
       display: flex;
       flex-direction: row;
