@@ -18,3 +18,4 @@ menuItems.forEach((item) => {
     document.getElementById(target).classList.add("active-section");
   });
 });
+
