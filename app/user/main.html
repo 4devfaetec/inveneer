@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" />
   <link rel="stylesheet" href="main.css" />
   <script type="module" src="main.js"></script>
@@ -478,102 +478,106 @@
           </div>
         </div>
         <div class="table-box">
-          <table class="table table-striped table-light table-hover">
-            <thead class="thead-dark">
-              <tr>
-                <th>ID</th>
-                <th>Produto</th>
-                <th>Categoria</th>
-                <th>Fornecedor</th>
-                <th>Preço</th>
-                <th>Estoque</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ELE001</td>
-                <td>Smartphone X12</td>
-                <td>Eletrônicos</td>
-                <td>TechCorp</td>
-                <td>R$ 3.499,00</td>
-                <td>27</td>
-                <td><span class="badge bg-success">Disponível</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>INF7845</td>
-                <td>Notebook Ultra 7</td>
-                <td>Informática</td>
-                <td>CompuMax</td>
-                <td>R$ 5.299,90</td>
-                <td>12</td>
-                <td><span class="badge bg-success">Disponível</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>ELE2701</td>
-                <td>Geladeira Frost 500L</td>
-                <td>Eletrodomésticos</td>
-                <td>FrostLine</td>
-                <td>R$ 2.799,00</td>
-                <td>8</td>
-                <td><span class="badge bg-warning text-dark">Baixo Estoque</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>CAS1798</td>
-                <td>Aspirador TurboMax</td>
-                <td>Casa</td>
-                <td>CleanTech</td>
-                <td>R$ 399,90</td>
-                <td>32</td>
-                <td><span class="badge bg-success">Disponível</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>COZ1651</td>
-                <td>Liquidificador ProMix</td>
-                <td>Cozinha</td>
-                <td>KitchenPro</td>
-                <td>R$ 179,00</td>
-                <td>45</td>
-                <td><span class="badge bg-success">Disponível</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>INF2068</td>
-                <td>Monitor LED 27"</td>
-                <td>Informática</td>
-                <td>DisplayTech</td>
-                <td>R$ 1.199,90</td>
-                <td>18</td>
-                <td><span class="badge bg-success">Disponível</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>ESC8620</td>
-                <td>Cadeira Gamer Blaze</td>
-                <td>Escritório</td>
-                <td>GamerZone</td>
-                <td>R$ 899,00</td>
-                <td>10</td>
-                <td><span class="badge bg-warning text-dark">Baixo Estoque</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-              <tr>
-                <td>ADE7592</td>
-                <td>Mouse Wireless MX</td>
-                <td>Acessórios</td>
-                <td>PeripheralPro</td>
-                <td>R$ 149,90</td>
-                <td>75</td>
-                <td><span class="badge bg-success">Disponível</span></td>
-                <td>👁️ ✏️ 🗑️</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="grid-table">
+            <div class="row header">
+              <div>ID</div>
+              <div>Produto</div>
+              <div>Categoria</div>
+              <div>Fornecedor</div>
+              <div>Preço</div>
+              <div>Estoque</div>
+              <div>Status</div>
+              <div>Ações</div>
+            </div>
+
+            <div class="row">
+              <div>ELE001</div>
+              <div>Smartphone X12</div>
+              <div>Eletrônicos</div>
+              <div>TechCorp</div>
+              <div>R$ 3.499,00</div>
+              <div>27</div>
+              <div><span class="badge bg-success">Disponível</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>INF7845</div>
+              <div>Notebook Ultra 7</div>
+              <div>Informática</div>
+              <div>CompuMax</div>
+              <div>R$ 5.299,90</div>
+              <div>12</div>
+              <div><span class="badge bg-success">Disponível</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>ELE2701</div>
+              <div>Geladeira Frost 500L</div>
+              <div>Eletrodomésticos</div>
+              <div>FrostLine</div>
+              <div>R$ 2.799,00</div>
+              <div>8</div>
+              <div><span class="badge bg-warning text-dark">Baixo Estoque</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>CAS1798</div>
+              <div>Aspirador TurboMax</div>
+              <div>Casa</div>
+              <div>CleanTech</div>
+              <div>R$ 399,90</div>
+              <div>32</div>
+              <div><span class="badge bg-success">Disponível</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>COZ1651</div>
+              <div>Liquidificador ProMix</div>
+              <div>Cozinha</div>
+              <div>KitchenPro</div>
+              <div>R$ 179,00</div>
+              <div>45</div>
+              <div><span class="badge bg-success">Disponível</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>INF2068</div>
+              <div>Monitor LED 27"</div>
+              <div>Informática</div>
+              <div>DisplayTech</div>
+              <div>R$ 1.199,90</div>
+              <div>18</div>
+              <div><span class="badge bg-success">Disponível</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>ESC8620</div>
+              <div>Cadeira Gamer Blaze</div>
+              <div>Escritório</div>
+              <div>GamerZone</div>
+              <div>R$ 899,00</div>
+              <div>10</div>
+              <div><span class="badge bg-warning text-dark">Baixo Estoque</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+
+            <div class="row">
+              <div>ADE7592</div>
+              <div>Mouse Wireless MX</div>
+              <div>Acessórios</div>
+              <div>PeripheralPro</div>
+              <div>R$ 149,90</div>
+              <div>75</div>
+              <div><span class="badge bg-success">Disponível</span></div>
+              <div>👁️ ✏️ 🗑️</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -634,6 +638,12 @@
             </select>
             <input type="date" name="" id="">
             <button><i class="bi bi-download"></i><span>Exportar</span></button>
+          </div>
+        </div>
+        <div class="quick-reports">
+          <div class="title">
+            <h4>Relatórios Rápidos</h4>
+            <p>Gere relatórios específicos com um clique</p>
           </div>
         </div>
       </div>
