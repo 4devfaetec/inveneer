@@ -1,0 +1,32 @@
+<form action="./criar_produto.php" method="post" id="produto-form" class="form">
+  <div class="group">
+    <input type="text" id="nome_produto" name="nome_produto" placeholder="‎" required>
+    <label for="nome_produto">Nome do Produto</label>
+  </div>
+
+  <div class="group">
+    <select id="categoria" name="categoria" required>
+      <option value="">Selecione a categoria</option>
+      <option value="Eletrônicos">Eletrônicos</option>
+      <option value="Informática">Informática</option>
+      <option value="Eletrodomésticos">Eletrodomésticos</option>
+      <option value="Casa">Casa</option>
+      <option value="Cozinha">Cozinha</option>
+      <option value="Escritório">Escritório</option>
+      <option value="Acessórios">Acessórios</option>
+    </select>
+    <label for="categoria">Categoria</label>
+  </div>
+
+  <div class="group">
+    <input type="number" step="0.01" id="preco" name="preco" placeholder="‎" required>
+    <label for="preco">Preço (R$)</label>
+  </div>
+
+  <div class="group">
+    <input type="number" id="estoque" name="estoque" placeholder="‎" required>
+    <label for="estoque">Estoque</label>
+  </div>
+
+  <button type="submit">Salvar Produto</button>
+</form>
