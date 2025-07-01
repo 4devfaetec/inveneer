@@ -2,6 +2,8 @@
 include "conexao.php";
 session_start();
 
+$response = ["status" => "erro", "message" => "Login inválido."];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
@@ -14,37 +16,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $usuario = $result->fetch_assoc();
-
         if (password_verify($senha, $usuario['senha'])) {
-            // Atualiza o último acesso
+            $_SESSION['id'] = $usuario['id'];
+            $_SESSION['nome'] = $usuario['nome'];
+            $_SESSION['tipo'] = $usuario['tipo'];
+            $_SESSION['cargo'] = $usuario['cargo'];
+
+            // Atualiza último acesso
             $updateSql = "UPDATE cadastro_usuario SET ultimo_acesso = NOW() WHERE id = ?";
             $updateStmt = $conn->prepare($updateSql);
             $updateStmt->bind_param("i", $usuario['id']);
             $updateStmt->execute();
             $updateStmt->close();
 
-            $_SESSION['id'] = $usuario['id'];
-            $_SESSION['nome'] = $usuario['nome'];
-            $_SESSION['tipo'] = $usuario['tipo'];  // ADMIN ou FUNCIONARIO
-            $_SESSION['cargo'] = $usuario['cargo'];  // GERENTE, SUPERVISOR ou VENDEDOR
+            $response["status"] = "ok";
 
+            // Define para onde redirecionar
             if ($_SESSION['tipo'] === 'ADMIN') {
-                header("Location: ../app/admin/main.php");
+                $response["redirect"] = "../app/admin/main.php";                                                                                                                                   
             } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
                 if ($_SESSION['cargo'] === 'SUPERVISOR') {
-                    header("Location: ../app/admin/main.php");
+                    $response["redirect"] = "../prototype/app/user/main.html";
                 } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
-                    header("Location: ../app/user/main.html");
+                    $response["redirect"] = "../app/user/main.html";
                 }
             }
-            exit;
-        } else {
-            echo "<script>alert('Login inválido.'); window.history.back();</script>";
         }
-    } else {
-        echo "<script>alert('Login inválido.'); window.history.back();</script>";
     }
-} else {
-    echo "<script>alert('Acesso inválido.'); window.history.back();</script>";
 }
-?>
+
+header('Content-Type: application/json');
+echo json_encode($response);
