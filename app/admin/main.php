@@ -135,63 +135,47 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
       </div>
       <div id="stock" class="section">
         <div class="form-shadow"></div>
-        <form class="ad-prod">
-          <div class="top-box">
-            <span class="title">Adicionar novo produto</span>
-            <i class="bi bi-x-lg" onclick="hideStockForm()"></i>
-          </div>
-          <div class="input-box">
-            <label for="name">Nome do produto</label>
-            <input type="text" name="name" class="input" />
-          </div>
-          <div class="input-box">
-            <label for="cat">Categoria</label>
-            <select name="cat" id="cat">
-              <option value="#" disabled selected>
-                Selecione uma categoria
-              </option>
-              <option value="informatica">Informática</option>
-              <option value="eletronicos">Eletrônicos</option>
-              <option value="eletrodomesticos">Eletrodomésticos</option>
-              <option value="cozinha">Cozinha</option>
-              <option value="casa">Casa</option>
-              <option value="escritorio">Escritório</option>
-              <option value="acessorios">Acessórios</option>
-            </select>
-          </div>
-          <div class="input-box price-box">
-            <label for="price">Preço</label>
-            <div class="box">
-              <p>R$</p>
-              <input type="number" name="price" class="input" />
-            </div>
-          </div>
-          <div class="input-box">
-            <label for="qtd">Quantidade em estoque</label>
-            <input type="number" name="qtd" class="input" />
-          </div>
-          <div class="input-box">
-            <label for="date">Data de cadastro</label>
-            <input type="datetime-local" name="date" class="input" />
-          </div>
-          <div class="input-box">
-            <label for="forn">Fornecedor</label>
-            <input type="text" name="forn" class="input" />
-          </div>
-          <div class="input-box">
-            <label for="desc">Descrição</label>
-            <input type="text" name="desc" class="input" />
-          </div>
-          <div class="input-box">
-            <label for="val">Validade</label>
-            <input type="date" name="val" class="input" />
-          </div>
-          <div class="input-box">
-            <label for="img">Imagem do produto</label>
-            <input type="file" name="img" class="input" />
-          </div>
-          <button type="submit" class="add">Adicionar</button>
-        </form>
+        <form class="ad-prod" id="produto-form" action="../../PHP/criar_produto.php" method="post" enctype="multipart/form-data">
+  <div class="top-box">
+    <span class="title">Adicionar novo produto</span>
+    <i class="bi bi-x-lg" onclick="hideStockForm()"></i>
+  </div>
+
+  <div class="input-box">
+    <label for="nome_produto">Nome do produto</label>
+    <input type="text" name="nome_produto" id="nome_produto" class="input" required />
+  </div>
+
+  <div class="input-box">
+    <label for="categoria">Categoria</label>
+    <select name="categoria" id="categoria" required>
+      <option value="" disabled selected>Selecione uma categoria</option>
+      <option value="Informática">Informática</option>
+      <option value="Eletrônicos">Eletrônicos</option>
+      <option value="Eletrodomésticos">Eletrodomésticos</option>
+      <option value="Cozinha">Cozinha</option>
+      <option value="Casa">Casa</option>
+      <option value="Escritório">Escritório</option>
+      <option value="Acessórios">Acessórios</option>
+    </select>
+  </div>
+
+  <div class="input-box price-box">
+    <label for="preco">Preço</label>
+    <div class="box">
+      <p>R$</p>
+      <input type="number" name="preco" id="preco" step="0.01" class="input" required />
+    </div>
+  </div>
+
+  <div class="input-box">
+    <label for="estoque">Quantidade em estoque</label>
+    <input type="number" name="estoque" id="estoque" class="input" required />
+  </div>
+
+  <button type="submit" class="add">Adicionar</button>
+</form>
+
         <div class="top-box">
           <h2>Gerenciamento de produtos</h2>
           <button onclick="showStockForm()">
@@ -215,151 +199,8 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
                 <th scope="col">Ações</th>
               </tr>
             </thead>
-            <tbody class="table-group-divider">
-              <tr>
-                <th scope="row">ELE4932</th>
-                <td>Smartphone X12</td>
-                <td>Eletrônicos</td>
-                <td>R$ 3.499,00</td>
-                <td>27 unid.</td>
-                <td>Há 15 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">INF7284</th>
-                <td>Notebook Ultra 7</td>
-                <td>Informática</td>
-                <td>R$ 5.299,90</td>
-                <td>12 unid.</td>
-                <td>Há 1 hora</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ELE3921</th>
-                <td>Geladeira Frost 500L</td>
-                <td>Eletrodomésticos</td>
-                <td>R$ 2.799,00</td>
-                <td>8 unid.</td>
-                <td>Há 3 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ELE8407</th>
-                <td>Smart TV 55” 4K</td>
-                <td>Eletrônicos</td>
-                <td>R$ 2.499,00</td>
-                <td>15 unid.</td>
-                <td>Há 15 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">CAS1178</th>
-                <td>Aspirador TurboMax</td>
-                <td>Casa</td>
-                <td>R$ 499,90</td>
-                <td>32 unid.</td>
-                <td>Há 7 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">COZ3651</th>
-                <td>Liquidificador ProMix</td>
-                <td>Cozinha</td>
-                <td>R$ 179,00</td>
-                <td>45 unid.</td>
-                <td>Há 2 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">INF2069</th>
-                <td>Monitor LED 27”</td>
-                <td>Informática</td>
-                <td>R$ 1.199,90</td>
-                <td>18 unid.</td>
-                <td>Há 30 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ESC4820</th>
-                <td>Cadeira Gamer Blaze</td>
-                <td>Escritório</td>
-                <td>R$ 899,00</td>
-                <td>10 unid.</td>
-                <td>Há 40 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ACE7592</th>
-                <td>Mouse Wireless MX</td>
-                <td>Acessórios</td>
-                <td>R$ 149,90</td>
-                <td>75 unid.</td>
-                <td>Há 12 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">INF3285</th>
-                <td>Impressora LaserJet</td>
-                <td>Informática</td>
-                <td>R$ 1.499,00</td>
-                <td>6 unid.</td>
-                <td>Há 1 hora</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">COZ6893</th>
-                <td>Fogão 5 Bocas Inox</td>
-                <td>Cozinha</td>
-                <td>R$ 1.299,90</td>
-                <td>9 unid.</td>
-                <td>Há 6 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">COZ1740</th>
-                <td>Micro-ondas 32L</td>
-                <td>Cozinha</td>
-                <td>R$ 649,00</td>
-                <td>21 unid.</td>
-                <td>Há 50 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ELE0237</th>
-                <td>Caixa de Som Bluetooth</td>
-                <td>Eletrônicos</td>
-                <td>R$ 239,00</td>
-                <td>53 unid.</td>
-                <td>Há 9 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">CAS4890</th>
-                <td>Ventilador Turbo 40cm</td>
-                <td>Casa</td>
-                <td>R$ 169,90</td>
-                <td>40 unid.</td>
-                <td>Há 4 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ACE3481</th>
-                <td>Teclado Mecânico RGB</td>
-                <td>Acessórios</td>
-                <td>R$ 299,90</td>
-                <td>29 unid.</td>
-                <td>Há 1 hora</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ELE5742</th>
-                <td>Tablet VisionPad 10”</td>
-                <td>Eletrônicos</td>
-                <td>R$ 1.299,00</td>
-                <td>17 unid.</td>
-                <td>Há 35 minutos</td>
-                <td><i class="bi bi-pencil-square"></i></td>
-              </tr>
+            <tbody id="produtos-table-body" class="table-group-divider">
+              
             </tbody>
           </table>
         </div>
@@ -681,14 +522,19 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
         </div>
       </div>
     </main>
+    <div id="overlay-loading">
+    <div class="loader"></div>
+    </div>
   </body>
   <script src="script.js"></script>
   <script>
   // Chamada automática após o carregamento da página
   document.addEventListener('DOMContentLoaded', function () {
     carregarUsuarios();
+    carregarProdutos();
   });
 </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

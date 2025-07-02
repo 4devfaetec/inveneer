@@ -1,51 +1,117 @@
+const overlay = document.getElementById("overlay-loading");
+
+function mostrarOverlay() {
+  overlay.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function esconderOverlay() {
+  overlay.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
 const themeToggler = document.querySelector(".theme-toggler");
 document.body.classList.toggle("dark-mode");
 
 const menuItems = document.querySelectorAll("#menu li");
 const sections = document.querySelectorAll(".section");
 
-const form = document.getElementById('ad-func');
+document.addEventListener("DOMContentLoaded", () => {
+  const formUsuario = document.getElementById("ad-func");
+  const formProduto = document.getElementById("produto-form");
 
-form.addEventListener('submit', function(event) {
-  event.preventDefault(); // para não recarregar a página
+  async function enviarFormulario(form) {
+  mostrarOverlay();
+
+  // Delay para visualizar animação
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const formData = new FormData(form);
 
-  fetch('../../PHP/teste_id.php', {
-    method: 'POST',
-    body: formData
+  fetch(form.action, {
+    method: "POST",
+    body: formData,
   })
-  .then(response => response.json())
-  .then(data => {
-    alert(data.message);
-    if (data.success) {
-      carregarUsuarios();  // atualiza a tabela
-      form.reset();        // limpa formulário
-      hideForm();          // esconde o form (se tiver essa função)
-    }
-  })
-  .catch(error => {
-    console.error('Erro na requisição:', error);
-    alert('Erro ao enviar dados. Tente novamente.');
-  });
+    .then((res) => res.json())
+    .then((data) => {
+      esconderOverlay();
+
+      if (data.success || data.status === "ok") {
+        Swal.fire({
+          icon: "success",
+          title:
+            form.id === "ad-func"
+              ? "Usuário cadastrado!"
+              : "Produto cadastrado!",
+          text: data.message || "Cadastro realizado com sucesso!",
+          background: "#121212",
+          color: "#fff",
+          confirmButtonColor: "#2b2f3d",
+        });
+
+        form.reset();
+        if (typeof hideForm === "function") hideForm();
+
+        // Atualiza a lista correspondente imediatamente
+        if (form.id === "ad-func") {
+          carregarUsuarios();
+        } else if (form.id === "produto-form") {
+          carregarProdutos();
+        }
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Erro ao cadastrar!",
+          text: data.message || "Erro desconhecido.",
+          background: "#121212",
+          color: "#fff",
+          confirmButtonColor: "#2b2f3d",
+        });
+      }
+    })
+    .catch(() => {
+      esconderOverlay();
+      Swal.fire({
+        icon: "error",
+        title: "Erro na conexão!",
+        text: "Não foi possível processar a solicitação.",
+        background: "#121212",
+        color: "#fff",
+        confirmButtonColor: "#2b2f3d",
+      });
+    });
+}
+
+
+  if (formUsuario) {
+    formUsuario.addEventListener("submit", (e) => {
+      e.preventDefault();
+      enviarFormulario(formUsuario);
+    });
+  }
+
+  if (formProduto) {
+    formProduto.addEventListener("submit", (e) => {
+      e.preventDefault();
+      enviarFormulario(formProduto);
+    });
+  }
 });
 
-
-
 function atualizarUltimoAcesso() {
-  fetch('../../PHP/ultimo_acesso.php')
-    .then(response => response.text())
-    .then(data => console.log(data))
-    .catch(err => console.error('Erro ao atualizar último acesso:', err));
+  return fetch("../../PHP/ultimo_acesso.php")
+    .then((response) => response.text())
+    .then((data) => console.log(data))
+    .catch((err) => console.error("Erro ao atualizar último acesso:", err));
 }
 
 function carregarUsuarios() {
-  fetch('../../PHP/listar_usuarios.php')
-    .then(response => response.json())
-    .then(data => {
-      const tbody = document.querySelector('#usuarios-table-body');
-      tbody.innerHTML = '';
-      data.forEach(usuario => {
+  return fetch("../../PHP/listar_usuarios.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const tbody = document.querySelector("#usuarios-table-body");
+      tbody.innerHTML = "";
+      data.forEach((usuario) => {
         tbody.innerHTML += `
           <tr>
             <th scope="row">${usuario.id}</th>
@@ -59,18 +125,187 @@ function carregarUsuarios() {
         `;
       });
     })
-    .catch(error => console.error('Erro ao carregar usuários:', error));
+    .catch((error) => console.error("Erro ao carregar usuários:", error));
 }
 
-// Função que roda a cada 5 segundos
-setInterval(() => {
-  carregarUsuarios();
-  atualizarUltimoAcesso();
-}, 5000);
+function carregarProdutos() {
+  return fetch("../../PHP/listar_produtos.php")
+    .then((response) => {
+      if (!response.ok) throw new Error("Erro na resposta do servidor: " + response.status);
+      return response.json();
+    })
+    .then((data) => {
+      const tbody = document.querySelector("#produtos-table-body");
+      tbody.innerHTML = "";
+      data.forEach((produto) => {
+        tbody.innerHTML += `
+          <tr>
+            <th scope="row">${produto.id}</th>
+            <td>${produto.nome}</td>
+            <td>${produto.categoria}</td>
+            <td>R$ ${parseFloat(produto.preco).toFixed(2)}</td>
+            <td>${produto.estoque}</td>
+            <td>${formatarData(produto.ultima_atualizacao)}</td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        `;
+      });
+    })
+    .catch((error) => console.error("Erro ao carregar produtos:", error));
+}
 
-// Também pode chamar logo na página carregar tudo na primeira vez
-carregarUsuarios();
-atualizarUltimoAcesso();
+function formatarData(dataString) {
+  const data = new Date(dataString);
+  const dia = String(data.getDate()).padStart(2, "0");
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const ano = data.getFullYear();
+  const horas = String(data.getHours()).padStart(2, "0");
+  const minutos = String(data.getMinutes()).padStart(2, "0");
+  return `${dia}/${mes}/${ano} às ${horas}:${minutos}`;
+}
+
+async function atualizarTudo() {
+  try {
+    await Promise.all([
+      carregarProdutos(),
+      carregarUsuarios(),
+      atualizarUltimoAcesso()
+    ]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+setInterval(atualizarTudo, 5000);
+atualizarTudo();
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    menuItems.forEach((el) => el.classList.remove("active"));
+    item.classList.add("active");
+    sections.forEach((sec) => sec.classList.remove("active-section"));
+    const target = item.getAttribute("data-section");
+    document.getElementById(target).classList.add("active-section");
+  });
+});
+
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    menuItems.forEach((el) => el.classList.remove("active"));
+    item.classList.add("active");
+    sections.forEach((sec) => sec.classList.remove("active-section"));
+    const target = item.getAttribute("data-section");
+    document.getElementById(target).classList.add("active-section");
+  });
+});
+
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    // Remove classe active do menu
+    menuItems.forEach((el) => el.classList.remove("active"));
+    item.classList.add("active");
+
+    // Esconde todas as seções
+    sections.forEach((sec) => sec.classList.remove("active-section"));
+
+    // Mostra a seção correspondente
+    const target = item.getAttribute("data-section");
+    document.getElementById(target).classList.add("active-section");
+  });
+});
+
+
+function atualizarUltimoAcesso() {
+  return fetch("../../PHP/ultimo_acesso.php")
+    .then((response) => response.text())
+    .then((data) => console.log(data))
+    .catch((err) => console.error("Erro ao atualizar último acesso:", err));
+}
+
+function carregarUsuarios() {
+  return fetch("../../PHP/listar_usuarios.php")
+    .then((response) => response.json())
+    .then((data) => {
+      const tbody = document.querySelector("#usuarios-table-body");
+      tbody.innerHTML = "";
+      data.forEach((usuario) => {
+        tbody.innerHTML += `
+          <tr>
+            <th scope="row">${usuario.id}</th>
+            <td>${usuario.nome}</td>
+            <td>${usuario.email}</td>
+            <td>${usuario.cargo}</td>
+            <td>${usuario.status}</td>
+            <td>${usuario.ultimo_acesso}</td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        `;
+      });
+    })
+    .catch((error) => console.error("Erro ao carregar usuários:", error));
+}
+
+function carregarProdutos() {
+  return fetch("../../PHP/listar_produtos.php")
+    .then((response) => {
+      if (!response.ok) throw new Error("Erro na resposta do servidor: " + response.status);
+      return response.json();
+    })
+    .then((data) => {
+      const tbody = document.querySelector("#produtos-table-body");
+      tbody.innerHTML = "";
+      data.forEach((produto) => {
+        tbody.innerHTML += `
+          <tr>
+            <th scope="row">${produto.id}</th>
+            <td>${produto.nome}</td>
+            <td>${produto.categoria}</td>
+            <td>R$ ${parseFloat(produto.preco).toFixed(2)}</td>
+            <td>${produto.estoque}</td>
+            <td>${formatarData(produto.ultima_atualizacao)}</td>
+            <td><i class="bi bi-pencil-square"></i></td>
+          </tr>
+        `;
+      });
+    })
+    .catch((error) => console.error("Erro ao carregar produtos:", error));
+}
+
+function formatarData(dataString) {
+  const data = new Date(dataString);
+  const dia = String(data.getDate()).padStart(2, "0");
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const ano = data.getFullYear();
+  const horas = String(data.getHours()).padStart(2, "0");
+  const minutos = String(data.getMinutes()).padStart(2, "0");
+  return `${dia}/${mes}/${ano} às ${horas}:${minutos}`;
+}
+
+async function atualizarTudo() {
+  try {
+    await Promise.all([carregarProdutos(), carregarUsuarios(), atualizarUltimoAcesso()]);
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+setInterval(atualizarTudo, 5000);
+atualizarTudo();
+
+menuItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    menuItems.forEach((el) => el.classList.remove("active"));
+    item.classList.add("active");
+
+    sections.forEach((sec) => sec.classList.remove("active-section"));
+
+    const target = item.getAttribute("data-section");
+    document.getElementById(target).classList.add("active-section");
+  });
+});
+
 
 
 
