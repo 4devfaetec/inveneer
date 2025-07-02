@@ -1,13 +1,18 @@
 <?php
+header('Content-Type: application/json');
 include "conexao.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nome = $_POST['nome_produto'];
-    $categoria = $_POST['categoria'];
-    $preco = $_POST['preco'];
-    $estoque = $_POST['estoque'];
+    $nome = $_POST['nome_produto'] ?? '';
+    $categoria = $_POST['categoria'] ?? '';
+    $preco = $_POST['preco'] ?? '';
+    $estoque = $_POST['estoque'] ?? '';
 
-    // Mapa de iniciais fixas para cada categoria
+    if (empty($nome) || empty($categoria) || empty($preco) || empty($estoque)) {
+        echo json_encode(['success' => false, 'message' => 'Por favor, preencha todos os campos.']);
+        exit;
+    }
+
     $iniciaisCategoria = [
         'Eletrônicos' => 'ELE',
         'Informática' => 'INF',
@@ -18,33 +23,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         'Acessórios' => 'ACE'
     ];
 
-    // Busca as iniciais corretas
-    if (isset($iniciaisCategoria[$categoria])) {
-        $iniciais = $iniciaisCategoria[$categoria];
-    } else {
-        $iniciais = 'GEN'; // Caso não esteja no mapa
-    }
+    $iniciais = $iniciaisCategoria[$categoria] ?? 'GEN';
 
-    // Gera número aleatório de 4 dígitos
     $numero = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
-
-    // Monta ID final
     $id = $iniciais . $numero;
 
-    // Prepara SQL
+    // Verifica se ID já existe (opcional)
+    $check = $conn->prepare("SELECT id FROM produtos WHERE id = ?");
+    $check->bind_param("s", $id);
+    $check->execute();
+    $check->store_result();
+    if ($check->num_rows > 0) {
+        echo json_encode(['success' => false, 'message' => 'Produto já cadastrado com esse ID. Tente novamente.']);
+        $check->close();
+        $conn->close();
+        exit;
+    }
+    $check->close();
+
     $sql = "INSERT INTO produtos (id, nome, categoria, preco, estoque) VALUES (?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssdi", $id, $nome, $categoria, $preco, $estoque);
 
     if ($stmt->execute()) {
-        echo "Produto cadastrado com sucesso! ID: " . $id;
+        echo json_encode(['success' => true, 'message' => 'Produto cadastrado com sucesso!' ]);
     } else {
-        echo "Erro ao cadastrar produto: " . $stmt->error;
+        echo json_encode(['success' => false, 'message' => 'Erro ao cadastrar: ' . $stmt->error]);
     }
 
     $stmt->close();
     $conn->close();
 } else {
-    echo "Requisição inválida!";
+    echo json_encode(['success' => false, 'message' => 'Requisição inválida!']);
 }
 ?>

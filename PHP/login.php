@@ -33,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Define para onde redirecionar
             if ($_SESSION['tipo'] === 'ADMIN') {
-                $response["redirect"] = "../app/admin/main.php";                                                                                                                                   
+                $response["redirect"] = "/prototype/app/admin/main.php";                                                                                                                                   
             } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
                 if ($_SESSION['cargo'] === 'SUPERVISOR') {
-                    $response["redirect"] = "../prototype/app/user/main.html";
+                    $response["redirect"] = "../app/user/main.html";
                 } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
                     $response["redirect"] = "../app/user/main.html";
                 }
