@@ -1,839 +1,1063 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <script type="module" src="main.js"></script>
+    <title>Inveneer</title>
+  </head>
 
-  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" />
-  <link rel="stylesheet" href="main.css" />
-  <script type="module" src="main.js"></script>
-  <title>Inveneer</title>
-</head>
-
-<body>
-  <aside>
-    <div class="logo">
-      <p>Inve<span>neer</span></p>
-    </div>
-    <ul id="menu">
-      <li data-section="dashboard" class="active">
-        <i class="bi bi-grid"></i> <span>Dashboard</span>
-      </li>
-      <li data-section="stock">
-        <i class="bi bi-box-seam"></i> <span>Estoque</span>
-      </li>
-      <li data-section="reports">
-        <i class="bi bi-clipboard-data"></i> <span>Relatórios</span>
-      </li>
-      <li data-section="analitycs">
-        <i class="bi bi-cart"></i> <span>Vendas</span>
-      </li>
-      <li data-section="clients">
-        <i class="bi bi-people"></i> <span>Clientes</span>
-      </li>
-      <li data-section="config">
-        <i class="bi bi-gear"></i> <span>Configurações</span>
-      </li>
-      <li>
-        <div class="img-user">JC</div>
-        <span class="user-infos">
-          <span class="name">Jacob</span>
-          <span class="privilege">Vendedor</span>
-        </span>
-      </li>
-    </ul>
-  </aside>
-
-  <main>
-    <section id="dashboard" class="section active-section">
-      <header>
-        <h3>Dashboard</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
-        </div>
-      </header>
-      <div class="top-box">
-        <div class="top-infos">
-          <div class="box">
-            <p>Itens em Estoque</p>
-            <span class="value">1,288</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-box-seam"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Vendas da Semana</p>
-            <span class="value">42</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-arrow-down-up"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Baixo Estoque</p>
-            <span class="value">12</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-exclamation-triangle"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Última Atualização</p>
-            <span class="value">Hoje, 13:47</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-clock"></i>
-          </div>
-        </div>
+  <body>
+    <aside>
+      <div class="logo">
+        <p>Inve<span>neer</span></p>
       </div>
-      <div class="search-box">
-        <div class="input-box">
-          <i class="bi bi-search"></i>
-          <input type="search" placeholder="Buscar por nome ou ID do produto..." />
-        </div>
-        <button>Buscar</button>
-        <button><i class="bi bi-funnel"></i><span>Filtros</span></button>
-      </div>
-      <div class="products-box">
-        <!-- Produto 1 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://images.kabum.com.br/produtos/fotos/sync_mirakl/649731/xlarge/Smartphone-Samsung-Galaxy-A06-128GB-Azul-Escuro-4g-Ram-4gb-C-mera-50mp-Selfie-8mp-Tela-6-7-_1742413229.jpg"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Smartphone X12</span>
-            <span class="prod-id">ID: ELE4932</span>
-            <span class="price">R$ 3.499,00</span>
-            <span class="qtd">Estoque: 27</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
+      <ul id="menu">
+        <li data-section="dashboard" class="active">
+          <i class="bi bi-grid"></i> <span>Dashboard</span>
+        </li>
+        <li data-section="stock">
+          <i class="bi bi-box-seam"></i> <span>Estoque</span>
+        </li>
+        <li data-section="reports">
+          <i class="bi bi-clipboard-data"></i> <span>Relatórios</span>
+        </li>
+        <li data-section="analitycs">
+          <i class="bi bi-bar-chart-line"></i> <span>Análises</span>
+        </li>
+        <li data-section="clients">
+          <i class="bi bi-people"></i> <span>Clientes</span>
+        </li>
+        <li data-section="config">
+          <i class="bi bi-gear"></i> <span>Configurações</span>
+        </li>
+        <li>
+          <div class="img-user">JC</div>
+          <span class="user-infos">
+            <span class="name">Jacob</span>
+            <span class="privilege">Vendedor</span>
+          </span>
+        </li>
+      </ul>
+    </aside>
 
-        <!-- Produto 2 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://www.visaovip.com/imagem/notebook/notebook-gamer-msi-cyborg-15-a13ve-218us-intel-core-i7-13620h-tela-full-hd-15-6-16gb-de-ram-512gb-ssd-geforce-rtx4050-6gb-translucent-preto/2/574513.jpg?pfdrid_c=true"
-                alt="" />
+    <main>
+      <section id="dashboard" class="section active-section">
+        <header>
+          <h3>Dashboard</h3>
+          <div class="profile">
+            <i class="bi bi-bell"></i>
+            <p>Olá, Jacob!</p>
+            <div class="profile-icon">JC</div>
+          </div>
+        </header>
+        <div class="top-box">
+          <div class="top-infos">
+            <div class="box">
+              <p>Itens em Estoque</p>
+              <span class="value">1,288</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-box-seam"></i>
             </div>
           </div>
-          <div class="prod-infos">
-            <span class="name">Notebook Ultra 7</span>
-            <span class="prod-id">ID: INF7284</span>
-            <span class="price">R$ 5.299,90</span>
-            <span class="qtd">Estoque: 12</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 3 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://lojawebcontinental.vtexassets.com/arquivos/ids/24294697-800-800?v=638295096852600000&width=800&height=800&aspect=true"
-                alt="" />
+          <div class="top-infos">
+            <div class="box">
+              <p>Vendas da Semana</p>
+              <span class="value">42</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-arrow-down-up"></i>
             </div>
           </div>
-          <div class="prod-infos">
-            <span class="name">Geladeira Frost 500L</span>
-            <span class="prod-id">ID: ELE3921</span>
-            <span class="price">R$ 2.799,00</span>
-            <span class="qtd">Estoque: 8</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 4 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAHayDEO2lzws_MPM-TMej-MFNeDYEPLKQ5g&s"
-                alt="" />
+          <div class="top-infos">
+            <div class="box">
+              <p>Baixo Estoque</p>
+              <span class="value">12</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-exclamation-triangle"></i>
             </div>
           </div>
-          <div class="prod-infos">
-            <span class="name">Aspirador TurboMax</span>
-            <span class="prod-id">ID: CAS1178</span>
-            <span class="price">R$ 499,90</span>
-            <span class="qtd">Estoque: 32</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 5 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://imgs.casasbahia.com.br/50004213/1g.jpg?imwidth=500" alt="" />
+          <div class="top-infos">
+            <div class="box">
+              <p>Última Atualização</p>
+              <span class="value">Hoje, 13:47</span>
             </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Liquidificador ProMix</span>
-            <span class="prod-id">ID: COZ3651</span>
-            <span class="price">R$ 179,00</span>
-            <span class="qtd">Estoque: 45</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 6 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://benchpromos.com.br/_next/image?url=https%3A%2F%2Fi.imgur.com%2FtU4afPZ.jpeg&w=3840&q=75"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Monitor LED 27”</span>
-            <span class="prod-id">ID: INF2069</span>
-            <span class="price">R$ 1.199,90</span>
-            <span class="qtd">Estoque: 18</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 7 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://lojagoldentec.vteximg.com.br/arquivos/ids/165902-1000-1000/image-cff5e7dc880d4c21bb11ed10984a894b.jpg?v=638483534503930000"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Cadeira Gamer Blaze</span>
-            <span class="prod-id">ID: ESC4820</span>
-            <span class="price">R$ 899,00</span>
-            <span class="qtd">Estoque: 10</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 8 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://fujiokadistribuidor.vteximg.com.br/arquivos/ids/183516" alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Mouse Wireless MX</span>
-            <span class="prod-id">ID: ACE7592</span>
-            <span class="price">R$ 149,90</span>
-            <span class="qtd">Estoque: 75</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 9 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://cdn.shoppub.io/cdn-cgi/image/w=600,h=600,q=80,f=auto/oficinadosbits/media/uploads/produtos/foto/qfyagprf/file.png"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Impressora LaserJet</span>
-            <span class="prod-id">ID: INF3285</span>
-            <span class="price">R$ 1.499,00</span>
-            <span class="qtd">Estoque: 6</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 10 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://www.millenamoveiseeletro.com.br/on/demandware.static/-/Sites-millena-catalog-master/default/dw9b51b635/images/23875_Black_large_01.jpg"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Fogão 5 Bocas Inox</span>
-            <span class="prod-id">ID: COZ6893</span>
-            <span class="price">R$ 1.299,90</span>
-            <span class="qtd">Estoque: 9</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 11 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShfYjqp37C7o3ta-IusTTXQdvKzwZXSdXB0Q&s"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Micro-ondas 32L</span>
-            <span class="prod-id">ID: COZ1740</span>
-            <span class="price">R$ 649,00</span>
-            <span class="qtd">Estoque: 21</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 12 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://m.media-amazon.com/images/I/71N8si9jomL.jpg" alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Caixa de Som Bluetooth</span>
-            <span class="prod-id">ID: ELE0237</span>
-            <span class="price">R$ 239,00</span>
-            <span class="qtd">Estoque: 53</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 13 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://a-static.mlcdn.com.br/800x560/ventilador-mondial-super-power-40cm-6-pas-3-velocidades-140w/magazineluiza/231203900/ca49f0bb288725451b66ce2b7561e684.jpg"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Ventilador Turbo 40cm</span>
-            <span class="prod-id">ID: CAS4890</span>
-            <span class="price">R$ 169,90</span>
-            <span class="qtd">Estoque: 40</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 14 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img
-                src="https://cdn.sistemawbuy.com.br/arquivos/c902c51ae83717d42e27bcaf6f7b0ddb/produtos/FOU7GU5/61ft1gq785l-_ac_sl1500_-63d7c01747f3d.jpg"
-                alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Teclado Mecânico RGB</span>
-            <span class="prod-id">ID: ACE3481</span>
-            <span class="price">R$ 299,90</span>
-            <span class="qtd">Estoque: 29</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-
-        <!-- Produto 15 -->
-        <div class="card">
-          <div class="prod-img">
-            <div class="img">
-              <img src="https://imgs.casasbahia.com.br/55066484/1g.jpg?imwidth=500" alt="" />
-            </div>
-          </div>
-          <div class="prod-infos">
-            <span class="name">Tablet VisionPad 10”</span>
-            <span class="prod-id">ID: ELE5742</span>
-            <span class="price">R$ 1.299,00</span>
-            <span class="qtd">Estoque: 17</span>
-          </div>
-          <div class="view">
-            <span class="status">Disponível</span>
-            <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="stock" class="section">
-      <header>
-        <h3>Estoque</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
-        </div>
-      </header>
-
-      <div class="top-box">
-        <div class="top-infos">
-          <div class="box">
-            <p>Total de Produtos</p>
-            <span class="value">8</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-box-seam"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Baixo Estoque</p>
-            <span class="value">2</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-funnel"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Valor Total</p>
-            <span class="value">R$ 14.425,60</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-piggy-bank"></i>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="filter-search">
-          <div class="top">
-            <h4>Gerenciamento de Produtos</h4>
-            <button><i class="bi bi-plus-lg"></i><span>Adicionar Produto</span></button>
-          </div>
-          <div class="inputs">
-            <div class="search-input">
-              <i class="bi bi-search"></i>
-              <input type="search" name="#" id="#" placeholder="Buscar produtos...">
-            </div>
-            <select name="" id="">
-              <option value="">Todos</option>
-              <option value="">Eletrônicos</option>
-              <option value="">Informática</option>
-              <option value="">Eletrodomésticos</option>
-              <option value="">Casa</option>
-              <option value="">Cozinha</option>
-              <option value="">Escritório</option>
-              <option value="">Acessórios</option>
-            </select>
-            <select name="" id="">
-              <option value="">Todos</option>
-              <option value="">Disponível</option>
-              <option value="">Baixo Estoque</option>
-              <option value="">Sem Estoque</option>
-            </select>
-            <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
-            <button><i class="bi bi-download"></i><span>Exportar</span></button>
-          </div>
-        </div>
-        <div class="table-box">
-          <div class="grid-table">
-            <div class="row header">
-              <div>ID</div>
-              <div>Produto</div>
-              <div>Categoria</div>
-              <div>Fornecedor</div>
-              <div>Preço</div>
-              <div>Estoque</div>
-              <div>Status</div>
-              <div>Ações</div>
-            </div>
-
-            <div class="row">
-              <div>ELE001</div>
-              <div>Smartphone X12</div>
-              <div>Eletrônicos</div>
-              <div>TechCorp</div>
-              <div>R$ 3.499,00</div>
-              <div>27</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>INF7845</div>
-              <div>Notebook Ultra 7</div>
-              <div>Informática</div>
-              <div>CompuMax</div>
-              <div>R$ 5.299,90</div>
-              <div>12</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>ELE2701</div>
-              <div>Geladeira Frost 500L</div>
-              <div>Eletrodomésticos</div>
-              <div>FrostLine</div>
-              <div>R$ 2.799,00</div>
-              <div>8</div>
-              <div><span class="badge bg-warning text-dark">Baixo Estoque</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>CAS1798</div>
-              <div>Aspirador TurboMax</div>
-              <div>Casa</div>
-              <div>CleanTech</div>
-              <div>R$ 399,90</div>
-              <div>32</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>COZ1651</div>
-              <div>Liquidificador ProMix</div>
-              <div>Cozinha</div>
-              <div>KitchenPro</div>
-              <div>R$ 179,00</div>
-              <div>45</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>INF2068</div>
-              <div>Monitor LED 27"</div>
-              <div>Informática</div>
-              <div>DisplayTech</div>
-              <div>R$ 1.199,90</div>
-              <div>18</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>ESC8620</div>
-              <div>Cadeira Gamer Blaze</div>
-              <div>Escritório</div>
-              <div>GamerZone</div>
-              <div>R$ 899,00</div>
-              <div>10</div>
-              <div><span class="badge bg-warning text-dark">Baixo Estoque</span></div>
-              <div>👁️ ✏️ 🗑️</div>
-            </div>
-
-            <div class="row">
-              <div>ADE7592</div>
-              <div>Mouse Wireless MX</div>
-              <div>Acessórios</div>
-              <div>PeripheralPro</div>
-              <div>R$ 149,90</div>
-              <div>75</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div>👁️ ✏️ 🗑️</div>
+            <div class="icon">
+              <i class="bi bi-clock"></i>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="reports" class="section">
-      <header>
-        <h3>Relatórios</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
+        <div class="search-box">
+          <div class="input-box">
+            <i class="bi bi-search"></i>
+            <input
+              type="search"
+              placeholder="Buscar por nome ou ID do produto..."
+            />
+          </div>
+          <button>Buscar</button>
+          <button><i class="bi bi-funnel"></i><span>Filtros</span></button>
         </div>
-      </header>
-      <div class="top-box">
-        <div class="top-infos">
-          <div class="box">
-            <p>Vendas Totais</p>
-            <span class="value">R$ 87.500,90</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-currency-dollar"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Produtos Vendidos</p>
-            <span class="value">432</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-box-seam"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Ticket Médio</p>
-            <span class="value">R$ 202,18</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-people"></i>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="filters">
-          <div class="left">
-            <h4>Análise de Desempenho</h4>
-            <p>Acompanhe métricas e tendências do seu negócio</p>
-          </div>
-          <div class="right">
-            <select name="" id="">
-              <option value="">Todos</option>
-              <option value="">Eletrônicos</option>
-              <option value="">Informática</option>
-              <option value="">Eletrodomésticos</option>
-              <option value="">Casa</option>
-              <option value="">Cozinha</option>
-              <option value="">Escritório</option>
-              <option value="">Acessórios</option>
-            </select>
-            <input type="date" name="" id="">
-            <button><i class="bi bi-download"></i><span>Exportar</span></button>
-          </div>
-        </div>
-        <div class="quick-reports">
-          <div class="title">
-            <h4>Relatórios Rápidos</h4>
-            <p>Gere relatórios específicos com um clique</p>
-          </div>
-          <div class="contents">
-            <div class="row">
-              <div class="cont">
-                <i class="bi bi-cart-check"></i>
-                <p>Vendas por Período</p>
+        <div class="products-box">
+          <!-- Produto 1 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://images.kabum.com.br/produtos/fotos/sync_mirakl/649731/xlarge/Smartphone-Samsung-Galaxy-A06-128GB-Azul-Escuro-4g-Ram-4gb-C-mera-50mp-Selfie-8mp-Tela-6-7-_1742413229.jpg"
+                  alt=""
+                />
               </div>
             </div>
-            <div class="row">
-              <div class="cont">
-                <i class="bi bi-bar-chart-line"></i>
-                <p>Produtos Mais Vendidos</p>
+            <div class="prod-infos">
+              <span class="name">Smartphone X12</span>
+              <span class="prod-id">ID: ELE4932</span>
+              <span class="price">R$ 3.499,00</span>
+              <span class="qtd">Estoque: 27</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 2 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://www.visaovip.com/imagem/notebook/notebook-gamer-msi-cyborg-15-a13ve-218us-intel-core-i7-13620h-tela-full-hd-15-6-16gb-de-ram-512gb-ssd-geforce-rtx4050-6gb-translucent-preto/2/574513.jpg?pfdrid_c=true"
+                  alt=""
+                />
               </div>
             </div>
-            <div class="row">
-              <div class="cont">
-                <i class="bi bi-pie-chart"></i>
-                <p>Desempenho por Categoria</p>
+            <div class="prod-infos">
+              <span class="name">Notebook Ultra 7</span>
+              <span class="prod-id">ID: INF7284</span>
+              <span class="price">R$ 5.299,90</span>
+              <span class="qtd">Estoque: 12</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 3 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://lojawebcontinental.vtexassets.com/arquivos/ids/24294697-800-800?v=638295096852600000&width=800&height=800&aspect=true"
+                  alt=""
+                />
               </div>
             </div>
-            <div class="row">
-              <div class="cont">
-                <i class="bi bi-box-seam"></i>
-                <p>Análise de Estoque</p>
+            <div class="prod-infos">
+              <span class="name">Geladeira Frost 500L</span>
+              <span class="prod-id">ID: ELE3921</span>
+              <span class="price">R$ 2.799,00</span>
+              <span class="qtd">Estoque: 8</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 4 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAHayDEO2lzws_MPM-TMej-MFNeDYEPLKQ5g&s"
+                  alt=""
+                />
               </div>
             </div>
-            <div class="row">
-              <div class="cont">
-                <i class="bi bi-currency-dollar"></i>
-                <p>Relatório Financeiro</p>
+            <div class="prod-infos">
+              <span class="name">Aspirador TurboMax</span>
+              <span class="prod-id">ID: CAS1178</span>
+              <span class="price">R$ 499,90</span>
+              <span class="qtd">Estoque: 32</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 5 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://imgs.casasbahia.com.br/50004213/1g.jpg?imwidth=500"
+                  alt=""
+                />
               </div>
             </div>
-            <div class="row">
-              <div class="cont">
-                <i class="bi bi-people"></i>
-                <p>Histórico de Clientes</p>
+            <div class="prod-infos">
+              <span class="name">Liquidificador ProMix</span>
+              <span class="prod-id">ID: COZ3651</span>
+              <span class="price">R$ 179,00</span>
+              <span class="qtd">Estoque: 45</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 6 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://benchpromos.com.br/_next/image?url=https%3A%2F%2Fi.imgur.com%2FtU4afPZ.jpeg&w=3840&q=75"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Monitor LED 27”</span>
+              <span class="prod-id">ID: INF2069</span>
+              <span class="price">R$ 1.199,90</span>
+              <span class="qtd">Estoque: 18</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 7 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://lojagoldentec.vteximg.com.br/arquivos/ids/165902-1000-1000/image-cff5e7dc880d4c21bb11ed10984a894b.jpg?v=638483534503930000"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Cadeira Gamer Blaze</span>
+              <span class="prod-id">ID: ESC4820</span>
+              <span class="price">R$ 899,00</span>
+              <span class="qtd">Estoque: 10</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 8 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://fujiokadistribuidor.vteximg.com.br/arquivos/ids/183516"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Mouse Wireless MX</span>
+              <span class="prod-id">ID: ACE7592</span>
+              <span class="price">R$ 149,90</span>
+              <span class="qtd">Estoque: 75</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 9 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://cdn.shoppub.io/cdn-cgi/image/w=600,h=600,q=80,f=auto/oficinadosbits/media/uploads/produtos/foto/qfyagprf/file.png"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Impressora LaserJet</span>
+              <span class="prod-id">ID: INF3285</span>
+              <span class="price">R$ 1.499,00</span>
+              <span class="qtd">Estoque: 6</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 10 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://www.millenamoveiseeletro.com.br/on/demandware.static/-/Sites-millena-catalog-master/default/dw9b51b635/images/23875_Black_large_01.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Fogão 5 Bocas Inox</span>
+              <span class="prod-id">ID: COZ6893</span>
+              <span class="price">R$ 1.299,90</span>
+              <span class="qtd">Estoque: 9</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 11 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShfYjqp37C7o3ta-IusTTXQdvKzwZXSdXB0Q&s"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Micro-ondas 32L</span>
+              <span class="prod-id">ID: COZ1740</span>
+              <span class="price">R$ 649,00</span>
+              <span class="qtd">Estoque: 21</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 12 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://m.media-amazon.com/images/I/71N8si9jomL.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Caixa de Som Bluetooth</span>
+              <span class="prod-id">ID: ELE0237</span>
+              <span class="price">R$ 239,00</span>
+              <span class="qtd">Estoque: 53</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 13 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://a-static.mlcdn.com.br/800x560/ventilador-mondial-super-power-40cm-6-pas-3-velocidades-140w/magazineluiza/231203900/ca49f0bb288725451b66ce2b7561e684.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Ventilador Turbo 40cm</span>
+              <span class="prod-id">ID: CAS4890</span>
+              <span class="price">R$ 169,90</span>
+              <span class="qtd">Estoque: 40</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 14 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://cdn.sistemawbuy.com.br/arquivos/c902c51ae83717d42e27bcaf6f7b0ddb/produtos/FOU7GU5/61ft1gq785l-_ac_sl1500_-63d7c01747f3d.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Teclado Mecânico RGB</span>
+              <span class="prod-id">ID: ACE3481</span>
+              <span class="price">R$ 299,90</span>
+              <span class="qtd">Estoque: 29</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+
+          <!-- Produto 15 -->
+          <div class="card">
+            <div class="prod-img">
+              <div class="img">
+                <img
+                  src="https://imgs.casasbahia.com.br/55066484/1g.jpg?imwidth=500"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="prod-infos">
+              <span class="name">Tablet VisionPad 10”</span>
+              <span class="prod-id">ID: ELE5742</span>
+              <span class="price">R$ 1.299,00</span>
+              <span class="qtd">Estoque: 17</span>
+            </div>
+            <div class="view">
+              <span class="status">Disponível</span>
+              <button><i class="bi bi-eye"></i> <span>Detalhes</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="stock" class="section">
+        <header>
+          <h3>Estoque</h3>
+          <div class="profile">
+            <i class="bi bi-bell"></i>
+            <p>Olá, Jacob!</p>
+            <div class="profile-icon">JC</div>
+          </div>
+        </header>
+
+        <div class="top-box">
+          <div class="top-infos">
+            <div class="box">
+              <p>Total de Produtos</p>
+              <span class="value">8</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-box-seam"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Baixo Estoque</p>
+              <span class="value">2</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-funnel"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Valor Total</p>
+              <span class="value">R$ 14.425,60</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-piggy-bank"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="filter-search">
+            <div class="top">
+              <h4>Gerenciamento de Produtos</h4>
+              <button>
+                <i class="bi bi-plus-lg"></i><span>Adicionar Produto</span>
+              </button>
+            </div>
+            <div class="inputs">
+              <div class="search-input">
+                <i class="bi bi-search"></i>
+                <input
+                  type="search"
+                  name="#"
+                  id="#"
+                  placeholder="Buscar produtos..."
+                />
+              </div>
+              <select name="" id="">
+                <option value="">Todos</option>
+                <option value="">Eletrônicos</option>
+                <option value="">Informática</option>
+                <option value="">Eletrodomésticos</option>
+                <option value="">Casa</option>
+                <option value="">Cozinha</option>
+                <option value="">Escritório</option>
+                <option value="">Acessórios</option>
+              </select>
+              <select name="" id="">
+                <option value="">Todos</option>
+                <option value="">Disponível</option>
+                <option value="">Baixo Estoque</option>
+                <option value="">Sem Estoque</option>
+              </select>
+              <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
+              <button>
+                <i class="bi bi-download"></i><span>Exportar</span>
+              </button>
+            </div>
+          </div>
+          <div class="table-box">
+            <div class="grid-table">
+              <div class="row header">
+                <div>ID</div>
+                <div>Produto</div>
+                <div>Categoria</div>
+                <div>Fornecedor</div>
+                <div>Preço</div>
+                <div>Estoque</div>
+                <div>Status</div>
+                <div>Ações</div>
+              </div>
+
+              <div class="row">
+                <div>ELE001</div>
+                <div>Smartphone X12</div>
+                <div>Eletrônicos</div>
+                <div>TechCorp</div>
+                <div>R$ 3.499,00</div>
+                <div>27</div>
+                <div><span class="badge bg-success">Disponível</span></div>
+                <div class="actions">
+                  <i class="bi bi-eye"></i>
+                  <i class="bi bi-pencil"></i>
+                  <i class="bi bi-trash3"></i>
+                </div>
+              </div>
+
+              <div class="row">
+                <div>INF7845</div>
+                <div>Notebook Ultra 7</div>
+                <div>Informática</div>
+                <div>CompuMax</div>
+                <div>R$ 5.299,90</div>
+                <div>12</div>
+                <div><span class="badge bg-success">Disponível</span></div>
+                <div>👁️ ✏️ 🗑️</div>
+              </div>
+
+              <div class="row">
+                <div>ELE2701</div>
+                <div>Geladeira Frost 500L</div>
+                <div>Eletrodomésticos</div>
+                <div>FrostLine</div>
+                <div>R$ 2.799,00</div>
+                <div>8</div>
+                <div>
+                  <span class="badge bg-warning text-dark">Baixo Estoque</span>
+                </div>
+                <div>👁️ ✏️ 🗑️</div>
+              </div>
+
+              <div class="row">
+                <div>CAS1798</div>
+                <div>Aspirador TurboMax</div>
+                <div>Casa</div>
+                <div>CleanTech</div>
+                <div>R$ 399,90</div>
+                <div>32</div>
+                <div><span class="badge bg-success">Disponível</span></div>
+                <div>👁️ ✏️ 🗑️</div>
+              </div>
+
+              <div class="row">
+                <div>COZ1651</div>
+                <div>Liquidificador ProMix</div>
+                <div>Cozinha</div>
+                <div>KitchenPro</div>
+                <div>R$ 179,00</div>
+                <div>45</div>
+                <div><span class="badge bg-success">Disponível</span></div>
+                <div>👁️ ✏️ 🗑️</div>
+              </div>
+
+              <div class="row">
+                <div>INF2068</div>
+                <div>Monitor LED 27"</div>
+                <div>Informática</div>
+                <div>DisplayTech</div>
+                <div>R$ 1.199,90</div>
+                <div>18</div>
+                <div><span class="badge bg-success">Disponível</span></div>
+                <div>👁️ ✏️ 🗑️</div>
+              </div>
+
+              <div class="row">
+                <div>ESC8620</div>
+                <div>Cadeira Gamer Blaze</div>
+                <div>Escritório</div>
+                <div>GamerZone</div>
+                <div>R$ 899,00</div>
+                <div>10</div>
+                <div>
+                  <span class="badge bg-warning text-dark">Baixo Estoque</span>
+                </div>
+                <div>👁️ ✏️ 🗑️</div>
+              </div>
+
+              <div class="row">
+                <div>ADE7592</div>
+                <div>Mouse Wireless MX</div>
+                <div>Acessórios</div>
+                <div>PeripheralPro</div>
+                <div>R$ 149,90</div>
+                <div>75</div>
+                <div><span class="badge bg-success">Disponível</span></div>
+                <div>👁️ ✏️ 🗑️</div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="analitycs" class="section">
-      <header>
-        <h3>Análises</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
-        </div>
-      </header>
-      <div class="top-box">
-        <div class="top-infos">
-          <div class="box">
-            <p>Receita Total</p>
-            <span class="value">R$ 87.342,90</span>
+      </section>
+      <section id="reports" class="section">
+        <header>
+          <h3>Relatórios</h3>
+          <div class="profile">
+            <i class="bi bi-bell"></i>
+            <p>Olá, Jacob!</p>
+            <div class="profile-icon">JC</div>
           </div>
-          <div class="icon">
-            <i class="bi bi-currency-dollar"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Conversão de Vendas</p>
-            <span class="value">24,8%</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-lightning-charge"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Receita Semanal</p>
-            <span class="value">R$ 12.750,50</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-wallet"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Novos Clientes</p>
-            <span class="value">128</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-people"></i>
-          </div>
-        </div>
-    </section>
-    <section id="clients" class="section">
-      <header>
-        <h3>Clientes</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
-        </div>
-      </header>
-      <div class="top-box">
-        <div class="top-infos">
-          <div class="box">
-            <p>Total de Clientes</p>
-            <span class="value">18</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-people"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Clientes Ativos</p>
-            <span class="value">7</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-person-check-fill"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Clientes Inativos</p>
-            <span class="value">2</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-person-x-fill"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Valor Total</p>
-            <span class="value">R$ 63.981,80</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-people"></i>
-          </div>
-        </div>
-      </div>
-      <div class="content">
-        <div class="filter-search">
-          <div class="top">
-            <h4>Gerenciamento de Clientes</h4>
-            <button><i class="bi bi-plus-lg"></i><span>Novo Cliente</span></button>
-          </div>
-          <div class="inputs">
-            <div class="search-input">
-              <i class="bi bi-search"></i>
-              <input type="search" name="#" id="#" placeholder="Buscar por nome, email ou ID...">
+        </header>
+        <div class="top-box">
+          <div class="top-infos">
+            <div class="box">
+              <p>Vendas Totais</p>
+              <span class="value">R$ 87.500,90</span>
             </div>
-            <select name="" id="">
-              <option value="">Todos</option>
-              <option value="">Ativos</option>
-              <option value="">Inativos</option>
-            </select>
-            <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
-            <button><i class="bi bi-download"></i><span>Exportar</span></button>
+            <div class="icon">
+              <i class="bi bi-currency-dollar"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Produtos Vendidos</p>
+              <span class="value">432</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-box-seam"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Ticket Médio</p>
+              <span class="value">R$ 202,18</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-people"></i>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section id="config" class="section">
-      <header>
-        <h3>Configurações</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
+        <div class="content">
+          <div class="filters">
+            <div class="left">
+              <h4>Análise de Desempenho</h4>
+              <p>Acompanhe métricas e tendências do seu negócio</p>
+            </div>
+            <div class="right">
+              <select name="" id="">
+                <option value="">Todos</option>
+                <option value="">Eletrônicos</option>
+                <option value="">Informática</option>
+                <option value="">Eletrodomésticos</option>
+                <option value="">Casa</option>
+                <option value="">Cozinha</option>
+                <option value="">Escritório</option>
+                <option value="">Acessórios</option>
+              </select>
+              <input type="date" name="" id="" />
+              <button>
+                <i class="bi bi-download"></i><span>Exportar</span>
+              </button>
+            </div>
+          </div>
+          <div class="quick-reports">
+            <div class="title">
+              <h4>Relatórios Rápidos</h4>
+              <p>Gere relatórios específicos com um clique</p>
+            </div>
+            <div class="contents">
+              <div class="row">
+                <div class="cont">
+                  <i class="bi bi-cart-check"></i>
+                  <p>Vendas por Período</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cont">
+                  <i class="bi bi-bar-chart-line"></i>
+                  <p>Produtos Mais Vendidos</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cont">
+                  <i class="bi bi-pie-chart"></i>
+                  <p>Desempenho por Categoria</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cont">
+                  <i class="bi bi-box-seam"></i>
+                  <p>Análise de Estoque</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cont">
+                  <i class="bi bi-currency-dollar"></i>
+                  <p>Relatório Financeiro</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="cont">
+                  <i class="bi bi-people"></i>
+                  <p>Histórico de Clientes</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </header>
-      <div class="top-box">
-        <h4>Gerenciamento de Produtos</h4>
-      </div>
-    </section>
-  </main>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+      </section>
+      <section id="analitycs" class="section">
+        <header>
+          <h3>Análises</h3>
+          <div class="profile">
+            <i class="bi bi-bell"></i>
+            <p>Olá, Jacob!</p>
+            <div class="profile-icon">JC</div>
+          </div>
+        </header>
+        <div class="top-box">
+          <div class="top-infos">
+            <div class="box">
+              <p>Receita Total</p>
+              <span class="value">R$ 87.342,90</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-currency-dollar"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Conversão de Vendas</p>
+              <span class="value">24,8%</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-lightning-charge"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Receita Semanal</p>
+              <span class="value">R$ 12.750,50</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-wallet"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Novos Clientes</p>
+              <span class="value">128</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-people"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="filters">
+            <div class="left">
+              <h4>Análise de Performance</h4>
+              <p>Acompanhe métricas e tendências do seu negócio</p>
+            </div>
+            <div class="right">
+              <select name="" id="">
+                <option value="">Últimos 30 dias</option>
+                <option value="">Último ano</option>
+                <option value="">Últimos 90 dias</option>
+                <option value="">Últimos 60 dias</option>
+                <option value="">Últimos 15 dias</option>
+                <option value="">Últimos 7 dias</option>
+              </select>
+              <input type="date" name="" id="" />
+              <button>
+                <i class="bi bi-download"></i><span>Exportar</span>
+              </button>
+            </div>
+          </div>
+          <div class="compare">
+            <div class="title">
+              <h4>Comparativo de KPIs</h4>
+              <p>Comparação de métricas-chave com períodos anteriores</p>
+            </div>
+            <div class="boxes">
+              <div class="row">
+                <div class="left-box">
+                  <h5>Taxa de Conversão</h5>
+                  <span>24.8%</span>
+                  <p>Período anterior: 21.6%</p>
+                </div>
+                <div class="right-box">
+                  <span class="up"
+                    ><i class="bi bi-graph-up-arrow"></i> +15,5%</span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="left-box">
+                  <h5>Valor Médio por Pedido</h5>
+                  <span>R$ 202,18</span>
+                  <p>Período anterior: R$ 208,45</p>
+                </div>
+                <div class="right-box">
+                  <span class="down"
+                    ><i class="bi bi-graph-down-arrow"></i> -3.0%</span
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="left-box">
+                  <h5>Custo de Aquisição</h5>
+                  <span>R$ 42,30</span>
+                  <p>Período anterior: R$ 48,75</p>
+                </div>
+                <div class="right-box">
+                  <span class="down">
+                    <i class="bi bi-graph-down-arrow"></i> -13.2%
+                  </span>
+                </div>
+              </div>
 
+              <div class="row">
+                <div class="left-box">
+                  <h5>Taxa de Recompra</h5>
+                  <span>38.4%</span>
+                  <p>Período anterior: 35.1%</p>
+                </div>
+                <div class="right-box">
+                  <span class="up">
+                    <i class="bi bi-graph-up-arrow"></i> +3.3%
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="left-box">
+                  <h5>Produtos por Pedido</h5>
+                  <span>3.2</span>
+                  <p>Período anterior: 2.8</p>
+                </div>
+                <div class="right-box">
+                  <span class="up">
+                    <i class="bi bi-graph-up-arrow"></i> +14.3%
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="left-box">
+                  <h5>Taxa de Abandono</h5>
+                  <span>28.5%</span>
+                  <p>Período anterior: 32.7%</p>
+                </div>
+                <div class="right-box">
+                  <span class="down">
+                    <i class="bi bi-graph-down-arrow"></i> -4.2%
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="left-box">
+                  <h5>Produtos em Estoque</h5>
+                  <span>1.245</span>
+                  <p>Período anterior: 1.312</p>
+                </div>
+                <div class="right-box">
+                  <span class="down">
+                    <i class="bi bi-graph-down-arrow"></i> -5.1%
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="left-box">
+                  <h5>Itens com Baixo Estoque</h5>
+                  <span>87</span>
+                  <p>Período anterior: 96</p>
+                </div>
+                <div class="right-box">
+                  <span class="up">
+                    <i class="bi bi-graph-up-arrow"></i> +9.4%
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="left-box">
+                  <h5>Pedidos Pendentes</h5>
+                  <span>45</span>
+                  <p>Período anterior: 38</p>
+                </div>
+                <div class="right-box">
+                  <span class="up">
+                    <i class="bi bi-graph-up-arrow"></i> +18.4%
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="left-box">
+                  <h5>Tempo Médio de Entrega</h5>
+                  <span>2,6 dias</span>
+                  <p>Período anterior: 3,1 dias</p>
+                </div>
+                <div class="right-box">
+                  <span class="up">
+                    <i class="bi bi-graph-up-arrow"></i> +16.1%
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="left-box">
+                  <h5>Pedidos com Erros</h5>
+                  <span>6</span>
+                  <p>Período anterior: 9</p>
+                </div>
+                <div class="right-box">
+                  <span class="up">
+                    <i class="bi bi-graph-up-arrow"></i> +33.3%
+                  </span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="left-box">
+                  <h5>Produtos Vencidos</h5>
+                  <span>3</span>
+                  <p>Período anterior: 1</p>
+                </div>
+                <div class="right-box">
+                  <span class="down">
+                    <i class="bi bi-graph-down-arrow"></i> -200%
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="clients" class="section">
+        <header>
+          <h3>Clientes</h3>
+          <div class="profile">
+            <i class="bi bi-bell"></i>
+            <p>Olá, Jacob!</p>
+            <div class="profile-icon">JC</div>
+          </div>
+        </header>
+        <div class="top-box">
+          <div class="top-infos">
+            <div class="box">
+              <p>Total de Clientes</p>
+              <span class="value">18</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-people"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Clientes Ativos</p>
+              <span class="value">7</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-person-check-fill"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Clientes Inativos</p>
+              <span class="value">2</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-person-x-fill"></i>
+            </div>
+          </div>
+          <div class="top-infos">
+            <div class="box">
+              <p>Valor Total</p>
+              <span class="value">R$ 63.981,80</span>
+            </div>
+            <div class="icon">
+              <i class="bi bi-people"></i>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="filter-search">
+            <div class="top">
+              <h4>Gerenciamento de Clientes</h4>
+              <button>
+                <i class="bi bi-plus-lg"></i><span>Novo Cliente</span>
+              </button>
+            </div>
+            <div class="inputs">
+              <div class="search-input">
+                <i class="bi bi-search"></i>
+                <input
+                  type="search"
+                  name="#"
+                  id="#"
+                  placeholder="Buscar por nome, email ou ID..."
+                />
+              </div>
+              <select name="" id="">
+                <option value="">Todos</option>
+                <option value="">Ativos</option>
+                <option value="">Inativos</option>
+              </select>
+              <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
+              <button>
+                <i class="bi bi-download"></i><span>Exportar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="config" class="section">
+        <header>
+          <h3>Configurações</h3>
+          <div class="profile">
+            <i class="bi bi-bell"></i>
+            <p>Olá, Jacob!</p>
+            <div class="profile-icon">JC</div>
+          </div>
+        </header>
+        <div class="top-box">
+          <h4>Gerenciamento de Produtos</h4>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
 </html>
-
-Relatórios Rápidos
-Gere relatórios específicos com um clique
-
-
-Vendas por Período
-
-Produtos Mais Vendidos
-
-Desempenho por Categoria
-
-Análise de Estoque
-
-Relatório Financeiro
-
-Histórico de Clientes
