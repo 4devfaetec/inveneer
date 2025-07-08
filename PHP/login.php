@@ -36,9 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $response["redirect"] = "/inveneer/app/admin/main.php";                                                                                                                                   
             } elseif ($_SESSION['tipo'] === 'FUNCIONARIO') {
                 if ($_SESSION['cargo'] === 'SUPERVISOR') {
-                    $response["redirect"] = "../app/user/main.html";
+                    $response["redirect"] = "../inveneer/app/user/main.html";
                 } elseif ($_SESSION['cargo'] === 'VENDEDOR') {
-                    $response["redirect"] = "../app/user/main.html";
+                    $response["redirect"] = "../inveneer/app/user/main.html";
                 }
             }
         }
