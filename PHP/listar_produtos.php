@@ -4,7 +4,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 include 'conexao.php';
 
-$sql = "SELECT id, nome, categoria, preco, estoque, ultima_atualizacao FROM produtos";
+$sql = "SELECT id, nome, marca, categoria, preco, estoque, ultima_atualizacao FROM produtos";
 $result = $conn->query($sql);
 
 $produtos = [];
@@ -14,6 +14,7 @@ if ($result->num_rows > 0) {
         $produtos[] = [
             'id' => $produto['id'],
             'nome' => $produto['nome'],
+            'marca' => $produto['marca'],              // <<< adiciona aqui
             'categoria' => $produto['categoria'],
             'preco' => $produto['preco'],
             'estoque' => $produto['estoque'],
@@ -24,4 +25,4 @@ if ($result->num_rows > 0) {
 
 echo json_encode($produtos);
 $conn->close();
-
+?>

@@ -328,17 +328,28 @@ main {
     }
   }
 
+  /* Fundo com blur e transição */
   & .form-shadow {
     width: 100vw;
     height: 100vh;
-    background-color: var(--always-black);
     position: fixed;
-    opacity: 80%;
+    top: 0; left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: 10;
     visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  & .form-shadow.active {
+    visibility: visible;
+    opacity: 1;
   }
 
-  & .ad-prod {
+  /* Estilo compartilhado para novo produto e editar produto */
+  & .ad-prod,
+  & #editar-produto-form {
     padding: 1.2rem;
     position: fixed;
     top: 30%;
@@ -355,119 +366,134 @@ main {
     justify-content: space-evenly;
     gap: 0.5rem;
     visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, top 0.3s ease;
+  }
+  & .ad-prod.active,
+  & #editar-produto-form.active {
+    visibility: visible;
+    opacity: 1;
+    top: 35%;
+  }
 
-    & .top-box {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0;
-      margin-bottom: 1.5rem;
+  /* Conteúdo interno dos formulários (top-box, inputs, etc) */
+  & .ad-prod .top-box,
+  & #editar-produto-form .top-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin-bottom: 1.5rem;
 
-      & .title {
+    & .title {
+      color: var(--black);
+      font-size: 1vw;
+      font-weight: 500;
+    }
+
+    & i {
+      cursor: pointer;
+      color: var(--unselected);
+      transition: 0.2s ease-in-out;
+
+      &:hover {
         color: var(--black);
-        font-size: 1vw;
-        font-weight: 500;
       }
+    }
+  }
 
-      & i {
+  & .ad-prod p,
+  & #editar-produto-form p {
+    color: var(--subtitles);
+    font-size: 0.7vw;
+    width: 80%;
+  }
+
+  & .ad-prod .input-box,
+  & #editar-produto-form .input-box {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    min-width: 200px;
+
+    & .input,
+    & select {
+      width: 100%;
+      height: 2.5rem;
+      background-color: var(--card-clr);
+      border: 1px solid var(--borders);
+      border-radius: 5px;
+      padding: 5px;
+      color: var(--black);
+    }
+
+    & select {
+      background-color: var(--card-clr);
+      cursor: pointer;
+
+      & option {
+        color: var(--black);
         cursor: pointer;
-        color: var(--unselected);
-        transition: 0.2s ease-in-out;
-
-        &:hover {
-          color: var(--black);
-        }
       }
     }
+  }
 
-    & p {
-      color: var(--subtitles);
-      font-size: 0.7vw;
-      width: 80%;
-    }
+  & .ad-prod .price-box,
+  & #editar-produto-form .price-box {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    min-width: 200px;
+    padding: 5px;
 
-    & .input-box {
-      width: 30%;
+    & .box {
+      width: 100%;
+      height: 2.5rem;
+      background-color: var(--card-clr);
+      border: 1px solid var(--borders);
+      border-radius: 5px;
       display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-      min-width: 200px;
+      align-items: center;
+      text-align: center;
 
       & .input,
       & select {
-        width: 100%;
-        height: 2.5rem;
-        background-color: var(--card-clr);
-        border: 1px solid var(--borders);
+        width: 95%;
+        background-color: transparent;
+        border: none;
+        outline: none;
         border-radius: 5px;
         padding: 5px;
         color: var(--black);
       }
 
-      & select {
-        background-color: var(--card-clr);
-        cursor: pointer;
-
-        & option {
-          color: var(--black);
-          cursor: pointer;
-        }
-      }
-    }
-
-    & .price-box {
-      width: 30%;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-      min-width: 200px;
-      padding: 5px;
-
-      & .box {
-        width: 100%;
-        height: 2.5rem;
-        background-color: var(--card-clr);
-        border: 1px solid var(--borders);
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-
-        & .input,
-        & select {
-          width: 95%;
-          background-color: transparent;
-          border: none;
-          outline: none;
-          border-radius: 5px;
-          padding: 5px;
-          color: var(--black);
-        }
-
-        & p {
-          width: 8%;
-        }
-      }
-    }
-
-    & .add {
-      width: 96.5%;
-      padding: 8px;
-      border: 1px solid var(--secondary-clr);
-      background-color: transparent;
-      margin-top: 1rem;
-
-      color: var(--always-white);
-      font-size: 0.8vw;
-      border-radius: 6px;
-      transition: 0.4s ease-in-out;
-
-      &:hover {
-        background-color: var(--secondary-clr);
+      & p {
+        width: 8%;
       }
     }
   }
+
+  & .ad-prod .add,
+  & #editar-produto-form .add {
+    width: 96.5%;
+    padding: 8px;
+    border: 1px solid var(--secondary-clr);
+    background-color: transparent;
+    margin-top: 1rem;
+
+    color: var(--always-white);
+    font-size: 0.8vw;
+    border-radius: 6px;
+    transition: 0.4s ease-in-out;
+
+    &:hover {
+      background-color: var(--secondary-clr);
+    }
+  }
 }
+
 
 #reports {
   & .top-box {
@@ -1039,3 +1065,11 @@ main {
   0% { transform: rotate(0deg);}
   100% { transform: rotate(360deg);}
 }
+
+i.bi-exclamation-triangle-fill {
+  font-size: 1.2em;     /* aumenta um pouco o ícone */
+  margin-left: 5px;     /* espaço entre o número e o ícone */
+  vertical-align: middle; /* alinha no meio da linha do texto */
+  color: #ffc107;       /* cor amarela padrão do Bootstrap warning */
+}
+
