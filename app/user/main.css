@@ -1009,3 +1009,131 @@ main {
     }
   }
 }
+
+/* Fundo com blur e transição para o overlay */
+.form-shadow {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.form-shadow.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Estilo do formulário (ad-prod) */
+.ad-prod {
+  padding: 1.2rem;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  background-color: var(--background);
+  color: var(--black);
+  width: 50%;
+  border-radius: 10px;
+  border: 1px solid var(--borders);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 0.5rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, top 0.3s ease;
+}
+.ad-prod.active {
+  visibility: visible;
+  opacity: 1;
+  top: 35%;
+}
+
+/* Topo do formulário */
+.ad-prod .top-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.ad-prod .top-box .title {
+  color: var(--black);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.ad-prod .top-box i {
+  cursor: pointer;
+  color: var(--unselected);
+  transition: 0.2s ease-in-out;
+}
+.ad-prod .top-box i:hover {
+  color: var(--black);
+}
+
+/* Input box do textarea */
+.ad-prod .input-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  min-width: 200px;
+}
+
+.ad-prod .input-box label {
+  color: var(--subtitles);
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.ad-prod .input-box textarea {
+  width: 100%;
+  height: 100px;
+  background-color: var(--card-clr);
+  border: 1px solid var(--borders);
+  border-radius: 5px;
+  padding: 5px;
+  color: var(--black);
+  resize: vertical;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Botão enviar */
+.ad-prod .add {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--secondary-clr);
+  background-color: transparent;
+  margin-top: 1rem;
+  color: var(--always-black);
+  font-size: 1rem;
+  border-radius: 6px;
+  transition: 0.4s ease-in-out;
+  cursor: pointer;
+}
+.ad-prod .add:hover {
+  background-color: var(--secondary-clr);
+}
+
+/* Variáveis de exemplo (você pode definir no seu :root ou CSS principal) */
+:root {
+  --background: #fff;
+  --black: #222;
+  --borders: #ccc;
+  --card-clr: #f9f9f9;
+  --subtitles: #666;
+  --secondary-clr: #4a90e2;
+  --always-white: #fff;
+  --unselected: #999;
+}
