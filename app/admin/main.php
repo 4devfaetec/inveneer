@@ -15,15 +15,17 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="../../scss/tables.scss" />
+     <!-- <link rel="stylesheet" href="../../scss/tables.scss" />-->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-    <link
+    <!--<link
       rel="stylesheet"
-      href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css"
-    />
+     href="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.css" 
+    /> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin dashboard</title>
   </head>
@@ -52,10 +54,10 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
           <i class="bi bi-gear"></i> <span>Configurações</span>
         </li>
         <li>
-          <div class="img-user">MK</div>
+          <div class="img-user"></div>
           <span class="user-infos">
-            <span class="name">Mark</span>
-            <span class="privilege">Administrador</span>
+            <span class="name"></span>
+            <span class="privilege"></span>
           </span>
         </li>
       </ul>
@@ -134,16 +136,23 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
         </div>
       </div>
       <div id="stock" class="section">
-        <div class="form-shadow"></div>
-        <form class="ad-prod" id="produto-form" action="../../PHP/criar_produto.php" method="post" enctype="multipart/form-data">
+  <div class="form-shadow" id="form-shadow"></div>
+
+  <!-- Form de adicionar produto -->
+  <form class="ad-prod" id="produto-form" action="../../PHP/criar_produto.php" method="post" enctype="multipart/form-data">
   <div class="top-box">
     <span class="title">Adicionar novo produto</span>
-    <i class="bi bi-x-lg" onclick="hideStockForm()"></i>
+    <i class="bi bi-x-lg" onclick="fecharProdutoForm()" style="cursor: pointer;"></i>
   </div>
 
   <div class="input-box">
     <label for="nome_produto">Nome do produto</label>
     <input type="text" name="nome_produto" id="nome_produto" class="input" required />
+  </div>
+
+  <div class="input-box">
+    <label for="marca">Marca</label>
+    <input type="text" name="marca" id="marca" class="input" required />
   </div>
 
   <div class="input-box">
@@ -176,35 +185,86 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
   <button type="submit" class="add">Adicionar</button>
 </form>
 
-        <div class="top-box">
-          <h2>Gerenciamento de produtos</h2>
-          <button onclick="showStockForm()">
-            <i class="bi bi-plus-circle"></i>Novo produto
-          </button>
-        </div>
-        <div class="content">
-          <span class="search-user">
-            <i class="bi bi-search"></i>
-            <input type="search" />
-          </span>
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome do Produto</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Preço</th>
-                <th scope="col">Estoque</th>
-                <th scope="col">Última Atualização</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody id="produtos-table-body" class="table-group-divider">
-              
-            </tbody>
-          </table>
-        </div>
-      </div>
+
+
+  <!-- Novo modal para editar produto -->
+  <form class="ad-prod" id="editar-produto-form">
+  <div class="top-box">
+    <span class="title">Editar produto</span>
+    <i class="bi bi-x-lg" id="fechar-edit" style="cursor:pointer;"></i>
+  </div>
+
+  <div class="input-box">
+    <label for="editar_nome_produto">Nome do produto</label>
+    <input type="text" id="editar_nome_produto" class="input" required />
+  </div>
+
+  <div class="input-box">
+    <label for="editar_marca">Marca</label>
+    <input type="text" id="editar_marca" class="input" required />
+  </div>
+
+  <div class="input-box">
+    <label for="editar_categoria">Categoria</label>
+    <select id="editar_categoria" required>
+      <option value="" disabled>Selecione uma categoria</option>
+      <option value="Informática">Informática</option>
+      <option value="Eletrônicos">Eletrônicos</option>
+      <option value="Eletrodomésticos">Eletrodomésticos</option>
+      <option value="Cozinha">Cozinha</option>
+      <option value="Casa">Casa</option>
+      <option value="Escritório">Escritório</option>
+      <option value="Acessórios">Acessórios</option>
+    </select>
+  </div>
+
+  <div class="input-box price-box">
+    <label for="editar_preco">Preço</label>
+    <div class="box">
+      <p>R$</p>
+      <input type="number" id="editar_preco" step="0.01" class="input" required />
+    </div>
+  </div>
+
+  <div class="input-box">
+    <label for="editar_estoque">Quantidade em estoque</label>
+    <input type="number" id="editar_estoque" class="input" required />
+  </div>
+
+  <button type="button" id="btn-salvar-produto" class="add" onclick="salvarEdicaoProduto()">Salvar</button>
+</form>
+
+  <div class="top-box">
+    <h2>Gerenciamento de produtos</h2>
+    <button onclick="abrirProdutoForm()">
+      <i class="bi bi-plus-circle"></i>Novo produto
+    </button>
+  </div>
+  <div class="content">
+    <span class="search-user">
+      <i class="bi bi-search"></i>
+      <input type="search" />
+    </span>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome do Produto</th>
+          <th scope="col">Marca</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Estoque</th>
+          <th scope="col">Última Atualização</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody id="produtos-table-body" class="table-group-divider">
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
       <div id="reports" class="section">
         <div class="top-box">
           <h2>Relatórios</h2>
@@ -393,7 +453,7 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
       <div id="users" class="section">
         <div class="form-shadow"></div>
         <form
-          action="../../PHP/teste_id.php"
+          action="../../PHP/cria_user.php"
           method="post"
           id="ad-func"
         >
@@ -525,6 +585,11 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
     <div id="overlay-loading">
     <div class="loader"></div>
     </div>
+
+    </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </body>
   <script src="script.js"></script>
   <script>
@@ -534,7 +599,4 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
     carregarProdutos();
   });
 </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
