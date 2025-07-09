@@ -424,219 +424,201 @@
       </div>
     </section>
     <section id="stock" class="section">
-      <header>
-        <h3>Estoque</h3>
-        <div class="profile">
-          <i class="bi bi-bell"></i>
-          <p>Olá, Jacob!</p>
-          <div class="profile-icon">JC</div>
-        </div>
-      </header>
+  <header>
+    <h3>Estoque</h3>
+    <div class="profile">
+      <i class="bi bi-bell"></i>
+      <p>Olá, Jacob!</p>
+      <div class="profile-icon">JC</div>
+    </div>
+  </header>
 
-      <div class="top-box">
-        <div class="top-infos">
-          <div class="box">
-            <p>Total de Produtos</p>
-            <span class="value">8</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-box-seam"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Baixo Estoque</p>
-            <span class="value">2</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-funnel"></i>
-          </div>
-        </div>
-        <div class="top-infos">
-          <div class="box">
-            <p>Valor Total</p>
-            <span class="value">R$ 14.425,60</span>
-          </div>
-          <div class="icon">
-            <i class="bi bi-piggy-bank"></i>
-          </div>
-        </div>
+  <div class="form-shadow" id="form-shadow"></div>
+
+  <!-- Form de adicionar produto -->
+  <form class="ad-prod" id="produto-form" action="../../PHP/criar_produto.php" method="post" enctype="multipart/form-data">
+    <div class="top-box">
+      <span class="title">Adicionar novo produto</span>
+      <i class="bi bi-x-lg" onclick="fecharProdutoForm()" style="cursor: pointer;"></i>
+    </div>
+
+    <div class="input-box">
+      <label for="nome_produto">Nome do produto</label>
+      <input type="text" name="nome_produto" id="nome_produto" class="input" required />
+    </div>
+
+    <div class="input-box">
+      <label for="marca">Marca</label>
+      <input type="text" name="marca" id="marca" class="input" required />
+    </div>
+
+    <div class="input-box">
+      <label for="categoria">Categoria</label>
+      <select name="categoria" id="categoria" required>
+        <option value="" disabled selected>Selecione uma categoria</option>
+        <option value="Informática">Informática</option>
+        <option value="Eletrônicos">Eletrônicos</option>
+        <option value="Eletrodomésticos">Eletrodomésticos</option>
+        <option value="Cozinha">Cozinha</option>
+        <option value="Casa">Casa</option>
+        <option value="Escritório">Escritório</option>
+        <option value="Acessórios">Acessórios</option>
+      </select>
+    </div>
+
+    <div class="input-box price-box">
+      <label for="preco">Preço</label>
+      <div class="box">
+        <p>R$</p>
+        <input type="number" name="preco" id="preco" step="0.01" class="input" required />
       </div>
-      <div class="content">
-        <div class="filter-search">
-          <div class="top">
-            <h4>Gerenciamento de Produtos</h4>
-            <button>
-              <i class="bi bi-plus-lg"></i><span>Adicionar Produto</span>
-            </button>
-          </div>
-          <div class="inputs">
-            <div class="search-input">
-              <i class="bi bi-search"></i>
-              <input type="search" name="#" id="#" placeholder="Buscar produtos..." />
-            </div>
-            <select name="" id="">
-              <option value="">Todos</option>
-              <option value="">Eletrônicos</option>
-              <option value="">Informática</option>
-              <option value="">Eletrodomésticos</option>
-              <option value="">Casa</option>
-              <option value="">Cozinha</option>
-              <option value="">Escritório</option>
-              <option value="">Acessórios</option>
-            </select>
-            <select name="" id="">
-              <option value="">Todos</option>
-              <option value="">Disponível</option>
-              <option value="">Baixo Estoque</option>
-              <option value="">Sem Estoque</option>
-            </select>
-            <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
-            <button>
-              <i class="bi bi-download"></i><span>Exportar</span>
-            </button>
-          </div>
-        </div>
-        <div class="table-box">
-          <div class="grid-table">
-            <div class="row header">
-              <div>ID</div>
-              <div>Produto</div>
-              <div>Categoria</div>
-              <div>Fornecedor</div>
-              <div>Preço</div>
-              <div>Estoque</div>
-              <div>Status</div>
-              <div>Ações</div>
-            </div>
+    </div>
 
-            <div class="row">
-              <div>ELE001</div>
-              <div>Smartphone X12</div>
-              <div>Eletrônicos</div>
-              <div>TechCorp</div>
-              <div>R$ 3.499,00</div>
-              <div>27</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
+    <div class="input-box">
+      <label for="estoque">Quantidade em estoque</label>
+      <input type="number" name="estoque" id="estoque" class="input" required />
+    </div>
 
-            <div class="row">
-              <div>INF7845</div>
-              <div>Notebook Ultra 7</div>
-              <div>Informática</div>
-              <div>CompuMax</div>
-              <div>R$ 5.299,90</div>
-              <div>12</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
+    <button type="submit" class="add">Adicionar</button>
+  </form>
 
-            <div class="row">
-              <div>ELE2701</div>
-              <div>Geladeira Frost 500L</div>
-              <div>Eletrodomésticos</div>
-              <div>FrostLine</div>
-              <div>R$ 2.799,00</div>
-              <div>8</div>
-              <div>
-                <span class="badge bg-warning text-dark">Baixo Estoque</span>
-              </div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
+  <!-- Form de editar produto -->
+  <form class="ad-prod" id="editar-produto-form">
+    <div class="top-box">
+      <span class="title">Editar produto</span>
+      <i class="bi bi-x-lg" id="fechar-edit" style="cursor:pointer;"></i>
+    </div>
 
-            <div class="row">
-              <div>CAS1798</div>
-              <div>Aspirador TurboMax</div>
-              <div>Casa</div>
-              <div>CleanTech</div>
-              <div>R$ 399,90</div>
-              <div>32</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
+    <div class="input-box">
+      <label for="editar_nome_produto">Nome do produto</label>
+      <input type="text" id="editar_nome_produto" class="input" required />
+    </div>
 
-            <div class="row">
-              <div>COZ1651</div>
-              <div>Liquidificador ProMix</div>
-              <div>Cozinha</div>
-              <div>KitchenPro</div>
-              <div>R$ 179,00</div>
-              <div>45</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
+    <div class="input-box">
+      <label for="editar_marca">Marca</label>
+      <input type="text" id="editar_marca" class="input" required />
+    </div>
 
-            <div class="row">
-              <div>INF2068</div>
-              <div>Monitor LED 27"</div>
-              <div>Informática</div>
-              <div>DisplayTech</div>
-              <div>R$ 1.199,90</div>
-              <div>18</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
+    <div class="input-box">
+      <label for="editar_categoria">Categoria</label>
+      <select id="editar_categoria" required>
+        <option value="" disabled>Selecione uma categoria</option>
+        <option value="Informática">Informática</option>
+        <option value="Eletrônicos">Eletrônicos</option>
+        <option value="Eletrodomésticos">Eletrodomésticos</option>
+        <option value="Cozinha">Cozinha</option>
+        <option value="Casa">Casa</option>
+        <option value="Escritório">Escritório</option>
+        <option value="Acessórios">Acessórios</option>
+      </select>
+    </div>
 
-            <div class="row">
-              <div>ESC8620</div>
-              <div>Cadeira Gamer Blaze</div>
-              <div>Escritório</div>
-              <div>GamerZone</div>
-              <div>R$ 899,00</div>
-              <div>10</div>
-              <div>
-                <span class="badge bg-warning text-dark">Baixo Estoque</span>
-              </div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
-
-            <div class="row">
-              <div>ADE7592</div>
-              <div>Mouse Wireless MX</div>
-              <div>Acessórios</div>
-              <div>PeripheralPro</div>
-              <div>R$ 149,90</div>
-              <div>75</div>
-              <div><span class="badge bg-success">Disponível</span></div>
-              <div class="actions">
-                <i class="bi bi-eye"></i>
-                <i class="bi bi-pencil"></i>
-                <i class="bi bi-trash3"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="input-box price-box">
+      <label for="editar_preco">Preço</label>
+      <div class="box">
+        <p>R$</p>
+        <input type="number" id="editar_preco" step="0.01" class="input" required />
       </div>
-    </section>
+    </div>
+
+    <div class="input-box">
+      <label for="editar_estoque">Quantidade em estoque</label>
+      <input type="number" id="editar_estoque" class="input" required />
+    </div>
+
+    <button type="button" id="btn-salvar-produto" class="add" onclick="salvarEdicaoProduto()">Salvar</button>
+  </form>
+
+  <!-- Cards de resumo -->
+  <div class="top-box">
+    <div class="top-infos">
+      <div class="box">
+        <p>Total de Produtos</p>
+        <span class="value">8</span>
+      </div>
+      <div class="icon">
+        <i class="bi bi-box-seam"></i>
+      </div>
+    </div>
+    <div class="top-infos">
+      <div class="box">
+        <p>Baixo Estoque</p>
+        <span class="value">2</span>
+      </div>
+      <div class="icon">
+        <i class="bi bi-funnel"></i>
+      </div>
+    </div>
+    <div class="top-infos">
+      <div class="box">
+        <p>Valor Total</p>
+        <span class="value">R$ 14.425,60</span>
+      </div>
+      <div class="icon">
+        <i class="bi bi-piggy-bank"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros e busca -->
+  <div class="content">
+    <div class="filter-search">
+      <div class="top">
+        <h4>Gerenciamento de Produtos</h4>
+        <button onclick="abrirProdutoForm()">
+          <i class="bi bi-plus-lg"></i><span>Adicionar Produto</span>
+        </button>
+      </div>
+      <div class="inputs">
+        <div class="search-input">
+          <i class="bi bi-search"></i>
+          <input type="search" placeholder="Buscar produtos..." />
+        </div>
+        <select>
+          <option value="">Todos</option>
+          <option value="Eletrônicos">Eletrônicos</option>
+          <option value="Informática">Informática</option>
+          <option value="Eletrodomésticos">Eletrodomésticos</option>
+          <option value="Casa">Casa</option>
+          <option value="Cozinha">Cozinha</option>
+          <option value="Escritório">Escritório</option>
+          <option value="Acessórios">Acessórios</option>
+        </select>
+        <select>
+          <option value="">Todos</option>
+          <option value="">Disponível</option>
+          <option value="">Baixo Estoque</option>
+          <option value="">Sem Estoque</option>
+        </select>
+        <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
+        <button><i class="bi bi-download"></i><span>Exportar</span></button>
+      </div>
+    </div>
+
+    <!-- Tabela dinâmica -->
+    <div class="table-box">
+      <table class="grid-table" style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr class="header" style="background-color: #ddd;">
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Marca</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Última Atualização</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="produtos-table-body">
+          <!-- Linhas serão inseridas dinamicamente -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
     <section id="reports" class="section">
   <header>
     <h3>Relatórios</h3>
@@ -761,14 +743,20 @@
   <!-- Campos dinâmicos -->
   <div class="input-box" id="checkboxes-container"></div>
 
-  <div class="input-box">
+  <div class="input-box" id="filtros_json_div">
     <label for="filtros_json">Filtros (opcional)</label>
-    <textarea name="filtros_json" id="filtros_json" placeholder='Ex: {"categoria":"Eletrônicos"}' rows="4"
-      style="background-color: var(--card-clr); border: 1px solid var(--borders); border-radius: 5px; padding: 5px; color: var(--black);"></textarea>
+    <textarea
+      name="filtros_json"
+      id="filtros_json"
+      placeholder='Ex: {"categoria":"Eletrônicos"}'
+      rows="4"
+      style="background-color: var(--card-clr); border: 1px solid var(--borders); border-radius: 5px; padding: 5px; color: var(--black);"
+    ></textarea>
   </div>
 
   <button type="submit" class="add">Enviar Pedido</button>
 </form>
+
 
 
 
@@ -1312,9 +1300,14 @@
       </div>
     </section>
   </main>
+
+  <div id="overlay-loading">
+  <div class="loader"></div>
+</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </html>

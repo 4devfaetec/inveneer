@@ -266,109 +266,76 @@ if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'GERENTE') {
 </div>
 
       <div id="reports" class="section">
-        <div class="top-box">
-          <h2>Relatórios</h2>
-          <div class="buttons">
-            <button><i class="bi bi-printer"></i><span>Imprimir</span></button>
-            <button><i class="bi bi-download"></i><span>Exportar</span></button>
-          </div>
-        </div>
-        <div class="filters">
-          <h4>Filtros do relatório</h4>
-          <div class="filtr">
-            <span class="filter-inputs">
-              <label for="relType">Tipos de relatório</label>
-              <select name="relType" id="relType" class="select">
-                <option value="mov">Movimentação de estoque</option>
-                <option value="sell">Vendas</option>
-                <option value="buy">Compras</option>
-                <option value="prod">Produtos</option>
-              </select>
-            </span>
-            <div class="filter-inputs">
-              <label for="relType">Data inicial</label>
-              <input type="date" class="input" />
-            </div>
-            <span class="filter-inputs">
-              <label for="relType">Data final</label>
-              <input type="date" class="input" />
-            </span>
-            <button><i class="bi bi-funnel"></i><span>Filtrar</span></button>
-          </div>
-        </div>
-        <div class="func-reports-box">
-          <h5>Relatórios recentes</h5>
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Data</th>
-                <th scope="col">Nome do relatório</th>
-                <th scope="col">Tipo</th>
-                <th scope="col">Gerado por</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-              <tr>
-                <th scope="row">30/04/2025 14:30</th>
-                <td>Movimentação de Estoque - Abril</td>
-                <td>Estoque</td>
-                <td>Vanessa Lima</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">28/04/2025 09:15</th>
-                <td>Relatório de Vendas - Semanal</td>
-                <td>Vendas</td>
-                <td>Jacob</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">29/04/2025 08:45</th>
-                <td>Resumo de Vendas - Abril</td>
-                <td>Vendas</td>
-                <td>Jacob</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">28/04/2025 11:20</th>
-                <td>Vendas Individuais - Semana 4</td>
-                <td>Vendas</td>
-                <td>Camila Ribeiro</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">27/04/2025 16:05</th>
-                <td>Desempenho de Vendas - Abril</td>
-                <td>Vendas</td>
-                <td>Vanessa Lima</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">26/04/2025 10:40</th>
-                <td>Vendas Diárias - 26/04</td>
-                <td>Vendas</td>
-                <td>Marcos Silva</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">25/04/2025 09:00</th>
-                <td>Relatório de Vendas - Abril</td>
-                <td>Vendas</td>
-                <td>Gustavo Barros</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">24/04/2025 13:50</th>
-                <td>Vendas Semanais - Fim de Mês</td>
-                <td>Vendas</td>
-                <td>Jessica Duarte</td>
-                <td><i class="bi bi-download"></i></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="top-box">
+    <h2>Relatórios</h2>
+    <div class="buttons">
+      <button><i class="bi bi-printer"></i><span>Imprimir</span></button>
+      <button><i class="bi bi-download"></i><span>Exportar</span></button>
+    </div>
+  </div>
+
+  <div class="filters">
+    <h4>Filtros do relatório</h4>
+    <div class="filtr">
+      <span class="filter-inputs">
+        <label for="relType">Tipos de relatório</label>
+        <select name="relType" id="relType" class="select">
+          <option value="">Selecione...</option>
+          <!-- As opções vão ser inseridas dinamicamente via JS -->
+        </select>
+      </span>
+      <span class="filter-inputs">
+        <label for="dataInicial">Data inicial</label>
+        <input type="date" id="dataInicial" class="input" />
+      </span>
+      <span class="filter-inputs">
+        <label for="dataFinal">Data final</label>
+        <input type="date" id="dataFinal" class="input" />
+      </span>
+      <button id="btnFiltrar" class="ad-prod">
+        <i class="bi bi-funnel"></i><span>Filtrar</span>
+      </button>
+
+      <!-- Botão Limpar Filtro -->
+      <button id="btnLimparFiltro" class="ad-prod" style="margin-left:10px; background-color:#777;">
+        <i class="bi bi-x-lg"></i><span>Limpar filtro</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="func-reports-box">
+    <h5>Relatórios recentes</h5>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Nome do relatório</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Gerado por</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider" id="relatorios-body">
+        <!-- As linhas dos relatórios serão inseridas dinamicamente aqui -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal para visualizar relatório -->
+<div id="modal-relatorio" style="display:none; position:fixed; top:10%; left:50%; transform: translateX(-50%); width: 80%; max-height: 70vh; overflow-y: auto; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.5); z-index: 1000;">
+  <button id="btn-fechar-modal" style="float: right; background: none; border: none; font-size: 24px; cursor: pointer;">&times;</button>
+  <h3 id="modal-titulo"></h3>
+  <div id="modal-conteudo" style="margin-top: 20px;">
+    <!-- Aqui vai o conteúdo do relatório -->
+  </div>
+</div>
+<div id="modal-overlay" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999;"></div>
+
+
+
+
+
       <section id="analitycs" class="section">
         <div class="top-box">
           <h2>Análises</h2>

@@ -4,27 +4,25 @@ const editarForm = document.getElementById("editar-produto-form");
 
 let produtoAtualId = null;
 
-// Função para mostrar o overlay de loading e travar scroll
+// Variável global para guardar filtros ativos
+let filtrosAtivos = {};
+
 function mostrarOverlay() {
   overlay.classList.add("active");
   document.body.style.overflow = "hidden";
 }
 
-// Função para esconder o overlay e liberar scroll
 function esconderOverlay() {
   overlay.classList.remove("active");
   document.body.style.overflow = "";
 }
 
-// Alternar tema (modo escuro)
 const themeToggler = document.querySelector(".theme-toggler");
 document.body.classList.toggle("dark-mode");
 
-// Menu lateral e seções
 const menuItems = document.querySelectorAll("#menu li");
 const sections = document.querySelectorAll(".section");
 
-// Abrir formulário de edição com dados preenchidos e mostrar sombra
 function abrirEditarProduto(produto) {
   produtoAtualId = produto.id;
   document.getElementById("editar_nome_produto").value = produto.nome;
@@ -35,10 +33,9 @@ function abrirEditarProduto(produto) {
 
   editarForm.classList.add("active");
   formShadow.classList.add("active");
-  document.body.style.overflow = "hidden"; // trava scroll
+  document.body.style.overflow = "hidden";
 }
 
-// Fechar formulário de edição e esconder sombra
 function fecharEditarProduto() {
   editarForm.classList.remove("active");
   formShadow.classList.remove("active");
@@ -56,7 +53,6 @@ function fecharEditarProduto() {
   editarForm.addEventListener("transitionend", onTransitionEnd);
 }
 
-// Abrir form de adicionar produto
 function abrirProdutoForm() {
   const form = document.getElementById("produto-form");
   form.classList.add("active");
@@ -64,7 +60,6 @@ function abrirProdutoForm() {
   document.body.style.overflow = "hidden";
 }
 
-// Fechar form de adicionar produto
 function fecharProdutoForm() {
   const form = document.getElementById("produto-form");
   form.classList.remove("active");
@@ -79,70 +74,152 @@ function fecharProdutoForm() {
   form.addEventListener("transitionend", onTransitionEnd);
 }
 
-// Função para enviar formulário (cadastramento)
-async function enviarFormulario(form) {
-  mostrarOverlay();
+// Função para formatar data no padrão brasileiro com hora
+function formatarData(dataString) {
+  const data = new Date(dataString);
+  const dia = String(data.getDate()).padStart(2, "0");
+  const mes = String(data.getMonth() + 1).padStart(2, "0");
+  const ano = data.getFullYear();
+  const horas = String(data.getHours()).padStart(2, "0");
+  const minutos = String(data.getMinutes()).padStart(2, "0");
+  return `${dia}/${mes}/${ano} às ${horas}:${minutos}`;
+}
 
-  // Delay para visualização do overlay
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // ⬅️ 2 segundos
+// Carrega tipos de relatório no select dinamicamente
+function carregarTiposRelatorio() {
+  const selectRelType = document.getElementById("relType");
 
-  const formData = new FormData(form);
+  fetch("../../PHP/listar_tipos_relatorios.php")
+    .then(res => res.json())
+    .then(data => {
+      if (data.success && Array.isArray(data.tipos)) {
+        selectRelType.innerHTML = '<option value="">Selecione...</option>';
 
-  fetch(form.action, {
-    method: "POST",
-    body: formData,
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      esconderOverlay();
-
-      if (data.success || data.status === "ok") {
-        Swal.fire({
-          icon: "success",
-          title:
-            form.id === "ad-func"
-              ? "Usuário cadastrado!"
-              : "Produto cadastrado!",
-          text: data.message || "Cadastro realizado com sucesso!",
-          background: "#121212",
-          color: "#fff",
-          confirmButtonColor: "#2b2f3d",
+        data.tipos.forEach(tipo => {
+          const option = document.createElement("option");
+          option.value = tipo;
+          option.textContent = tipo;
+          selectRelType.appendChild(option);
         });
 
-        form.reset();
-        if (form.id === "produto-form") {
-          fecharProdutoForm();
-        }
-        if (form.id === "ad-func") {
-          carregarUsuarios();
-        } else if (form.id === "produto-form") {
-          carregarProdutos();
+        // Se tiver filtro ativo, mantém selecionado o tipo
+        if (filtrosAtivos.tipo) {
+          selectRelType.value = filtrosAtivos.tipo;
         }
       } else {
-        Swal.fire({
-          icon: "error",
-          title: "Erro ao cadastrar!",
-          text: data.message || "Erro desconhecido.",
-          background: "#121212",
-          color: "#fff",
-          confirmButtonColor: "#2b2f3d",
-        });
+        console.error("Erro ao carregar tipos de relatório");
       }
     })
-    .catch(() => {
-      esconderOverlay();
-      Swal.fire({
-        icon: "error",
-        title: "Erro na conexão!",
-        text: "Não foi possível processar a solicitação.",
-        background: "#121212",
-        color: "#fff",
-        confirmButtonColor: "#2b2f3d",
+    .catch(err => console.error("Erro ao buscar tipos:", err));
+}
+
+// Carrega relatórios, pode passar filtro opcional {tipo, dataInicial, dataFinal}
+function carregarRelatorios(filtros = {}) {
+  const params = new URLSearchParams();
+
+  if (filtros.tipo) params.append("tipo", filtros.tipo);
+  if (filtros.dataInicial) params.append("data_inicial", filtros.dataInicial);
+  if (filtros.dataFinal) params.append("data_final", filtros.dataFinal);
+
+  fetch(`../../PHP/listar_relatorios.php?${params.toString()}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success || !data.relatorios) {
+        console.error("Erro ao carregar relatórios");
+        return;
+      }
+
+      const tbody = document.getElementById("relatorios-body");
+      tbody.innerHTML = "";
+
+      data.relatorios.forEach((rel) => {
+        const dataFormatada = formatarData(rel.data);
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <th scope="row">${dataFormatada}</th>
+          <td>${rel.nome}</td>
+          <td>${rel.tipo}</td>
+          <td>${rel.gerado_por}</td>
+          <td>
+            <i class="bi bi-eye" style="cursor:pointer" onclick="verRelatorio('${rel.id}')"></i>
+            <i class="bi bi-download" style="cursor:pointer; margin-left:10px"></i>
+          </td>
+        `;
+        tbody.appendChild(tr);
       });
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Erro ao carregar os relatórios.");
     });
 }
 
-// Função para salvar edição do produto
+// Função para abrir modal com relatório pelo id
+function verRelatorio(id) {
+  fetch(`../../PHP/obter_relatorio.php?id=${encodeURIComponent(id)}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.success) {
+        alert("Erro ao carregar relatório");
+        return;
+      }
+      // Coloca o título e o conteúdo HTML recebido
+      document.getElementById("modal-titulo").textContent = data.relatorio.nome || "Relatório";
+      document.getElementById("modal-conteudo").innerHTML = data.relatorio.conteudo_html || "<p>Sem conteúdo.</p>";
+
+      // Exibe o modal
+      document.getElementById("modal-relatorio").style.display = "block";
+      document.getElementById("modal-overlay").style.display = "block";
+      document.body.style.overflow = "hidden";
+    })
+    .catch(() => alert("Erro ao carregar relatório"));
+}
+
+
+// Funções para fechar modal de relatório
+document.getElementById("btn-fechar-modal").addEventListener("click", () => {
+  document.getElementById("modal-relatorio").style.display = "none";
+  document.getElementById("modal-overlay").style.display = "none";
+  document.body.style.overflow = "";
+});
+document.getElementById("modal-overlay").addEventListener("click", () => {
+  document.getElementById("modal-relatorio").style.display = "none";
+  document.getElementById("modal-overlay").style.display = "none";
+  document.body.style.overflow = "";
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnFiltrar = document.getElementById("btnFiltrar");
+  if (btnFiltrar) {
+    btnFiltrar.addEventListener("click", () => {
+      filtrosAtivos.tipo = document.getElementById("relType").value;
+      filtrosAtivos.dataInicial = document.getElementById("dataInicial").value;
+      filtrosAtivos.dataFinal = document.getElementById("dataFinal").value;
+
+      carregarRelatorios(filtrosAtivos);
+    });
+  }
+
+  const btnLimparFiltro = document.getElementById("btnLimparFiltro");
+  if (btnLimparFiltro) {
+    btnLimparFiltro.addEventListener("click", () => {
+      document.getElementById("relType").value = "";
+      document.getElementById("dataInicial").value = "";
+      document.getElementById("dataFinal").value = "";
+
+      filtrosAtivos = {};
+
+      carregarRelatorios();
+    });
+  }
+
+  carregarTiposRelatorio();
+  carregarRelatorios(filtrosAtivos);
+});
+
+// --- Continua seu código para produtos, usuários, etc ---
+
 async function salvarEdicaoProduto() {
   const nome = document.getElementById("editar_nome_produto").value;
   const marca = document.getElementById("editar_marca").value;
@@ -156,21 +233,12 @@ async function salvarEdicaoProduto() {
   }
 
   mostrarOverlay();
-
-  // Delay para visualização do overlay
-  await new Promise((resolve) => setTimeout(resolve, 2000)); // ⬅️ 2 segundos
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   fetch("../../PHP/atualizar_produto.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      id: produtoAtualId,
-      nome_produto: nome,
-      marca: marca,
-      categoria: categoria,
-      preco: preco,
-      estoque: estoque,
-    }),
+    body: JSON.stringify({ id: produtoAtualId, nome_produto: nome, marca, categoria, preco, estoque }),
   })
     .then((res) => res.json())
     .then((data) => {
@@ -210,7 +278,6 @@ async function salvarEdicaoProduto() {
     });
 }
 
-// Atualiza o último acesso do usuário
 function atualizarUltimoAcesso() {
   return fetch("../../PHP/ultimo_acesso.php")
     .then((response) => response.text())
@@ -218,7 +285,6 @@ function atualizarUltimoAcesso() {
     .catch((err) => console.error("Erro ao atualizar último acesso:", err));
 }
 
-// Carregar usuários na tabela
 function carregarUsuarios() {
   return fetch("../../PHP/listar_usuarios.php")
     .then((response) => response.json())
@@ -242,88 +308,43 @@ function carregarUsuarios() {
     .catch((error) => console.error("Erro ao carregar usuários:", error));
 }
 
-// Carregar produtos com alerta de estoque baixo
 function carregarProdutos() {
-  fetch("../../PHP/listar_produtos.php")
+  return fetch("../../PHP/listar_produtos.php")
     .then((response) => {
-      if (!response.ok)
-        throw new Error("Erro na resposta do servidor: " + response.status);
+      if (!response.ok) throw new Error("Erro na resposta do servidor: " + response.status);
       return response.json();
     })
     .then((data) => {
       const tbody = document.querySelector("#produtos-table-body");
       tbody.innerHTML = "";
-
       const estoqueMinimo = 10;
 
       data.forEach((produto) => {
         const tr = document.createElement("tr");
-
-        const tdId = document.createElement("th");
-        tdId.scope = "row";
-        tdId.textContent = produto.id;
-        tr.appendChild(tdId);
-
-        const tdNome = document.createElement("td");
-        tdNome.textContent = produto.nome;
-        tr.appendChild(tdNome);
-
-        const tdMarca = document.createElement("td");
-        tdMarca.textContent = produto.marca || "-";
-        tr.appendChild(tdMarca);
-
-        const tdCategoria = document.createElement("td");
-        tdCategoria.textContent = produto.categoria;
-        tr.appendChild(tdCategoria);
-
-        const tdPreco = document.createElement("td");
-        tdPreco.textContent = "R$ " + parseFloat(produto.preco).toFixed(2);
-        tr.appendChild(tdPreco);
-
-        const tdEstoque = document.createElement("td");
-        tdEstoque.textContent = produto.estoque;
-        if (!isNaN(produto.estoque) && produto.estoque < estoqueMinimo) {
-          const icone = document.createElement("i");
-          icone.className = "bi bi-exclamation-triangle-fill text-warning";
-          icone.title = "Estoque baixo";
-          icone.style.marginLeft = "5px";
-          tdEstoque.appendChild(icone);
-        }
-        tr.appendChild(tdEstoque);
-
-        const tdData = document.createElement("td");
-        tdData.textContent = formatarData(produto.ultima_atualizacao);
-        tr.appendChild(tdData);
-
-        const tdEditar = document.createElement("td");
-        const editarIcon = document.createElement("i");
-        editarIcon.className = "bi bi-pencil-square";
-        editarIcon.style.cursor = "pointer";
-        editarIcon.addEventListener("click", () => abrirEditarProduto(produto));
-        tdEditar.appendChild(editarIcon);
-        tr.appendChild(tdEditar);
-
+        tr.innerHTML = `
+          <th scope="row">${produto.id}</th>
+          <td>${produto.nome}</td>
+          <td>${produto.marca || "-"}</td>
+          <td>${produto.categoria}</td>
+          <td>R$ ${parseFloat(produto.preco).toFixed(2)}</td>
+          <td>${produto.estoque}${produto.estoque < estoqueMinimo ? ' <i class="bi bi-exclamation-triangle-fill text-warning" title="Estoque baixo"></i>' : ""}</td>
+          <td>${formatarData(produto.ultima_atualizacao)}</td>
+          <td><i class="bi bi-pencil-square" style="cursor: pointer;" onclick="abrirEditarProduto(${JSON.stringify(produto).replace(/"/g, '&quot;')})"></i></td>
+        `;
         tbody.appendChild(tr);
       });
     })
     .catch((error) => console.error("Erro ao carregar produtos:", error));
 }
 
-// Formatar data DD/MM/YYYY às HH:MM
-function formatarData(dataString) {
-  const data = new Date(dataString);
-  const dia = String(data.getDate()).padStart(2, "0");
-  const mes = String(data.getMonth() + 1).padStart(2, "0");
-  const ano = data.getFullYear();
-  const horas = String(data.getHours()).padStart(2, "0");
-  const minutos = String(data.getMinutes()).padStart(2, "0");
-  return `${dia}/${mes}/${ano} às ${horas}:${minutos}`;
-}
-
-// Atualiza usuários, produtos e último acesso periodicamente
 async function atualizarTudo() {
   try {
-    await Promise.all([carregarProdutos(), carregarUsuarios(), atualizarUltimoAcesso()]);
+    await Promise.all([
+      carregarProdutos(),
+      carregarUsuarios(),
+      carregarRelatorios(filtrosAtivos),
+      atualizarUltimoAcesso(),
+    ]);
   } catch (err) {
     console.error(err);
   }
@@ -363,7 +384,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Navegação do menu lateral
 menuItems.forEach((item) => {
   item.addEventListener("click", () => {
     menuItems.forEach((el) => el.classList.remove("active"));
@@ -374,7 +394,6 @@ menuItems.forEach((item) => {
     document.getElementById(target).classList.add("active-section");
   });
 });
-
 
 function obterIniciais(nome) {
   const nomes = nome.trim().split(" ");
@@ -394,13 +413,9 @@ fetch('../../PHP/dados_usuario.php')
     }
     document.querySelector(".img-user").textContent = obterIniciais(data.nome);
     document.querySelector(".name").textContent = data.nome;
-    // Aqui você pode personalizar como mostrar o privilégio/cargo
     document.querySelector(".privilege").textContent = data.tipo === 'ADMIN' ? 'Administrador' : data.cargo;
   })
   .catch(console.error);
-
-
-
 
 
 
