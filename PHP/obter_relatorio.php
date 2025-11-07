@@ -206,5 +206,5 @@ echo json_encode([
     'relatorio' => [
         'nome' => $relatorio['nome_relatorio'],
         'conteudo_html' => $html,
-    ],
+    ],  
 ]);

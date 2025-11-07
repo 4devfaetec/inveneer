@@ -151,7 +151,6 @@ function carregarRelatorios(filtros = {}) {
     })
     .catch(err => {
       console.error(err);
-      alert("Erro ao carregar os relatórios.");
     });
 }
 

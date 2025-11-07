@@ -76,6 +76,10 @@ aside {
     align-items: center;
     padding-left: 10%;
 
+    & a {
+      text-decoration: none;
+    }
+
     & p {
       font-size: 2rem;
       font-weight: 700;
@@ -1072,4 +1076,3 @@ i.bi-exclamation-triangle-fill {
   vertical-align: middle; /* alinha no meio da linha do texto */
   color: #ffc107;       /* cor amarela padrão do Bootstrap warning */
 }
-
